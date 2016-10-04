@@ -5,9 +5,8 @@ import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.util.ElapsedTime;
 
-@Autonomous(name = "Concept: NullOp", group = "Concept")
-@Disabled
-public class test extends OpMode {
+@Autonomous(name = "Concept: Test Autonomous", group = "Concept")
+public class testAutonomous extends OpMode {
 
     private ElapsedTime runtime = new ElapsedTime();
 
