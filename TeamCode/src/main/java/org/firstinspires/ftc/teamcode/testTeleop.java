@@ -8,7 +8,7 @@ import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
  *
  */
 
-@TeleOp(name = "Concept: Test Teleop", group = "Concept")
+@TeleOp(name = "Test Teleop", group = "Concept")
 public class testTeleop extends OpMode {
     @Override
     public void init() {
