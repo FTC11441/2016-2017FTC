@@ -2,7 +2,6 @@ package org.firstinspires.ftc.teamcode;
 
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.HardwareMap;
-import com.qualcomm.robotcore.hardware.Servo;
 import com.qualcomm.robotcore.util.ElapsedTime;
 
 /**
@@ -14,24 +13,17 @@ import com.qualcomm.robotcore.util.ElapsedTime;
 public class Robot {
 
     /* Public OpMode members. */
-    public DcMotor leftMotor   = null;
-    public DcMotor  rightMotor  = null;
+    DcMotor leftMotor = null;
+    DcMotor rightMotor = null;
 
 
-    /* Local OpMode members. */
-    private HardwareMap hwMap  = null;
     private ElapsedTime period  = new ElapsedTime();
-
-
 
     /* Initialize standard Hardware interfaces */
     public void init(HardwareMap ahwMap) {
-        // save reference to HW Map
-        hwMap = ahwMap;
-
         // Define and Initialize Motors
-        leftMotor   = hwMap.dcMotor.get("left motor");
-        rightMotor  = hwMap.dcMotor.get("right motor");
+        leftMotor = ahwMap.dcMotor.get("left motor");
+        rightMotor = ahwMap.dcMotor.get("right motor");
         leftMotor.setDirection(DcMotor.Direction.REVERSE);
 
         // Set all motors to zero power
