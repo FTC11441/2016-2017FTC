@@ -13,6 +13,7 @@ public class testAutonomous extends OpMode {
     @Override
     public void init() {
         telemetry.addData("Status", "Initialized");
+        
     }
 
     /*
