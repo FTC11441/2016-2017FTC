@@ -6,18 +6,18 @@ import com.qualcomm.robotcore.util.ElapsedTime;
 
 /**
  * Created by ethan.hampton on 10/4/2016.
- *
+ * <p>
  * For our robot
  */
 
 public class Robot {
 
     /* Public OpMode members. */
-    DcMotor leftMotor = null;
-    DcMotor rightMotor = null;
+    public DcMotor leftMotor = null;
+    public DcMotor rightMotor = null;
 
 
-    private ElapsedTime period  = new ElapsedTime();
+    private ElapsedTime period = new ElapsedTime();
 
     /* Initialize standard Hardware interfaces */
     public void init(HardwareMap ahwMap) {
