@@ -19,8 +19,6 @@ public class Robot {
     public DcMotor rightMotor = null;
 
 
-    private ElapsedTime period = new ElapsedTime();
-
     /* Initialize standard Hardware interfaces */
     public void init(HardwareMap ahwMap, Mode mode) {
 

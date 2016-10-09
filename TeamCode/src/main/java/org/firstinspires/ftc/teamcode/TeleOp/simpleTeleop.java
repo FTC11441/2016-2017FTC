@@ -18,7 +18,6 @@ public class simpleTeleop extends OpMode {
 
     private double left;
     private double right;
-    double max;
 
     @Override
     public void init() {
