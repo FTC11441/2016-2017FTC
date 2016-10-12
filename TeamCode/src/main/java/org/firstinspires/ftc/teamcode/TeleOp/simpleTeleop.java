@@ -4,7 +4,6 @@ import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 
 import org.firstinspires.ftc.teamcode.Configuration.Robot;
-import org.firstinspires.ftc.teamcode.Utils.Mode;
 
 /**
  * Created by ethan.hampton on 10/4/2016.
@@ -21,8 +20,7 @@ public class simpleTeleop extends OpMode {
 
     @Override
     public void init() {
-
-        robot.init(hardwareMap, Mode.TELEOP);
+        robot.init(hardwareMap);
     }
 
     @Override

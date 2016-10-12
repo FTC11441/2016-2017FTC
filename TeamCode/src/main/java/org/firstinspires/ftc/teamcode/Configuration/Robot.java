@@ -3,12 +3,10 @@ package org.firstinspires.ftc.teamcode.Configuration;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.HardwareMap;
 
-import org.firstinspires.ftc.teamcode.Utils.Mode;
-
 /**
  * Created by ethan.hampton on 10/4/2016.
  * <p>
- * For our robot
+ * For our robot a very simple interface
  */
 
 public class Robot {
@@ -19,7 +17,7 @@ public class Robot {
 
 
     /* Initialize standard Hardware interfaces */
-    public void init(HardwareMap ahwMap, Mode mode) {
+    public void init(HardwareMap ahwMap) {
 
         // Define and Initialize Motors
         leftMotor = ahwMap.dcMotor.get("left motor");
