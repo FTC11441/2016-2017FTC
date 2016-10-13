@@ -6,6 +6,7 @@ package org.firstinspires.ftc.teamcode.Utils;
  */
 
 public class Constants {
-    public static final int ENCODER_TICKS_PER_ROTATION = 0;// TODO: 10/11/2016 fix so this is accurate
+    public static final int ENCODER_TICKS_PER_ROTATION = 560;
+    public static final int MOTOR_RPM = 315;
 
 }

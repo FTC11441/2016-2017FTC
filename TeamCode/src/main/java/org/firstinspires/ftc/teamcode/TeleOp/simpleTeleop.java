@@ -25,7 +25,6 @@ public class simpleTeleop extends OpMode {
 
     @Override
     public void loop() {
-
         // Run wheels in tank mode
         // In this mode the Left stick moves the left wheel forward and backwards and the right moves the right wheel
         left = gamepad1.left_stick_y;
