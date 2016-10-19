@@ -14,6 +14,7 @@ import org.firstinspires.ftc.teamcode.Utils.Motor;
 @Autonomous(name = "State Auto", group = "Test")
 public class TestStateAuto extends OpMode {
 
+    //Left motor is first var, right motor is second
     int[][] steps = new int[][]{
             {0, 0},
             {0, 0},
@@ -59,8 +60,7 @@ public class TestStateAuto extends OpMode {
 
     private boolean doneWithState(int i) {
         //  return (!mLeftMotor.isBusy() && !mRightMotor.isBusy());
-        return ((Math.abs(robot.leftMotor.getCurrentPosition() - steps[i][Motor.LEFT]) < 10) &&
-                (Math.abs(robot.rightMotor.getCurrentPosition() - mRightEncoderTarget) < 10));
-        return false;
+        return ((Math.abs(robot.leftMotor.getCurrentPosition() - steps[i][Motor.LEFT.getValue()]) < 10) &&
+                (Math.abs(robot.rightMotor.getCurrentPosition() - steps[i][Motor.RIGHT.getValue()]) < 10));
     }
 }

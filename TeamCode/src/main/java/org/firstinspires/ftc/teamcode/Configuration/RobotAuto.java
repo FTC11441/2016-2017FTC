@@ -70,6 +70,15 @@ public class RobotAuto {
         rightMotor.setPower(speed);
     }
 
+    public void straight(int Lrotations, int Rrotations) {
+        resetEncoders();
+        leftMotor.setTargetPosition(Constants.ENCODER_TICKS_PER_ROTATION * Lrotations);
+        rightMotor.setTargetPosition(Constants.ENCODER_TICKS_PER_ROTATION * Rrotations);
+        startEncoders();
+        leftMotor.setPower(speed);
+        rightMotor.setPower(speed);
+    }
+
     public void resetEncoders() {
         leftMotor.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
         rightMotor.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
