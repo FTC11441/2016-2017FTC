@@ -33,6 +33,7 @@ public class testAuto extends OpMode {
             robot.leftMotor.setPower(0);
         }
         telemetry.addData("Status", "left = " + robot.leftMotor.getCurrentPosition() + " right = " + robot.rightMotor.getCurrentPosition());    //
+        telemetry.addData("Busy", "left = " + robot.leftMotor.isBusy() + " right = " + robot.rightMotor.isBusy());
         telemetry.update();
     }
 }
