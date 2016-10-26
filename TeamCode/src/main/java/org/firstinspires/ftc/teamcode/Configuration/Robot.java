@@ -11,8 +11,8 @@ import com.qualcomm.robotcore.hardware.Servo;
 
 public class Robot extends SimpleRobot {
 
-    Servo leftBumper;
-    Servo rightBumper;
+    public Servo leftBumper = null;
+    public Servo rightBumper = null;
 
     /* Initialize standard Hardware interfaces */
     public void Init(HardwareMap ahwMap) {

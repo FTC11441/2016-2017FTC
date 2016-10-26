@@ -13,14 +13,14 @@ import org.firstinspires.ftc.teamcode.Configuration.Robot;
 
 @TeleOp(name = "Teleop W/ Servos", group = "Servo")
 public class teleopWithServos extends OpMode {
-    private Robot simpleRobot = new Robot();
+    private Robot robot = new Robot();
 
     private double left;
     private double right;
 
     @Override
     public void init() {
-        simpleRobot.simpleInit(hardwareMap);
+        robot.simpleInit(hardwareMap);
     }
 
     @Override
@@ -31,7 +31,18 @@ public class teleopWithServos extends OpMode {
         right = gamepad1.right_stick_y;
 
         //sets the robots motor power for both motors
-        simpleRobot.leftMotor.setPower(left);
-        simpleRobot.rightMotor.setPower(right);
+        robot.leftMotor.setPower(left);
+        robot.rightMotor.setPower(right);
+
+        if (gamepad1.left_bumper) {
+            robot.leftBumper.setPosition(1L);
+        } else {
+            robot.leftBumper.setPosition(0);
+        }
+        if (gamepad1.right_bumper) {
+            robot.rightBumper.setPosition(1L);
+        } else {
+            robot.rightBumper.setPosition(0);
+        }
     }
 }
