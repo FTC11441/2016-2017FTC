@@ -33,7 +33,7 @@ public class TestStateAuto extends OpMode {
     public void loop() {
         switch (currentState) {
             case 0:
-                //init state
+                //simpleInit state
                 robot.resetEncoders();
                 currentState = 1;
                 startState(1);

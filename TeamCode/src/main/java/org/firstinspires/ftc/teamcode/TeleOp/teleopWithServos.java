@@ -3,17 +3,17 @@ package org.firstinspires.ftc.teamcode.TeleOp;
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 
-import org.firstinspires.ftc.teamcode.Configuration.SimpleRobot;
+import org.firstinspires.ftc.teamcode.Configuration.Robot;
 
 /**
  * Created by ethan.hampton on 10/4/2016.
  * <p>
- * Very simple Teleop
+ * Teleop with servos
  */
 
-@TeleOp(name = "Simple Teleop", group = "Test")
-public class simpleTeleop extends OpMode {
-    private SimpleRobot simpleRobot = new SimpleRobot();
+@TeleOp(name = "Teleop W/ Servos", group = "Servo")
+public class teleopWithServos extends OpMode {
+    private Robot simpleRobot = new Robot();
 
     private double left;
     private double right;

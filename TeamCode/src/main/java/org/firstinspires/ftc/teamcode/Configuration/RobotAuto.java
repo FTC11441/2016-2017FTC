@@ -11,7 +11,7 @@ import java.util.concurrent.TimeUnit;
 /**
  * Created by ethan.hampton on 10/11/2016.
  * <p>
- * Robot setup for autonomous
+ * SimpleRobot setup for autonomous
  */
 
 // TODO: 10/11/2016 add description to all turning and other stuff added
