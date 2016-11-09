@@ -32,7 +32,11 @@ public class TeleopWithOneServo extends OpMode {
         left = gamepad1.left_stick_y;
         right = gamepad1.right_stick_y;
 
-        if(gamepad1.left_bumper||gamepad2.right_bumper||gamepad1.left_bumper||gamepad2.right_bumper)
+        if(gamepad1.left_bumper||gamepad2.left_bumper||gamepad1.right_bumper||gamepad2.right_bumper){
+            robot.bumper.setPosition(1);
+        }else{
+            robot.bumper.setPosition(0);
+        }
 
         //sets the robots motor power for both motors
         robot.leftMotor.setPower(left);
