@@ -4,15 +4,17 @@ import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 
 import org.firstinspires.ftc.teamcode.Configuration.Robot;
+import org.firstinspires.ftc.teamcode.Configuration.SimpleRobot;
 
 /**
- * Created by ethan.hampton on 10/4/2016.
+ * Created by ethan.hampton on 11/9/2016.
  * <p>
- * Teleop with servos
+ * one servo and both controllers do same thing
  */
 
-@TeleOp(name = "Teleop W/ Servos", group = "Servo")
-public class teleopWithServos extends OpMode {
+
+@TeleOp(name = "Simple Teleop", group = "Test")
+public class TeleopWithOneServo extends OpMode {
     private Robot robot = new Robot();
 
     private double left;
@@ -20,7 +22,7 @@ public class teleopWithServos extends OpMode {
 
     @Override
     public void init() {
-        robot.simpleInit(hardwareMap);
+        robot.Init(hardwareMap);
     }
 
     @Override
@@ -33,16 +35,5 @@ public class teleopWithServos extends OpMode {
         //sets the robots motor power for both motors
         robot.leftMotor.setPower(left);
         robot.rightMotor.setPower(right);
-
-        if (gamepad1.left_bumper) {
-            robot.leftBumper.setPosition(1L);
-        } else {
-            robot.leftBumper.setPosition(0);
-        }
-        if (gamepad1.right_bumper) {
-            robot.rightBumper.setPosition(1L);
-        } else {
-            robot.rightBumper.setPosition(0);
-        }
     }
 }
