@@ -34,12 +34,14 @@ public class StateAutoTest2 extends OpMode {
                 robot.currentState = State.MOVE;
                 break;
             case MOVE:
+                //if step has default flags than do default action
                 if(robot.steps[robot.currentStep][3] == 0) {
                     double leftMotorRotations = robot.steps[robot.currentStep][0];
                     double rightMotorRotations = robot.steps[robot.currentStep][1];
                     int speed = (int) robot.steps[robot.currentStep][2];
                     robot.setDrive(leftMotorRotations, rightMotorRotations, speed);
                     robot.currentState = State.CHECK;
+                 //if stop flag then move to stop case
                 }else if(robot.steps[robot.currentStep][3] == -1){
                     robot.currentState = State.STOP;
                 }
