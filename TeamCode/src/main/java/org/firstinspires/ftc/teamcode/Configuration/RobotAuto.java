@@ -20,6 +20,7 @@ public class RobotAuto {
     public DcMotor leftMotor = null;
     public DcMotor rightMotor = null;
 
+    //elapsed time
     public ElapsedTime time = new ElapsedTime();
 
     //default speed to run robot at
