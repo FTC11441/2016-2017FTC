@@ -31,7 +31,7 @@ public class Robot extends SimpleRobot {
 
     /* Initialize standard Hardware interfaces */
     public void Init(HardwareMap ahwMap) {
-        this.simpleInit(ahwMap);
+        super.Init(ahwMap);
         leftBumper = ahwMap.servo.get("Left bumper");
         rightBumper = ahwMap.servo.get("Right bumper");
         leftBumper.setDirection(Servo.Direction.REVERSE);

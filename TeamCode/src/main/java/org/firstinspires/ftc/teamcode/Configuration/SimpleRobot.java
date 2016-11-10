@@ -17,7 +17,7 @@ public class SimpleRobot {
 
 
     /* Initialize standard Hardware interfaces */
-    public void simpleInit(HardwareMap ahwMap) {
+    public void Init(HardwareMap ahwMap) {
 
         // Define and Initialize Motors
         leftMotor = ahwMap.dcMotor.get("left motor");

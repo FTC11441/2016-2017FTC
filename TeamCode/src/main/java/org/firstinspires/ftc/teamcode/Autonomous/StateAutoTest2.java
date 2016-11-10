@@ -17,7 +17,7 @@ public class StateAutoTest2 extends OpMode {
 
     @Override
     public void init() {
-        robot.init(hardwareMap);
+        robot.Init(hardwareMap);
 
         robot.steps = new double[][]{
                 {0, 0},

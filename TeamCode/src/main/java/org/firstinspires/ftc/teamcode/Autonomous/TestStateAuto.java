@@ -26,7 +26,7 @@ public class TestStateAuto extends OpMode {
 
     @Override
     public void init() {
-        robot.init(hardwareMap);
+        robot.Init(hardwareMap);
     }
 
     @Override

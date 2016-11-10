@@ -15,10 +15,8 @@ import java.util.concurrent.TimeUnit;
  * SimpleRobot setup for autonomous
  */
 
-public class RobotAuto {
-    /* Public OpMode members. */
-    public DcMotor leftMotor = null;
-    public DcMotor rightMotor = null;
+public class RobotAuto extends SimpleRobot{
+
 
     //elapsed time
     public ElapsedTime time = new ElapsedTime();
@@ -47,16 +45,8 @@ public class RobotAuto {
 
 
     /* Initialize standard Hardware interfaces */
-    public void init(HardwareMap ahwMap) {
-
-        // Define and Initialize Motors
-        leftMotor = ahwMap.dcMotor.get("left motor");
-        rightMotor = ahwMap.dcMotor.get("right motor");
-        leftMotor.setDirection(DcMotor.Direction.REVERSE);
-
-        // Set all motors to zero power
-        leftMotor.setPower(0);
-        rightMotor.setPower(0);
+    public void Init(HardwareMap ahwMap) {
+        super.Init(ahwMap);
 
         // Set all motors to run with encoders to a position
         leftMotor.setMode(DcMotor.RunMode.RUN_TO_POSITION);
