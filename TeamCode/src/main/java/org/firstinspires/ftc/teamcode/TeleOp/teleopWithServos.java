@@ -15,9 +15,6 @@ import org.firstinspires.ftc.teamcode.Configuration.Robot;
 public class teleopWithServos extends OpMode {
     private Robot robot = new Robot();
 
-    private double left;
-    private double right;
-
     @Override
     public void init() {
         robot.simpleInit(hardwareMap);
@@ -27,8 +24,8 @@ public class teleopWithServos extends OpMode {
     public void loop() {
         // Run wheels in tank mode
         // In this mode the Left stick moves the left wheel forward and backwards and the right moves the right wheel
-        left = gamepad1.left_stick_y;
-        right = gamepad1.right_stick_y;
+        double left = gamepad1.left_stick_y;
+        double right = gamepad1.right_stick_y;
 
         //sets the robots motor power for both motors
         robot.leftMotor.setPower(left);
