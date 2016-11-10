@@ -9,7 +9,7 @@ import java.util.Map;
  */
 
 public enum Motor {
-    LEFT(1), RIGHT(2);
+    LEFT(1), RIGHT(2), BOTH(3);
 
     private int value;
     private static Map map = new HashMap<>();

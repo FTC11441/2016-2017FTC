@@ -5,6 +5,7 @@ import com.qualcomm.robotcore.hardware.HardwareMap;
 import com.qualcomm.robotcore.util.ElapsedTime;
 
 import org.firstinspires.ftc.teamcode.Utils.Constants;
+import org.firstinspires.ftc.teamcode.Utils.State;
 
 import java.util.concurrent.TimeUnit;
 
@@ -14,16 +15,34 @@ import java.util.concurrent.TimeUnit;
  * SimpleRobot setup for autonomous
  */
 
-// TODO: 10/11/2016 add description to all turning and other stuff added
 public class RobotAuto {
-
-
     /* Public OpMode members. */
     public DcMotor leftMotor = null;
     public DcMotor rightMotor = null;
 
-    //sets speed when moving while relying on encoders
-    private int speed = 75;
+    public ElapsedTime time = new ElapsedTime();
+
+    //default speed to run robot at
+    private int defaultSpeed = 75;
+
+    //the step we are on, tells us speed, left motor distance, right motor distance and any flags
+    public int currentStep = 0;
+
+    /*
+    to reference step one you would do something like steps[0][x]
+    the values per step are as follows:
+    1. left motor distance in rotations
+    2. right motor distance in rotations
+    3. Speed from 1 - 100 (if you want to use default then use -1 and that will auto fill to the current default value, default is 75)
+    4. any flags that may be needed, -1 signifies that the program should stop  (optional)
+    */
+    public double[][] steps;
+    //our current state
+    public State currentState = State.INIT;
+
+    //The target positions for both motors
+    public double leftTarget = 0;
+    public double rightTarget = 0;
 
 
     /* Initialize standard Hardware interfaces */
@@ -43,48 +62,69 @@ public class RobotAuto {
         rightMotor.setMode(DcMotor.RunMode.RUN_TO_POSITION);
     }
 
-    public void setSpeed(int speed) {
-        this.speed = speed;
+    /**
+     * default simple drive
+     *
+     * @param leftRotations  how many rotations left motor should go
+     * @param rightRotations how many rotations left motor should go
+     * @param speed          -1 if using default speed
+     */
+    public void setDrive(double leftRotations, double rightRotations, int speed) {
+        //if speed isn't specified then use default speed
+        if (speed == -1) {
+            speed = defaultSpeed;
+        }
+
+        //sets targets
+        leftTarget = leftRotations * Constants.ENCODER_TICKS_PER_ROTATION;
+        rightTarget = rightRotations * Constants.ENCODER_TICKS_PER_ROTATION;
+
+        resetAllEncoders();
+        leftMotor.setTargetPosition((int)leftTarget);
+        rightMotor.setTargetPosition((int)rightTarget);
+        startAllEncoders();
+
+        //if either motor doesn't need to move then don't move it
+        if (!(leftTarget == 0)) {
+            leftMotor.setPower(speed);
+        }
+        if (!(rightTarget == 0)) {
+            rightMotor.setPower(speed);
+        }
     }
 
-    public void leftTurn(int rotations) {
-        resetEncoders();
-        leftMotor.setTargetPosition(Constants.ENCODER_TICKS_PER_ROTATION * rotations);
-        startEncoders();
-        leftMotor.setPower(speed);
+    /**
+     * returns true if left motor is done moving
+     */
+    public boolean leftMotorDone() {
+        if (leftTarget != 0) {
+            if (leftMotor.getCurrentPosition() > leftTarget) {
+                return true;
+            }
+
+        }
+        return false;
     }
 
-    public void rightTurn(int rotations) {
-        resetEncoders();
-        rightMotor.setTargetPosition(Constants.ENCODER_TICKS_PER_ROTATION * rotations);
-        startEncoders();
-        rightMotor.setPower(speed);
+    /**
+     * returns true if right motor is done moving
+     */
+    public boolean rightMotorDone() {
+        if (rightTarget != 0) {
+            if (rightMotor.getCurrentPosition() > rightTarget) {
+                return true;
+            }
+
+        }
+        return false;
     }
 
-    public void straight(int rotations) {
-        resetEncoders();
-        leftMotor.setTargetPosition(Constants.ENCODER_TICKS_PER_ROTATION * rotations);
-        rightMotor.setTargetPosition(Constants.ENCODER_TICKS_PER_ROTATION * rotations);
-        startEncoders();
-        leftMotor.setPower(speed);
-        rightMotor.setPower(speed);
-    }
-
-    public void straight(int Lrotations, int Rrotations) {
-        resetEncoders();
-        leftMotor.setTargetPosition(Constants.ENCODER_TICKS_PER_ROTATION * Lrotations);
-        rightMotor.setTargetPosition(Constants.ENCODER_TICKS_PER_ROTATION * Rrotations);
-        startEncoders();
-        leftMotor.setPower(speed);
-        rightMotor.setPower(speed);
-    }
-
-    public void resetEncoders() {
+    public void resetAllEncoders() {
         leftMotor.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
         rightMotor.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
     }
 
-    public void startEncoders() {
+    public void startAllEncoders() {
         leftMotor.setMode(DcMotor.RunMode.RUN_TO_POSITION);
         rightMotor.setMode(DcMotor.RunMode.RUN_TO_POSITION);
     }
@@ -100,23 +140,6 @@ public class RobotAuto {
         int time = rotations * (Constants.MOTOR_RPM / 60) * (speed / 100);
         time += 3;//add 3 seconds just to be safe
         return time;
-    }
-
-    //timeout after a number of seconds
-    public boolean Timeout(int time) {
-        ElapsedTime runtime = new ElapsedTime();
-        runtime.reset();
-        while (true) {
-            if (!((leftMotor.isBusy() || rightMotor.isBusy()) && runtime.seconds() < time)) {
-                return false;
-            } else {
-                try {
-                    TimeUnit.SECONDS.sleep(1);
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                }
-            }
-        }
     }
 
 }
