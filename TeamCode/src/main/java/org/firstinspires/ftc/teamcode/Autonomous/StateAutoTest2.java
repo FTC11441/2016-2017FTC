@@ -34,11 +34,15 @@ public class StateAutoTest2 extends OpMode {
                 robot.currentState = State.MOVE;
                 break;
             case MOVE:
-                double leftMotorRotations = robot.steps[robot.currentStep][0];
-                double rightMotorRotations = robot.steps[robot.currentStep][1];
-                int speed = (int)robot.steps[robot.currentStep][2];
-                robot.setDrive(leftMotorRotations,rightMotorRotations,speed);
-                robot.currentState = State.CHECK;
+                if(robot.steps[robot.currentStep][3] == 0) {
+                    double leftMotorRotations = robot.steps[robot.currentStep][0];
+                    double rightMotorRotations = robot.steps[robot.currentStep][1];
+                    int speed = (int) robot.steps[robot.currentStep][2];
+                    robot.setDrive(leftMotorRotations, rightMotorRotations, speed);
+                    robot.currentState = State.CHECK;
+                }else if(robot.steps[robot.currentStep][3] == -1){
+                    robot.currentState = State.STOP;
+                }
                 break;
             case CHECK:
                 if(robot.leftMotorDone()){
@@ -49,6 +53,8 @@ public class StateAutoTest2 extends OpMode {
                 }
                 if(robot.rightMotorDone() && robot.leftMotorDone()){
                     robot.currentState = State.MOVE;
+                    //adds one to current step so that we continue with the program
+                    robot.currentStep++;
                 }
                 break;
             case STOP:

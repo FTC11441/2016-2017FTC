@@ -24,7 +24,7 @@ public class RobotAuto {
     public ElapsedTime time = new ElapsedTime();
 
     //default speed to run robot at
-    private int defaultSpeed = 75;
+    private final int defaultSpeed = 75;
 
     //the step we are on, tells us speed, left motor distance, right motor distance and any flags
     public int currentStep = 0;

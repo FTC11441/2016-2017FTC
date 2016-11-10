@@ -34,7 +34,7 @@ public class TestStateAuto extends OpMode {
         switch (currentState) {
             case 0:
                 //simpleInit state
-                robot.resetEncoders();
+                robot.resetAllEncoders();
                 currentState = 1;
                 startState(1);
                 break;
