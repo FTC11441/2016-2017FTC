@@ -23,7 +23,7 @@ public class testAuto extends OpMode {
     @Override
     public void loop() {
         if (!run) {
-            robot.straight(10);
+            //robot.straight(10);
             run = true;
         }
         if (!robot.rightMotor.isBusy()) {

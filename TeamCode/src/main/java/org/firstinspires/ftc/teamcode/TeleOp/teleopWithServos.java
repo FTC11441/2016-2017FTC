@@ -17,7 +17,7 @@ public class teleopWithServos extends OpMode {
 
     @Override
     public void init() {
-        robot.simpleInit(hardwareMap);
+        robot.Init(hardwareMap);
     }
 
     @Override

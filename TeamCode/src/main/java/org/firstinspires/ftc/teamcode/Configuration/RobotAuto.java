@@ -7,15 +7,13 @@ import com.qualcomm.robotcore.util.ElapsedTime;
 import org.firstinspires.ftc.teamcode.Utils.Constants;
 import org.firstinspires.ftc.teamcode.Utils.State;
 
-import java.util.concurrent.TimeUnit;
-
 /**
  * Created by ethan.hampton on 10/11/2016.
  * <p>
  * SimpleRobot setup for autonomous
  */
 
-public class RobotAuto extends SimpleRobot{
+public class RobotAuto extends SimpleRobot {
 
 
     //elapsed time
@@ -48,7 +46,7 @@ public class RobotAuto extends SimpleRobot{
     public void Init(HardwareMap ahwMap) {
         super.Init(ahwMap);
 
-        // Set all motors to run with encoders to a position
+        // Set all motors to run with encoders to use encoders to track position
         leftMotor.setMode(DcMotor.RunMode.RUN_TO_POSITION);
         rightMotor.setMode(DcMotor.RunMode.RUN_TO_POSITION);
     }
@@ -66,49 +64,40 @@ public class RobotAuto extends SimpleRobot{
             speed = defaultSpeed;
         }
 
+        //create speed for each motors in order to scale properly
+        int leftSpeed = speed;
+        int rightSpeed = speed;
+
+        //reverse speed as necessary
+        if (leftRotations < 0) {
+            leftSpeed = -leftSpeed;
+        }
+        if (rightRotations < 0) {
+            rightSpeed = -rightSpeed;
+        }
+
+        //scale speed so that turns are relatively smooth
+
+
+
         //sets targets
         leftTarget = leftRotations * Constants.ENCODER_TICKS_PER_ROTATION;
         rightTarget = rightRotations * Constants.ENCODER_TICKS_PER_ROTATION;
 
         resetAllEncoders();
-        leftMotor.setTargetPosition((int)leftTarget);
-        rightMotor.setTargetPosition((int)rightTarget);
+        leftMotor.setTargetPosition((int) leftTarget);
+        rightMotor.setTargetPosition((int) rightTarget);
         startAllEncoders();
 
         //if either motor doesn't need to move then don't move it
         if (!(leftTarget == 0)) {
-            leftMotor.setPower(speed);
+            leftMotor.setPower(leftSpeed);
         }
         if (!(rightTarget == 0)) {
-            rightMotor.setPower(speed);
+            rightMotor.setPower(rightSpeed);
         }
     }
 
-    /**
-     * returns true if left motor is done moving
-     */
-    public boolean leftMotorDone() {
-        if (leftTarget != 0) {
-            if (leftMotor.getCurrentPosition() > leftTarget) {
-                return true;
-            }
-
-        }
-        return false;
-    }
-
-    /**
-     * returns true if right motor is done moving
-     */
-    public boolean rightMotorDone() {
-        if (rightTarget != 0) {
-            if (rightMotor.getCurrentPosition() > rightTarget) {
-                return true;
-            }
-
-        }
-        return false;
-    }
 
     public void resetAllEncoders() {
         leftMotor.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
@@ -129,7 +118,7 @@ public class RobotAuto extends SimpleRobot{
      */
     public int calculateTime(int rotations, int speed) {
         int time = rotations * (Constants.MOTOR_RPM / 60) * (speed / 100);
-        time += 3;//add 3 seconds just to be safe
+        time += 2;//add 2 seconds just to be safe
         return time;
     }
 

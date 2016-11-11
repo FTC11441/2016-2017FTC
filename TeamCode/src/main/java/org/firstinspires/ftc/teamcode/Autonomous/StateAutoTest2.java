@@ -2,6 +2,7 @@ package org.firstinspires.ftc.teamcode.Autonomous;
 
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
+import com.qualcomm.robotcore.hardware.DcMotor;
 
 import org.firstinspires.ftc.teamcode.Configuration.RobotAuto;
 import org.firstinspires.ftc.teamcode.Utils.State;
@@ -35,32 +36,33 @@ public class StateAutoTest2 extends OpMode {
                 break;
             case MOVE:
                 //if step has default flags than do default action
-                if(robot.steps[robot.currentStep][3] == 0) {
+                if (robot.steps[robot.currentStep][3] == 0) {
                     double leftMotorRotations = robot.steps[robot.currentStep][0];
                     double rightMotorRotations = robot.steps[robot.currentStep][1];
                     int speed = (int) robot.steps[robot.currentStep][2];
                     robot.setDrive(leftMotorRotations, rightMotorRotations, speed);
                     robot.currentState = State.CHECK;
-                 //if stop flag then move to stop case
-                }else if(robot.steps[robot.currentStep][3] == -1){
+                    //if stop flag then move to stop case
+                } else if (robot.steps[robot.currentStep][3] == -1) {
                     robot.currentState = State.STOP;
                 }
                 break;
             case CHECK:
-                if(robot.leftMotorDone()){
+                if (!robot.leftMotor.isBusy()) {
                     robot.leftMotor.setPower(0);
                 }
-                if(robot.rightMotorDone()){
+                if (!robot.rightMotor.isBusy()) {
                     robot.rightMotor.setPower(0);
                 }
-                if(robot.rightMotorDone() && robot.leftMotorDone()){
+                if (!robot.rightMotor.isBusy() && !robot.leftMotor.isBusy()) {
                     robot.currentState = State.MOVE;
                     //adds one to current step so that we continue with the program
                     robot.currentStep++;
                 }
                 break;
             case STOP:
-
+                robot.leftMotor.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+                robot.rightMotor.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
                 break;
         }
     }

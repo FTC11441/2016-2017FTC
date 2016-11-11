@@ -20,7 +20,7 @@ public class Launcher extends OpMode {
     @Override
     public void init() {
 
-        simpleRobot.simpleInit(hardwareMap);
+        simpleRobot.Init(hardwareMap);
     }
 
     @Override

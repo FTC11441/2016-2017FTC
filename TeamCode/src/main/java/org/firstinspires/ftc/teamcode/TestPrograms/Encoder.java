@@ -17,7 +17,7 @@ public class Encoder extends OpMode {
 
     @Override
     public void init() {
-        simpleRobot.simpleInit(hardwareMap);
+        simpleRobot.Init(hardwareMap);
     }
 
     @Override
