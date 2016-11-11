@@ -14,19 +14,15 @@ import org.firstinspires.ftc.teamcode.Utils.State;
  */
 
 public class RobotAuto extends SimpleRobot {
-
-
     //elapsed time
     public ElapsedTime time = new ElapsedTime();
-
-    //default speed to run robot at
-    private final int defaultSpeed = 75;
 
     //the step we are on, tells us speed, left motor distance, right motor distance and any flags
     public int currentStep = 0;
 
     /*
     to reference step one you would do something like steps[0][x]
+    to go backwards, change motor distances not speed, this means you can turn on a dime
     the values per step are as follows:
     1. left motor distance in rotations
     2. right motor distance in rotations
@@ -61,14 +57,14 @@ public class RobotAuto extends SimpleRobot {
     public void setDrive(double leftRotations, double rightRotations, int speed) {
         //if speed isn't specified then use default speed
         if (speed == -1) {
-            speed = defaultSpeed;
+            speed = Constants.DEFAULT_SPEED;
         }
 
         //create speed for each motors in order to scale properly
-        int leftSpeed = speed;
-        int rightSpeed = speed;
+        double leftSpeed = speed;
+        double rightSpeed = speed;
 
-        //reverse speed as necessary
+        //reverse speed as necessary, if we need negative rotations
         if (leftRotations < 0) {
             leftSpeed = -leftSpeed;
         }
@@ -76,8 +72,14 @@ public class RobotAuto extends SimpleRobot {
             rightSpeed = -rightSpeed;
         }
 
-        //scale speed so that turns are relatively smooth
-
+        //scale speed so that turns are relatively smooth, doesn't change anything if they are the same
+        if (leftRotations > rightRotations) {
+            double scale = rightRotations / leftRotations;
+            rightSpeed = rightSpeed * scale;
+        } else if (rightRotations > leftRotations) {
+            double scale = leftRotations / rightRotations;
+            leftSpeed = leftSpeed * scale;
+        }
 
 
         //sets targets
