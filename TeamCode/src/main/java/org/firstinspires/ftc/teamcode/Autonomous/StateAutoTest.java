@@ -13,7 +13,7 @@ import org.firstinspires.ftc.teamcode.Utils.State;
  */
 
 @Autonomous(name = "State Auto 2", group = "Test")
-public class StateAutoTest2 extends OpMode {
+public class StateAutoTest extends OpMode {
     private RobotAuto robot = new RobotAuto();
 
     @Override

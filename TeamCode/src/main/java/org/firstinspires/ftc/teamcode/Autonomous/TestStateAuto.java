@@ -14,6 +14,7 @@ import org.firstinspires.ftc.teamcode.Utils.Motor;
  */
 @Autonomous(name = "State Auto", group = "Test")
 @Disabled
+@Deprecated
 public class TestStateAuto extends OpMode {
 
     //Left motor is first var, right motor is second

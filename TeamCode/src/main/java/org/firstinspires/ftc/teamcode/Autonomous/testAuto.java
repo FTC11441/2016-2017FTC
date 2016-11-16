@@ -12,6 +12,7 @@ import org.firstinspires.ftc.teamcode.Robots.RobotAuto;
  */
 @Autonomous(name = "Test Auto", group = "Test")
 @Disabled
+@Deprecated
 public class testAuto extends OpMode {
     private RobotAuto robot = new RobotAuto();
 

@@ -16,14 +16,6 @@ public class Robot extends SimpleRobot {
     public Servo leftBumper = null;
     public Servo rightBumper = null;
 
-    // if 1 then red is on the left and blue is on the right,
-    // if 2 then red is on the right and blue is on the left,
-    // if 0 then we can assume we do not know the state of the variable
-    private byte beaconGears = 0;
-    private byte beaconTools = 0;
-    private byte beaconLegos = 0;
-    private byte beaconWheels = 0;
-
     /**
      * the team we are on
      */
@@ -44,38 +36,6 @@ public class Robot extends SimpleRobot {
 
     public void setTeam(Team team) {
         this.team = team;
-    }
-
-    public byte getBeaconGears() {
-        return beaconGears;
-    }
-
-    public void setBeaconGears(byte beaconGears) {
-        this.beaconGears = beaconGears;
-    }
-
-    public byte getBeaconTools() {
-        return beaconTools;
-    }
-
-    public void setBeaconTools(byte beaconTools) {
-        this.beaconTools = beaconTools;
-    }
-
-    public byte getBeaconLegos() {
-        return beaconLegos;
-    }
-
-    public void setBeaconLegos(byte beaconLegos) {
-        this.beaconLegos = beaconLegos;
-    }
-
-    public byte getBeaconWheels() {
-        return beaconWheels;
-    }
-
-    public void setBeaconWheels(byte beaconWheels) {
-        this.beaconWheels = beaconWheels;
     }
 
 }
