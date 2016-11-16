@@ -16,6 +16,7 @@ import org.firstinspires.ftc.teamcode.Utils.State;
 public class RobotAuto extends SimpleRobot {
     //elapsed time
     public ElapsedTime time = new ElapsedTime();
+    public double waitTime = 0;
 
     //the step we are on, tells us speed, left motor distance, right motor distance and any flags
     public int currentStep = 0;
@@ -94,9 +95,13 @@ public class RobotAuto extends SimpleRobot {
         //if either motor doesn't need to move then don't move it
         if (!(leftTarget == 0)) {
             leftMotor.setPower(leftSpeed);
+        } else {
+            leftMotor.setPower(0);
         }
         if (!(rightTarget == 0)) {
             rightMotor.setPower(rightSpeed);
+        } else {
+            rightMotor.setPower(0);
         }
     }
 

@@ -7,5 +7,5 @@ package org.firstinspires.ftc.teamcode.Utils;
  */
 
 public enum State {
-    INIT,MOVE,CHECK,STOP
+    INIT,MOVE,WAIT, CHECK,STOP
 }

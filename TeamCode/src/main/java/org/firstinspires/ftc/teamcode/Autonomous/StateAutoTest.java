@@ -12,7 +12,7 @@ import org.firstinspires.ftc.teamcode.Utils.State;
  * second attempt at state machine
  */
 
-@Autonomous(name = "State Auto 2", group = "Test")
+@Autonomous(name = "State Auto 1", group = "Test")
 public class StateAutoTest extends OpMode {
     private RobotAuto robot = new RobotAuto();
 
@@ -21,9 +21,9 @@ public class StateAutoTest extends OpMode {
         robot.Init(hardwareMap);
 
         robot.steps = new double[][]{
-                {0, 0},
-                {0, 0},
-                {0, 0}
+                {5, 0, -1, 0},
+                {2, 2, -1, 0},
+                {0, 0, 0, -1}
         };
     }
 
@@ -47,6 +47,11 @@ public class StateAutoTest extends OpMode {
                     robot.currentState = State.STOP;
                 }
                 break;
+            case WAIT:
+                if(robot.time.milliseconds() >= robot.waitTime){
+                    robot.currentState = State.MOVE;
+                }
+                break;
             case CHECK:
                 if (!robot.leftMotor.isBusy()) {
                     robot.leftMotor.setPower(0);
@@ -55,7 +60,12 @@ public class StateAutoTest extends OpMode {
                     robot.rightMotor.setPower(0);
                 }
                 if (!robot.rightMotor.isBusy() && !robot.leftMotor.isBusy()) {
-                    robot.currentState = State.MOVE;
+                    robot.rightMotor.setPower(0);
+                    robot.leftMotor.setPower(0);
+                    //set proper next step
+                    robot.currentState = State.WAIT;
+                    //set time to wait for next step
+                    robot.waitTime = robot.time.milliseconds() + 250;
                     //adds one to current step so that we continue with the program
                     robot.currentStep++;
                 }
