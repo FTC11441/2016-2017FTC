@@ -30,5 +30,9 @@ public class TeleopWithLauncher extends OpMode {
         //sets the robots motor power for both motors
         robot.leftMotor.setPower(left);
         robot.rightMotor.setPower(right);
+
+        double power = gamepad1.right_trigger;
+        robot.rightLauncher.setPower(power);
+        robot.leftLauncher.setPower(power);
     }
 }
