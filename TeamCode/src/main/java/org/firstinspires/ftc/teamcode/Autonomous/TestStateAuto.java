@@ -1,6 +1,7 @@
 package org.firstinspires.ftc.teamcode.Autonomous;
 
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
+import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 
 import org.firstinspires.ftc.teamcode.Configuration.RobotAuto;
@@ -12,6 +13,7 @@ import org.firstinspires.ftc.teamcode.Utils.Motor;
  * test of states
  */
 @Autonomous(name = "State Auto", group = "Test")
+@Disabled
 public class TestStateAuto extends OpMode {
 
     //Left motor is first var, right motor is second
