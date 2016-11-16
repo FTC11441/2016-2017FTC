@@ -23,7 +23,7 @@ public class StateAutoTest extends OpMode {
         robot.steps = new double[][]{
                 {5, 0, -1, 0},
                 {2, 2, -1, 0},
-                {0, 0, 0, -1}
+                {0, 0, -1, -1}
         };
     }
 
