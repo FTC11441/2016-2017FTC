@@ -4,7 +4,7 @@ import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 
-import org.firstinspires.ftc.teamcode.Configuration.RobotAuto;
+import org.firstinspires.ftc.teamcode.Robots.RobotAuto;
 import org.firstinspires.ftc.teamcode.Utils.Motor;
 
 /**
@@ -17,7 +17,7 @@ import org.firstinspires.ftc.teamcode.Utils.Motor;
 public class TestStateAuto extends OpMode {
 
     //Left motor is first var, right motor is second
-    int[][] steps = new int[][]{
+    private int[][] steps = new int[][]{
             {0, 0},
             {0, 0},
             {0, 0}
@@ -41,11 +41,11 @@ public class TestStateAuto extends OpMode {
                 startState(1);
                 break;
             case 1:
-                if (doneWithState(1)) {
-
-                } else {
-
-                }
+//                if (doneWithState(1)) {
+//
+//                } else {
+//
+//                }
 
                 break;
             case 2:

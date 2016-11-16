@@ -1,4 +1,4 @@
-package org.firstinspires.ftc.teamcode.Configuration;
+package org.firstinspires.ftc.teamcode.Robots;
 
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.HardwareMap;
@@ -34,8 +34,8 @@ public class RobotAuto extends SimpleRobot {
     public State currentState = State.INIT;
 
     //The target positions for both motors
-    public double leftTarget = 0;
-    public double rightTarget = 0;
+    private double leftTarget = 0;
+    private double rightTarget = 0;
 
 
     /* Initialize standard Hardware interfaces */
@@ -124,4 +124,19 @@ public class RobotAuto extends SimpleRobot {
         return time;
     }
 
+    public double getRightTarget() {
+        return rightTarget;
+    }
+
+    public void setRightTarget(double rightTarget) {
+        this.rightTarget = rightTarget;
+    }
+
+    public double getLeftTarget() {
+        return leftTarget;
+    }
+
+    public void setLeftTarget(double leftTarget) {
+        this.leftTarget = leftTarget;
+    }
 }

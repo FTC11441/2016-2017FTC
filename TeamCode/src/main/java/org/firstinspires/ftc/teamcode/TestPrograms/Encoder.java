@@ -3,7 +3,7 @@ package org.firstinspires.ftc.teamcode.TestPrograms;
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 
-import org.firstinspires.ftc.teamcode.Configuration.SimpleRobot;
+import org.firstinspires.ftc.teamcode.Robots.SimpleRobot;
 
 /**
  * Created by ethan.hampton on 10/12/2016.

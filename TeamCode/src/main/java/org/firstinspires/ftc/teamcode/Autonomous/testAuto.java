@@ -4,7 +4,7 @@ import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 
-import org.firstinspires.ftc.teamcode.Configuration.RobotAuto;
+import org.firstinspires.ftc.teamcode.Robots.RobotAuto;
 
 /**
  * Created by ethan.hampton on 10/17/2016.

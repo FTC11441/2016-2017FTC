@@ -4,7 +4,7 @@ import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.hardware.DcMotor;
 
-import org.firstinspires.ftc.teamcode.Configuration.RobotAuto;
+import org.firstinspires.ftc.teamcode.Robots.RobotAuto;
 import org.firstinspires.ftc.teamcode.Utils.State;
 
 /**
