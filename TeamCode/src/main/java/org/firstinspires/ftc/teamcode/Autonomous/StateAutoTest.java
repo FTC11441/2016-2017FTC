@@ -29,11 +29,11 @@ public class StateAutoTest extends OpMode {
 
     @Override
     public void loop() {
-        telemetry.addData("Current step",robot.currentStep);
-        telemetry.addData("Current state",robot.currentState.toString());
-        telemetry.addData("Current wait",robot.waitTime);
-        telemetry.addData("Current right speed",robot.rightSpeed);
-        telemetry.addData("Current left speed",robot.leftSpeed);
+        telemetry.addData("Current step", robot.currentStep);
+        telemetry.addData("Current state", robot.currentState.toString());
+        telemetry.addData("Current wait", robot.waitTime);
+        telemetry.addData("Current right speed", robot.rightSpeed);
+        telemetry.addData("Current left speed", robot.leftSpeed);
         telemetry.update();
         switch (robot.currentState) {
             case INIT:
@@ -47,6 +47,7 @@ public class StateAutoTest extends OpMode {
                     double rightMotorRotations = robot.steps[robot.currentStep][1];
                     int speed = (int) robot.steps[robot.currentStep][2];
                     robot.setDrive(leftMotorRotations, rightMotorRotations, speed);
+                    robot.startTime = robot.time.milliseconds();
                     robot.currentState = State.CHECK;
                     //if stop flag then move to stop case
                 } else if (robot.steps[robot.currentStep][3] == -1) {
@@ -54,12 +55,12 @@ public class StateAutoTest extends OpMode {
                 }
                 break;
             case WAIT:
-                if(robot.time.milliseconds() >= robot.waitTime){
+                if (robot.time.milliseconds() >= robot.waitTime) {
                     robot.currentState = State.MOVE;
                 }
                 break;
             case CHECK:
-                if (!robot.rightMotor.isBusy() && !robot.leftMotor.isBusy()) {
+                if (!robot.rightMotor.isBusy() && !robot.leftMotor.isBusy()) {// TODO: 11/16/2016 Implement wait time in order to stop program from catching 
                     //set proper next step
                     robot.currentState = State.WAIT;
                     //set time to wait for next step
