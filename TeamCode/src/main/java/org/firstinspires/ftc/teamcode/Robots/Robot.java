@@ -30,7 +30,7 @@ public class Robot extends SimpleRobot {
         super.Init(ahwMap);
         //leftBumper = ahwMap.servo.get("Left bumper");
         //rightBumper = ahwMap.servo.get("Right bumper");
-        leftBumper.setDirection(Servo.Direction.REVERSE);
+        //leftBumper.setDirection(Servo.Direction.REVERSE);
 
 
         leftLauncher = ahwMap.dcMotor.get("left launcher");
