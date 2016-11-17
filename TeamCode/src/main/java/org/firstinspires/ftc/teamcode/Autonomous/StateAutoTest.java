@@ -21,14 +21,20 @@ public class StateAutoTest extends OpMode {
         robot.Init(hardwareMap);
 
         robot.steps = new double[][]{
-                {5, 0, -1, 0},
-                {2, 2, -1, 0},
+                {5, -5, -1, 0},
+                {7, 2, -1, 0},
                 {0, 0, -1, -1}
         };
     }
 
     @Override
     public void loop() {
+        telemetry.addData("Current step",robot.currentStep);
+        telemetry.addData("Current state",robot.currentState.toString());
+        telemetry.addData("Current wait",robot.waitTime);
+        telemetry.addData("Current right speed",robot.rightSpeed);
+        telemetry.addData("Current left speed",robot.leftSpeed);
+        telemetry.update();
         switch (robot.currentState) {
             case INIT:
                 robot.time.reset();
@@ -53,24 +59,19 @@ public class StateAutoTest extends OpMode {
                 }
                 break;
             case CHECK:
-                if (!robot.leftMotor.isBusy()) {
-                    robot.leftMotor.setPower(0);
-                }
-                if (!robot.rightMotor.isBusy()) {
-                    robot.rightMotor.setPower(0);
-                }
                 if (!robot.rightMotor.isBusy() && !robot.leftMotor.isBusy()) {
-                    robot.rightMotor.setPower(0);
-                    robot.leftMotor.setPower(0);
                     //set proper next step
                     robot.currentState = State.WAIT;
                     //set time to wait for next step
-                    robot.waitTime = robot.time.milliseconds() + 250;
+                    robot.waitTime = robot.time.milliseconds() + 1000;
                     //adds one to current step so that we continue with the program
                     robot.currentStep++;
                 }
                 break;
             case STOP:
+                //stop and reset robot
+                robot.rightMotor.setPower(0);
+                robot.leftMotor.setPower(0);
                 robot.leftMotor.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
                 robot.rightMotor.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
                 break;

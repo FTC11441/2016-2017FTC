@@ -37,6 +37,8 @@ public class RobotAuto extends SimpleRobot {
     //The target positions for both motors
     private double leftTarget = 0;
     private double rightTarget = 0;
+    public double rightSpeed = 0;
+    public double leftSpeed = 0;
 
 
     /* Initialize standard Hardware interfaces */
@@ -62,8 +64,8 @@ public class RobotAuto extends SimpleRobot {
         }
 
         //create speed for each motors in order to scale properly
-        double leftSpeed = speed;
-        double rightSpeed = speed;
+        leftSpeed = speed;
+        rightSpeed = speed;
 
         //reverse speed as necessary, if we need negative rotations
         if (leftRotations < 0) {
@@ -74,11 +76,12 @@ public class RobotAuto extends SimpleRobot {
         }
 
         //scale speed so that turns are relatively smooth, doesn't change anything if they are the same
-        if (leftRotations > rightRotations) {
-            double scale = rightRotations / leftRotations;
+        //note that we are scaling by 2 so we have a differential effort
+        if (Math.abs(leftRotations) > Math.abs(rightRotations)) {
+            double scale = (rightRotations * 2) / leftRotations;
             rightSpeed = rightSpeed * scale;
-        } else if (rightRotations > leftRotations) {
-            double scale = leftRotations / rightRotations;
+        } else if (Math.abs(rightRotations) > Math.abs(leftRotations)) {
+            double scale = (leftRotations * 2) / rightRotations;
             leftSpeed = leftSpeed * scale;
         }
 
