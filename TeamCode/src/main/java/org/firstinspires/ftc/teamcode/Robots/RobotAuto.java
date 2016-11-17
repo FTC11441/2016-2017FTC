@@ -16,7 +16,10 @@ import org.firstinspires.ftc.teamcode.Utils.State;
 public class RobotAuto extends SimpleRobot {
     //elapsed time
     public ElapsedTime time = new ElapsedTime();
+    //what time to wait till
     public double waitTime = 0;
+    //what time that current step started
+    public double startTime =0;
 
     //the step we are on, tells us speed, left motor distance, right motor distance and any flags
     public int currentStep = 0;
