@@ -4,7 +4,7 @@ import org.firstinspires.ftc.teamcode.Utils.Team;
 
 /**
  * Created by ethan.hampton on 11/15/2016.
- *
+ * <p>
  * Manages beacons on the field
  */
 
@@ -15,12 +15,80 @@ public class BeaconManager {
     private BeaconState beaconWheels = BeaconState.UNKNOWN;
     private Team team;
 
-    public BeaconManager(Team team){
+    public BeaconManager(Team team) {
         this.team = team;
     }
 
     /**
-     *
+     * @param beacon what beacon should we return the information for
+     * @return beacon button to press, 1 for left, 2 for right
+     */
+    public int getButton(Beacon beacon) {
+        switch (beacon) {
+            case TOOLS:
+                return stateSwitch(beaconTools);
+            case GEARS:
+                return stateSwitch(beaconGears);
+            case LEGOS:
+                return stateSwitch(beaconLegos);
+            case WHEELS:
+                return stateSwitch(beaconWheels);
+        }
+        return 0;
+    }
+
+    private int stateSwitch(BeaconState state) {
+        switch (state) {
+            case RED_LEFT:
+                return redOnLeft();
+            case BLUE_LEFT:
+                return blueOnLeft();
+            case ALL_BLUE:
+                //nothing to do if on blue
+                if (team.equals(Team.BLUE)) {
+                    return 0;
+                } else {
+                    return 2;
+                }
+            case ALL_RED:
+                //nothing to do if on red
+                if (team.equals(Team.RED)) {
+                    return 0;
+                } else {
+                    return 2;
+                }
+            case ALL_BLUE_RED_LEFT:
+                return redOnLeft();
+            case ALL_RED_BLUE_LEFT:
+                return blueOnLeft();
+            case UNKNOWN:
+                return 0;
+
+        }
+        return 0;
+    }
+
+    private int redOnLeft() {
+        if (team.equals(Team.RED)) {
+            return 1;
+        } else if (team.equals(Team.BLUE)) {
+            return 2;
+        } else {
+            return 0;
+        }
+    }
+
+    private int blueOnLeft() {
+        if (team.equals(Team.BLUE)) {
+            return 1;
+        } else if (team.equals(Team.RED)) {
+            return 2;
+        } else {
+            return 0;
+        }
+    }
+
+    /**
      * @return Gear beacon's state
      */
     public BeaconState getBeaconGears() {
@@ -32,7 +100,6 @@ public class BeaconManager {
     }
 
     /**
-     *
      * @return Tool beacon's state
      */
     public BeaconState getBeaconTools() {
@@ -44,7 +111,6 @@ public class BeaconManager {
     }
 
     /**
-     *
      * @return Lego beacon's state
      */
     public BeaconState getBeaconLegos() {
@@ -56,7 +122,6 @@ public class BeaconManager {
     }
 
     /**
-     *
      * @return Wheel beacon's state
      */
     public BeaconState getBeaconWheels() {
