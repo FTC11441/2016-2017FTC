@@ -19,7 +19,7 @@ public class RobotAuto extends SimpleRobot {
     //what time to wait till
     public double waitTime = 0;
     //what time that current step started
-    public double startTime =0;
+    public double startTime = 0;
 
     //the step we are on, tells us speed, left motor distance, right motor distance and any flags
     public int currentStep = 0;
@@ -64,6 +64,14 @@ public class RobotAuto extends SimpleRobot {
         //if speed isn't specified then use default speed
         if (speed == -1) {
             speed = Constants.DEFAULT_SPEED;
+        }
+
+        /*
+        if the speed is from a scale from 0 to 100 instead of 0 to 1
+        change it so it is in a scale the robot will work with
+         */
+        if (speed > 1) {
+            speed = speed / 100;
         }
 
         //create speed for each motors in order to scale properly
