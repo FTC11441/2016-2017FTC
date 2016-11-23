@@ -56,11 +56,11 @@ public class RobotAuto extends SimpleRobot {
     /**
      * default simple drive
      *
-     * @param leftRotations  how many rotations left motor should go
-     * @param rightRotations how many rotations left motor should go
-     * @param speed          -1 if using default speed
+     * @param leftRotations  how many rotations left motor should go, can be negative
+     * @param rightRotations how many rotations left motor should go, can be negative
+     * @param speed          -1 if using default speed, assumes speed is always positive
      */
-    public void setDrive(double leftRotations, double rightRotations, int speed) {
+    public void setDrive(double leftRotations, double rightRotations, double speed) {
         //if speed isn't specified then use default speed
         if (speed == -1) {
             speed = Constants.DEFAULT_SPEED;
@@ -86,13 +86,15 @@ public class RobotAuto extends SimpleRobot {
             rightSpeed = -rightSpeed;
         }
 
-        //scale speed so that turns are relatively smooth, doesn't change anything if they are the same
-        //note that we are scaling by 2 so we have a differential effort
+        /*
+        scale speed so that turns are relatively smooth, doesn't change anything if they are the same
+        note that we are scaling by 2 so we have a differential effort
+        */
         if (Math.abs(leftRotations) > Math.abs(rightRotations)) {
-            double scale = (rightRotations * 2) / leftRotations;
+            double scale = Math.abs(rightRotations) / Math.abs(leftRotations);
             rightSpeed = rightSpeed * scale;
         } else if (Math.abs(rightRotations) > Math.abs(leftRotations)) {
-            double scale = (leftRotations * 2) / rightRotations;
+            double scale = Math.abs(leftRotations) / Math.abs(rightRotations);
             leftSpeed = leftSpeed * scale;
         }
 

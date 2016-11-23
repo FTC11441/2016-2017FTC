@@ -22,21 +22,25 @@ public class StateAutoTest extends OpMode {
         robot.Init(hardwareMap);
 
         robot.steps = new double[][]{
-                {5, 5, 35, 0},
-                //{5, 0.5, -1, 0},
-                {0, 0, -1, -1}
+                {2, 2, -1, 0},
+                {2, 2, 35, 0},
+                {2, 0.5, -1, 0},
+                {0, 0, 0, -1}
         };
     }
 
     @Override
     public void loop() {
-        telemetry.addData("Current step", robot.currentStep);
-        telemetry.addData("Current state", robot.currentState.toString());
+        telemetry.addData("Current step", robot.currentStep + ",Current state: " + robot.currentState.toString());
         telemetry.addData("Current wait", robot.waitTime);
         telemetry.addData("Current set right speed", robot.rightSpeed);
         telemetry.addData("Current set left speed", robot.leftSpeed);
         telemetry.addData("Current actual right speed", robot.rightMotor.getPower());
         telemetry.addData("Current actual left speed", robot.leftMotor.getPower());
+        telemetry.addData("Current left encoder", robot.leftMotor.getCurrentPosition());
+        telemetry.addData("Current right encoder", robot.rightMotor.getCurrentPosition());
+        telemetry.addData("Target left encoder", robot.getLeftTarget());
+        telemetry.addData("Target right encoder", robot.getRightTarget());
         telemetry.update();
         switch (robot.currentState) {
             case INIT:
