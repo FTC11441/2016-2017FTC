@@ -22,12 +22,16 @@ public class Encoder extends OpMode {
 
     @Override
     public void loop() {
-        power = gamepad1.left_stick_y;
-
         telemetry.addData("Status", simpleRobot.rightMotor.getCurrentPosition() + "  " + simpleRobot.leftMotor.getCurrentPosition());    //
         telemetry.update();
 
-        simpleRobot.leftMotor.setPower(power);
-        simpleRobot.rightMotor.setPower(power);
+        // Run wheels in tank mode
+        // In this mode the Left stick moves the left wheel forward and backwards and the right moves the right wheel
+        double left = gamepad1.left_stick_y;
+        double right = gamepad1.right_stick_y;
+
+        //sets the robots motor power for both motors
+        simpleRobot.leftMotor.setPower(left);
+        simpleRobot.rightMotor.setPower(right);
     }
 }
