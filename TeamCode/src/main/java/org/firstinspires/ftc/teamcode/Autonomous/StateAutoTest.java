@@ -15,7 +15,7 @@ import org.firstinspires.ftc.teamcode.Utils.State;
 @Autonomous(name = "State Auto 1", group = "Test")
 public class StateAutoTest extends OpMode {
     private RobotAuto robot = new RobotAuto();
-    private final double WAIT = 10 * 1000;//wait up to 10 seconds else continue on to next method
+    private final double TIMEOUT = 10 * 1000;//wait up to 10 seconds else continue on to next method
 
     @Override
     public void init() {
@@ -26,6 +26,7 @@ public class StateAutoTest extends OpMode {
                 {2, 2, 35, 0},
                 {2, 0.5, -1, 0},
                 {0, 0, 0, -1}
+
         };
     }
 
@@ -73,7 +74,7 @@ public class StateAutoTest extends OpMode {
                 break;
 
             case CHECK:
-                if (robot.time.milliseconds() < robot.startTime + WAIT) {//insure that robot is no waiting for something that won't happen
+                if (robot.time.milliseconds() < robot.startTime + TIMEOUT) {//insure that robot is no waiting for something that won't happen
                     if (!robot.rightMotor.isBusy() && !robot.leftMotor.isBusy()) {
                         //set proper next step
                         robot.currentState = State.WAIT;
