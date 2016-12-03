@@ -11,9 +11,11 @@ import com.qualcomm.robotcore.hardware.DcMotor;
 
 public abstract class Autonomous extends OpMode {
     private RobotConfig robot = new RobotConfig();
+
     @Override
     public void init() {
         robot.Init(getRightMotor(),getLeftMotor(),getEncoderTicksPerRotation());
+        robot.steps = getSteps();
     }
 
     @Override
