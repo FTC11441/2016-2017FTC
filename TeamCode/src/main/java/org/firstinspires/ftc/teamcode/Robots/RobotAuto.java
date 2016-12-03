@@ -25,13 +25,14 @@ public class RobotAuto extends SimpleRobot {
     public int currentStep = 0;
 
     /*
+    see https://goo.gl/V4g35h for steps reference
     to reference step one you would do something like steps[0][x]
     to go backwards, change motor distances not speed, this means you can turn on a dime
     the values per step are as follows:
-    1. left motor distance in rotations
-    2. right motor distance in rotations
-    3. Speed from 1 - 100 (if you want to use default then use -1 and that will auto fill to the current default value, default is 75)
-    4. any flags that may be needed, -1 signifies that the program should stop  (optional)
+    1. any flags 0 signifies default driving, -1 signifies that the program should stop
+    2. left motor distance in rotations
+    3. right motor distance in rotations
+    4. Speed from 1 - 100 (if you want to use default then use -1 and that will auto fill to the current default value, default is 75)
     */
     public double[][] steps;
     //our current state

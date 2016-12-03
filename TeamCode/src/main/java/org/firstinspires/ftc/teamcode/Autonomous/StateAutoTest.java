@@ -22,10 +22,10 @@ public class StateAutoTest extends OpMode {
         robot.Init(hardwareMap);
 
         robot.steps = new double[][]{
-                {2, 2, -1, 0},
-                {2, 2, 35, 0},
-                {2, 0.5, -1, 0},
-                {0, 0, 0, -1}
+                {0, 2, 2, -1},
+                {0, 2, 2, 35},
+                {0, 2, 0.5, -1},
+                {-1}
 
         };
     }
@@ -51,18 +51,18 @@ public class StateAutoTest extends OpMode {
 
             case MOVE:
                 //if step has default flags than do default action
-                if (robot.steps[robot.currentStep][3] == 0) {
+                if (robot.steps[robot.currentStep][0] == 0) {
                     //sets variables to input into drive method of robot
-                    double leftMotorRotations = robot.steps[robot.currentStep][0];
-                    double rightMotorRotations = robot.steps[robot.currentStep][1];
-                    int speed = (int) robot.steps[robot.currentStep][2];
+                    double leftMotorRotations = robot.steps[robot.currentStep][1];
+                    double rightMotorRotations = robot.steps[robot.currentStep][2];
+                    int speed = (int) robot.steps[robot.currentStep][3];
 
                     robot.setDrive(leftMotorRotations, rightMotorRotations, speed);//starts robot driving
                     robot.startTime = robot.time.milliseconds();//sets step start time
                     robot.currentState = State.CHECK;//changes state to watch for motors to be done
 
                     //if stop flag then move to stop case
-                } else if (robot.steps[robot.currentStep][3] == -1) {
+                } else if (robot.steps[robot.currentStep][0] == -1) {
                     robot.currentState = State.STOP;//if flag = -1 then stop program
                 }
                 break;
