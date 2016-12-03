@@ -13,8 +13,6 @@ import org.firstinspires.ftc.teamcode.Robots.SimpleRobot;
 public class Encoder extends OpMode {
     private SimpleRobot simpleRobot = new SimpleRobot();
 
-    private double power;
-
     @Override
     public void init() {
         simpleRobot.Init(hardwareMap);
