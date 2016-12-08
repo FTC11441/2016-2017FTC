@@ -9,20 +9,20 @@ import com.qualcomm.robotcore.util.ElapsedTime;
  * setup for autonomous library
  */
 
-public class RobotConfig {
-    private DcMotor leftMotor;
-    private DcMotor rightMotor;
+class RobotConfig {
+    public DcMotor leftMotor;
+    public DcMotor rightMotor;
     private int ENCODER_TICKS_PER_ROTATION;
 
     //elapsed time
-    public ElapsedTime time = new ElapsedTime();
+    ElapsedTime time = new ElapsedTime();
     //what time to wait till
-    public double waitTime = 0;
+    double waitTime = 0;
     //what time that current step started
-    public double startTime = 0;
+    double startTime = 0;
 
     //the step we are on, tells us speed, left motor distance, right motor distance and any flags
-    public int currentStep = 0;
+    int currentStep = 0;
 
     /*
     see https://goo.gl/V4g35h for steps reference
@@ -34,15 +34,15 @@ public class RobotConfig {
     3. right motor distance in rotations
     4. Speed from 1 - 100 (if you want to use default then use -1 and that will auto fill to the current default value, default is 75)
     */
-    public double[][] steps;
+    double[][] steps;
     //our current state
-    public State currentState = State.INIT;
+    State currentState = State.INIT;
 
     //The target positions for both motors
     private double leftTarget = 0;
     private double rightTarget = 0;
-    public double rightSpeed = 0;
-    public double leftSpeed = 0;
+    private double rightSpeed = 0;
+    private double leftSpeed = 0;
 
     /**
      * @param rightMotor assumes motor has been configured correctly
@@ -65,7 +65,7 @@ public class RobotConfig {
      * @param rightRotations how many rotations left motor should go, can be negative
      * @param speed          -1 if using default speed, assumes speed is always positive
      */
-    public void setDrive(double leftRotations, double rightRotations, double speed) {
+    void setDrive(double leftRotations, double rightRotations, double speed) {
         //if speed isn't specified then use default speed
         if (speed == -1) {
             speed = 75;//75 is default speed
@@ -127,12 +127,12 @@ public class RobotConfig {
     }
 
 
-    public void resetAllEncoders() {
+    private void resetAllEncoders() {
         leftMotor.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
         rightMotor.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
     }
 
-    public void startAllEncoders() {
+    private void startAllEncoders() {
         leftMotor.setMode(DcMotor.RunMode.RUN_TO_POSITION);
         rightMotor.setMode(DcMotor.RunMode.RUN_TO_POSITION);
     }
