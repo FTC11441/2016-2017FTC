@@ -13,6 +13,16 @@ public class ExampleAutonomous extends Autonomous {
 
 
     @Override
+    public boolean checkMovement(RobotConfig robot, double movementMode) {
+        return false;
+    }
+
+    @Override
+    public void startMovement(RobotConfig robot, double movementMode) {
+
+    }
+
+    @Override
     public DcMotor getRightMotor(HardwareMap hwMap) {
         return hwMap.dcMotor.get("right motor");
     }
@@ -30,8 +40,8 @@ public class ExampleAutonomous extends Autonomous {
     @Override
     public double[][] getSteps() {
         return new double[][]{
-                {0,0},
-                {0,0}
+                {0, 0},
+                {0, 0}
         };
     }
 }
