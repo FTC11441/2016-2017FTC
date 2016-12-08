@@ -38,7 +38,6 @@ public abstract class Autonomous extends OpMode {
                     double leftMotorRotations = robot.steps[robot.currentStep][1];
                     double rightMotorRotations = robot.steps[robot.currentStep][2];
                     double speed = robot.steps[robot.currentStep][3];
-
                     robot.setDrive(leftMotorRotations, rightMotorRotations, speed);//starts robot driving
 
                 } else if (movementMode == -1) {//if stop flag then move to stop case
@@ -65,7 +64,8 @@ public abstract class Autonomous extends OpMode {
                     robot.setRightTarget(rightMotorTime + robot.startTime);
 
                 } else if (movementMode == 2) {
-                    // TODO: 12/7/2016 Implement wait method
+                    double timeInMilliseconds = robot.steps[robot.currentStep][1] * 1000;
+                    robot.waitTime = robot.startTime + timeInMilliseconds;
                 } else {
                     //if movementMode is a custom mode then call method to start mode
                     startMovement(robot, movementMode);
@@ -119,7 +119,10 @@ public abstract class Autonomous extends OpMode {
                         robot.currentState = State.MOVE;//we can skip the wait method and go directly to move method
                     }
                 } else if (movementCheckMode == 2) {
-                    // TODO: 12/7/2016 Implement wait method
+                    if (robot.time.milliseconds() >= robot.waitTime) {
+                        robot.currentStep++;//update to current set
+                        robot.currentState = State.MOVE;
+                    }
                 } else {
                     //if custom movement mode is done moving then update step and state
                     if (checkMovement(robot, movementCheckMode)) {
