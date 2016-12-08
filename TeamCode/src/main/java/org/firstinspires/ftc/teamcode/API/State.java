@@ -2,10 +2,11 @@ package org.firstinspires.ftc.teamcode.API;
 
 /**
  * Created by ethan.hampton on 11/9/2016.
- *
+ * <p>
  * States for autonomous
  */
 
 public enum State {
-    INIT,MOVE,WAIT, CHECK,STOP
+    INIT, MOVE, UPDATEMOVE, STOP,
+    WAIT//Currently not using WAIT, may move to unused in future
 }
