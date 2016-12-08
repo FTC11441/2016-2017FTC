@@ -2,25 +2,26 @@ package org.firstinspires.ftc.teamcode.API;
 
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.HardwareMap;
+//import com.qualcomm.robotcore.eventloop.opmode.Autonomous;// FIXME: 12/7/2016 FIX THIS BECAUSE IT IS BROKEN
 
 /**
  * Created by ethan.hampton on 12/1/2016.
  * <p>
  * An example program to show what we can do with the autonomous API
  */
-
+//@Autonomous(name = "Example Autonomous", group = "Example")
 public class ExampleAutonomous extends Autonomous {
 
+    @Override
+    public void startMovement(RobotConfig robot, double movementMode) {
+
+    }
 
     @Override
     public boolean checkMovement(RobotConfig robot, double movementMode) {
         return false;
     }
 
-    @Override
-    public void startMovement(RobotConfig robot, double movementMode) {
-
-    }
 
     @Override
     public DcMotor getRightMotor(HardwareMap hwMap) {
@@ -40,8 +41,9 @@ public class ExampleAutonomous extends Autonomous {
     @Override
     public double[][] getSteps() {
         return new double[][]{
-                {0, 0},
-                {0, 0}
+                {0, 1, 1, 75},
+                {0, -1, 1, 75},
+                {-1}
         };
     }
 }
