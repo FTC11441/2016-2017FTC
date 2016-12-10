@@ -1,8 +1,6 @@
 package org.firstinspires.ftc.teamcode.API;
 
-import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.hardware.DcMotor;
-import com.qualcomm.robotcore.hardware.HardwareMap;
 
 /**
  * Created by ethan.hampton on 12/1/2016.
@@ -10,17 +8,15 @@ import com.qualcomm.robotcore.hardware.HardwareMap;
  * Interface for autonomous classes to extend
  */
 
-public abstract class Autonomous extends OpMode {
+public abstract class AutonomousBase {
     private RobotConfig robot = new RobotConfig();
     private double TIMEOUT = 10000;
 
-    @Override
     public void init() {
-        robot.Init(getRightMotor(hardwareMap), getLeftMotor(hardwareMap), getEncoderTicksPerRotation());
+        robot.Init(getRightMotor(), getLeftMotor(), getEncoderTicksPerRotation());
         robot.steps = getSteps();
     }
 
-    @Override
     public void loop() {
         switch (robot.currentState) {
             case INIT:
@@ -166,12 +162,12 @@ public abstract class Autonomous extends OpMode {
     /**
      * @return right DC motor
      */
-    public abstract DcMotor getRightMotor(HardwareMap hwMap);
+    public abstract DcMotor getRightMotor();
 
     /**
      * @return left DC motor
      */
-    public abstract DcMotor getLeftMotor(HardwareMap hwMap);
+    public abstract DcMotor getLeftMotor();
 
     /**
      * @return encoder ticks per rotation
