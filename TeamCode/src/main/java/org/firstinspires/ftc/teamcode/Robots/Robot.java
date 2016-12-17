@@ -19,7 +19,6 @@ public class Robot extends SimpleRobot {
     public Servo rightBumper = null;
     public DcMotor leftLauncher = null;
     public DcMotor rightLauncher = null;
-
     /**
      * the team we are on
      */
