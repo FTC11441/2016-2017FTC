@@ -1,4 +1,4 @@
-package org.firstinspires.ftc.teamcode.API;
+package org.firstinspires.ftc.teamcode.Autonomous.API;
 
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.util.ElapsedTime;
@@ -9,7 +9,7 @@ import com.qualcomm.robotcore.util.ElapsedTime;
  * setup for autonomous library
  */
 
-class RobotConfig {
+public class RobotConfig {
     public DcMotor leftMotor;
     public DcMotor rightMotor;
     private int ENCODER_TICKS_PER_ROTATION;
@@ -45,8 +45,8 @@ class RobotConfig {
     private double leftSpeed = 0;
 
     /**
-     * @param rightMotor assumes motor has been configured correctly
-     * @param leftMotor  assumes motor has been configured correctly
+     * @param rightMotor              assumes motor has been configured correctly
+     * @param leftMotor               assumes motor has been configured correctly
      * @param encoderTicksPerRotation how many encoder ticks per rotation
      */
     public void Init(DcMotor rightMotor, DcMotor leftMotor, int encoderTicksPerRotation) {
