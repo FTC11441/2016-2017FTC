@@ -6,16 +6,12 @@ import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import org.firstinspires.ftc.teamcode.Robots.Robot;
 
 /**
- * Created by ethan.hampton on 10/4/2016.
- * <p>
- * Very simple Teleop
+ * Created by ethan.hampton on 12/17/2016.
+ * Teleop for development with all the buttons and motors and servos
  */
-
-@TeleOp(name = "Launcher Teleop", group = "Launcher")
-@Deprecated
-public class TeleopWithLauncher extends OpMode {
-    private Robot robot = new Robot();
-
+@TeleOp(name = "Dev Teleop", group = "Test")
+public class DevelopmentTeleop extends OpMode {
+    Robot robot = new Robot();
     @Override
     public void init() {
         robot.Init(hardwareMap);
@@ -32,8 +28,15 @@ public class TeleopWithLauncher extends OpMode {
         robot.leftMotor.setPower(left);
         robot.rightMotor.setPower(right);
 
-        double power = gamepad1.right_trigger;
-        //robot.rightLauncher.setPower(power);
-        robot.linearSlide.setPower(power);
+        if (gamepad1.left_bumper) {
+            robot.leftBumper.setPosition(1L);
+        } else {
+            robot.leftBumper.setPosition(0);
+        }
+        if (gamepad1.right_bumper) {
+            robot.rightBumper.setPosition(1L);
+        } else {
+            robot.rightBumper.setPosition(0);
+        }
     }
 }
