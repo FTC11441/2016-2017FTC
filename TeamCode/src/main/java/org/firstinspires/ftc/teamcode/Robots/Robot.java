@@ -32,12 +32,17 @@ public class Robot extends SimpleRobot {
     /* Initialize standard Hardware interfaces */
     public void Init(HardwareMap ahwMap) {
         super.Init(ahwMap);
-        //leftBumper = ahwMap.servo.get("left bumper");
-        //rightBumper = ahwMap.servo.get("right bumper");
-        //leftBumper.setDirection(Servo.Direction.REVERSE);
+        leftBumper = ahwMap.servo.get("left bumper");
+        rightBumper = ahwMap.servo.get("right bumper");
+        leftBumper.setDirection(Servo.Direction.REVERSE);
+        forklift = ahwMap.servo.get("forklift");
+        flipper = ahwMap.servo.get("flipper");
 
-
+        launcher = ahwMap.dcMotor.get("launcher");
+        collector = ahwMap.dcMotor.get("collector");
+        tube = ahwMap.dcMotor.get("tube");
         linearSlide = ahwMap.dcMotor.get("linear slide");
+        linearSlide.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
 
     }
 
