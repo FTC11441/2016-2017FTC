@@ -4,6 +4,7 @@ import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.HardwareMap;
 
 import org.firstinspires.ftc.teamcode.Robots.RobotAuto;
+import org.firstinspires.ftc.teamcode.Utils.State;
 
 /**
  * Created by ethan.hampton on 12/1/2016.
@@ -153,7 +154,7 @@ public abstract class AutonomousBase {
      * @param movementMode what mode of movement should be checked
      * @return {@code true} if movement step is done returns {@code false} if movement step is not done
      */
-    public abstract boolean checkMovement(RobotConfig robot, double movementMode);
+    public abstract boolean checkMovement(RobotAuto robot, double movementMode);
 
     /**
      * Is called at the start of every movement
@@ -161,7 +162,7 @@ public abstract class AutonomousBase {
      * @param robot        robot object to get and set values from
      * @param movementMode what mode of movement should be started
      */
-    public abstract void startMovement(RobotConfig robot, double movementMode);
+    public abstract void startMovement(RobotAuto robot, double movementMode);
 
     /**
      * @return right DC motor
