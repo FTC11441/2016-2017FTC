@@ -8,7 +8,7 @@ import com.qualcomm.robotcore.util.ElapsedTime;
  * <p>
  * setup for autonomous library
  */
-
+@Deprecated
 public class RobotConfig {
     public DcMotor leftMotor;
     public DcMotor rightMotor;

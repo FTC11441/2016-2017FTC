@@ -1,6 +1,9 @@
 package org.firstinspires.ftc.teamcode.Autonomous.API;
 
 import com.qualcomm.robotcore.hardware.DcMotor;
+import com.qualcomm.robotcore.hardware.HardwareMap;
+
+import org.firstinspires.ftc.teamcode.Robots.RobotAuto;
 
 /**
  * Created by ethan.hampton on 12/1/2016.
@@ -9,11 +12,12 @@ import com.qualcomm.robotcore.hardware.DcMotor;
  */
 
 public abstract class AutonomousBase {
-    private RobotConfig robot = new RobotConfig();
+    private RobotAuto robot = new RobotAuto();
     private double TIMEOUT = 10000;
 
-    public void init() {
-        robot.Init(getRightMotor(), getLeftMotor(), getEncoderTicksPerRotation());
+    public void init(HardwareMap map) {
+        //robot.Init(getRightMotor(), getLeftMotor(), getEncoderTicksPerRotation());
+        robot.Init(map);
         robot.steps = getSteps();
     }
 

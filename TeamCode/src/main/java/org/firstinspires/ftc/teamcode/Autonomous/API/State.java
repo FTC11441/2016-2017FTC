@@ -8,5 +8,5 @@ package org.firstinspires.ftc.teamcode.Autonomous.API;
 
 public enum State {
     INIT, MOVE, UPDATEMOVE, STOP,
-    WAIT//Currently not using WAIT, may move to unused in future
+    @Deprecated WAIT//Currently not using WAIT, may move to unused in future
 }
