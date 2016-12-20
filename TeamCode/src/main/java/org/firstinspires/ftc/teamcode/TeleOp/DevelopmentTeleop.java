@@ -20,7 +20,7 @@ public class DevelopmentTeleop extends OpMode {
     private static boolean linearSlideMoving = false;
     private static boolean drivingInversed = false;
 
-    Robot robot = new Robot();
+    private Robot robot = new Robot();
 
     @Override
     public void init() {
@@ -93,5 +93,10 @@ public class DevelopmentTeleop extends OpMode {
         }
 
 
+        robot.flipper.setPosition(0);// TODO: 12/20/2016  add flipper controls
+        robot.collector.setPower(0);// TODO: 12/20/2016 add collector controls
+        robot.launcher.setPower(0);// TODO: 12/20/2016 add launching controls
+        robot.forklift.setPosition(0);// TODO: 12/20/2016 add forklift controls
+        robot.tube.setPower(0);// TODO: 12/20/2016 add tube controls
     }
 }
