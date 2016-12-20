@@ -7,5 +7,6 @@ package org.firstinspires.ftc.teamcode.Utils;
  */
 
 public enum State {
-    INIT,MOVE,WAIT, CHECK,STOP
+    INIT, MOVE, UPDATEMOVE, STOP,
+    @Deprecated WAIT//Currently not using WAIT, may move to unused in future
 }
