@@ -6,5 +6,9 @@ package org.firstinspires.ftc.teamcode.Utils;
  * Groups for organizing menu
  */
 
-public enum Group {
+public interface Group {
+
+    String TESTING = "Testing";
+    String RELEASE = "Release";
+    String DEV = "Dev";
 }

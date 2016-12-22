@@ -4,6 +4,7 @@ import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 
 import org.firstinspires.ftc.teamcode.Robots.SimpleRobot;
+import org.firstinspires.ftc.teamcode.Utils.Group;
 
 /**
  * Created by ethan.hampton on 10/4/2016.
@@ -11,7 +12,7 @@ import org.firstinspires.ftc.teamcode.Robots.SimpleRobot;
  * Very simple Teleop
  */
 
-@TeleOp(name = "Simple Teleop", group = "Test")
+@TeleOp(name = "Simple Teleop", group = Group.RELEASE)
 public class simpleTeleop extends OpMode {
     private SimpleRobot simpleRobot = new SimpleRobot();
 

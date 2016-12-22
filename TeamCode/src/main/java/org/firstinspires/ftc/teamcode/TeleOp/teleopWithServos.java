@@ -4,6 +4,7 @@ import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 
 import org.firstinspires.ftc.teamcode.Robots.Robot;
+import org.firstinspires.ftc.teamcode.Utils.Group;
 
 /**
  * Created by ethan.hampton on 10/4/2016.
@@ -11,7 +12,7 @@ import org.firstinspires.ftc.teamcode.Robots.Robot;
  * Teleop with servos
  */
 
-@TeleOp(name = "Teleop W/ Servos", group = "Servo")
+@TeleOp(name = "Teleop W/ Servos", group = Group.TESTING)
 public class teleopWithServos extends OpMode {
     private Robot robot = new Robot();
 

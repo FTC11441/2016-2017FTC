@@ -6,12 +6,13 @@ import com.qualcomm.robotcore.hardware.DcMotor;
 
 import org.firstinspires.ftc.teamcode.Robots.Robot;
 import org.firstinspires.ftc.teamcode.Utils.Constants;
+import org.firstinspires.ftc.teamcode.Utils.Group;
 
 /**
  * Created by ethan.hampton on 12/17/2016.
  * Teleop for development with all the buttons and motors and servos
  */
-@TeleOp(name = "Dev Teleop", group = "Test")
+@TeleOp(name = "Dev Teleop", group = Group.DEV)
 public class DevelopmentTeleop extends OpMode {
     private static final int LINEAR_SLIDE_UP = Constants.ENCODER_TICKS_PER_ROTATION * 10;//Start with 10 rotations
     private static final int LINEAR_SLIDE_INCREMENT = Constants.ENCODER_TICKS_PER_ROTATION;//Increment 1 rotation per press
