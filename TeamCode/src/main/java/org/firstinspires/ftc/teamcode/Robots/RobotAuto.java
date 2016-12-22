@@ -2,7 +2,6 @@ package org.firstinspires.ftc.teamcode.Robots;
 
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.HardwareMap;
-import com.qualcomm.robotcore.util.ElapsedTime;
 
 import org.firstinspires.ftc.teamcode.Utils.Constants;
 import org.firstinspires.ftc.teamcode.Utils.State;
@@ -14,8 +13,7 @@ import org.firstinspires.ftc.teamcode.Utils.State;
  */
 
 public class RobotAuto extends SimpleRobot {
-    //elapsed time
-    public ElapsedTime time = new ElapsedTime();
+
     //what time to wait till
     public double waitTime = 0;
     //what time that current step started

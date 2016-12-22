@@ -2,6 +2,7 @@ package org.firstinspires.ftc.teamcode.Robots;
 
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.HardwareMap;
+import com.qualcomm.robotcore.util.ElapsedTime;
 
 /**
  * Created by ethan.hampton on 10/4/2016.
@@ -14,6 +15,9 @@ public class SimpleRobot {
     /* Public OpMode members. */
     public DcMotor leftMotor = null;
     public DcMotor rightMotor = null;
+
+    //elapsed time
+    public ElapsedTime time = new ElapsedTime();
 
 
     /* Initialize standard Hardware interfaces */

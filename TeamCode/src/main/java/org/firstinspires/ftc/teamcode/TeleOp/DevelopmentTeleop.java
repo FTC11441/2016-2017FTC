@@ -15,7 +15,12 @@ import org.firstinspires.ftc.teamcode.Utils.Constants;
 public class DevelopmentTeleop extends OpMode {
     private static final int LINEAR_SLIDE_UP = Constants.ENCODER_TICKS_PER_ROTATION * 10;//Start with 10 rotations
     private static final int LINEAR_SLIDE_INCREMENT = Constants.ENCODER_TICKS_PER_ROTATION;//Increment 1 rotation per press
+
     private static final double BUMPER_UP_POSITION = 1L;
+
+    private static final double FORKLIFT_RELEASE_POSITION = 1L;
+    private static final double FORKLIFT_HOLD_POSITION = 0L;
+    private static final double FORKLIFT_HOLD_UNTIL_TIME = 1000 * 110;
 
     private static boolean linearSlideMoving = false;
     private static boolean drivingInversed = false;
@@ -93,10 +98,20 @@ public class DevelopmentTeleop extends OpMode {
         }
 
 
+        //forklift controls
+        if (gamepad1.y && gamepad2.y) {
+            robot.forklift.setPosition(FORKLIFT_RELEASE_POSITION);
+            /* if 1:50 has passed in teleop then we know we can release the forklift by one person*/
+        } else if ((gamepad1.y || gamepad2.y) && robot.time.milliseconds() > FORKLIFT_HOLD_UNTIL_TIME) {
+            robot.forklift.setPosition(FORKLIFT_RELEASE_POSITION);
+        } else {
+            robot.forklift.setPosition(FORKLIFT_HOLD_POSITION);
+        }
+
+
         robot.flipper.setPosition(0);// TODO: 12/20/2016  add flipper controls
         robot.collector.setPower(0);// TODO: 12/20/2016 add collector controls
         robot.launcher.setPower(0);// TODO: 12/20/2016 add launching controls
-        robot.forklift.setPosition(0);// TODO: 12/20/2016 add forklift controls
         robot.tube.setPower(0);// TODO: 12/20/2016 add tube controls
     }
 }
