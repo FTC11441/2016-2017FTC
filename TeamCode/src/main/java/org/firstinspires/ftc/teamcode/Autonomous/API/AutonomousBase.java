@@ -164,20 +164,6 @@ public abstract class AutonomousBase {
      */
     public abstract void startMovement(RobotAuto robot, double movementMode);
 
-    /**
-     * @return right DC motor
-     */
-    public abstract DcMotor getRightMotor();
-
-    /**
-     * @return left DC motor
-     */
-    public abstract DcMotor getLeftMotor();
-
-    /**
-     * @return encoder ticks per rotation
-     */
-    public abstract int getEncoderTicksPerRotation();
 
 
     public abstract double[][] getSteps();

@@ -1,10 +1,9 @@
 package org.firstinspires.ftc.teamcode.Autonomous;
 
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
-import com.qualcomm.robotcore.hardware.DcMotor;
 
 import org.firstinspires.ftc.teamcode.Autonomous.API.AutonomousBase;
-import org.firstinspires.ftc.teamcode.Autonomous.API.RobotConfig;
+import org.firstinspires.ftc.teamcode.Robots.RobotAuto;
 
 /**
  * Created by ethan.hampton on 12/17/2016.
@@ -12,42 +11,32 @@ import org.firstinspires.ftc.teamcode.Autonomous.API.RobotConfig;
  */
 
 public class BasicAutonomous extends OpMode {
-    AutonomousBase auto;
+    private AutonomousBase auto;
+
+    private double[][] steps = new double[][]{
+            {},
+            {}
+    };
 
     @Override
     public void init() {
         auto = new AutonomousBase() {
             @Override
-            public boolean checkMovement(RobotConfig robot, double movementMode) {
+            public boolean checkMovement(RobotAuto robot, double movementMode) {
                 return false;
             }
 
             @Override
-            public void startMovement(RobotConfig robot, double movementMode) {
+            public void startMovement(RobotAuto robot, double movementMode) {
 
-            }
-
-            @Override
-            public DcMotor getRightMotor() {
-                return null;
-            }
-
-            @Override
-            public DcMotor getLeftMotor() {
-                return null;
-            }
-
-            @Override
-            public int getEncoderTicksPerRotation() {
-                return 0;
             }
 
             @Override
             public double[][] getSteps() {
-                return new double[0][];
+                return steps;
             }
         };
-        auto.init();
+        auto.init(hardwareMap);
     }
 
     @Override
