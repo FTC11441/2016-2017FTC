@@ -143,6 +143,10 @@ public abstract class AutonomousBase {
         }
     }
 
+    public RobotAuto getRobot() {
+        return robot;
+    }
+
     //Below here is all abstract methods
 
 
@@ -163,7 +167,6 @@ public abstract class AutonomousBase {
      * @param movementMode what mode of movement should be started
      */
     public abstract void startMovement(RobotAuto robot, double movementMode);
-
 
 
     public abstract double[][] getSteps();

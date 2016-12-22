@@ -21,7 +21,10 @@ public class DevelopmentTeleop extends OpMode {
 
     private static final double FORKLIFT_RELEASE_POSITION = 1L;
     private static final double FORKLIFT_HOLD_POSITION = 0L;
-    private static final double FORKLIFT_HOLD_UNTIL_TIME = 1000 * 110;
+    private static final double FORKLIFT_HOLD_UNTIL_TIME = 1000 * 110;//1:50 into match is 110 seconds
+
+    private static final double FLIPPER_OUT = 1L;
+    private static final double FLIPPER_IN = 0L;
 
     private static boolean linearSlideMoving = false;
     private static boolean drivingInversed = false;
@@ -109,10 +112,30 @@ public class DevelopmentTeleop extends OpMode {
             robot.forklift.setPosition(FORKLIFT_HOLD_POSITION);
         }
 
+        //tube controls
+        if(gamepad2.left_trigger > 0.50){
+            robot.tube.setPower(Constants.DEFAULT_SPEED);
+        }else{
+            robot.tube.setPower(0);
+        }
 
-        robot.flipper.setPosition(0);// TODO: 12/20/2016  add flipper controls
-        robot.collector.setPower(0);// TODO: 12/20/2016 add collector controls
+        //ball collector controls
+        if(gamepad2.right_trigger > 0.50){
+            robot.collector.setPower(Constants.DEFAULT_SPEED);
+        }else{
+            robot.collector.setPower(0);
+        }
+
+        //flipper controls
+        if(gamepad2.b){
+            robot.flipper.setPosition(FLIPPER_OUT);
+        }else if(robot.flipper.getPosition() > (FLIPPER_OUT - 0.05)){
+            robot.flipper.setPosition(FLIPPER_IN);
+        }
+
         robot.launcher.setPower(0);// TODO: 12/20/2016 add launching controls
-        robot.tube.setPower(0);// TODO: 12/20/2016 add tube controls
+
+        // TODO: 12/22/2016 add linear slide manual override
+        // TODO: 12/22/2016 add launcher manual override
     }
 }

@@ -16,8 +16,14 @@ public class BasicAutonomous extends OpMode {
     private AutonomousBase auto;
 
     private double[][] steps = new double[][]{
-            {},
-            {}
+            {0, 1, 1, 2},/*
+            {0, -1, -1, -1},
+            {0, -1, 1, -1},
+            {0, 1, -1, -1},
+            {2, 5},//wait
+            {0, 1, 1, -1},
+            {0, -1, -1, -1},*/
+            {-1}
     };
 
     @Override

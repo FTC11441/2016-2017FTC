@@ -1,5 +1,6 @@
 package org.firstinspires.ftc.teamcode.TeleOp;
 
+import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 
@@ -13,6 +14,7 @@ import org.firstinspires.ftc.teamcode.Robots.Robot;
 
 @TeleOp(name = "Launcher Teleop", group = "Launcher")
 @Deprecated
+@Disabled
 public class TeleopWithLauncher extends OpMode {
     private Robot robot = new Robot();
 

@@ -1,8 +1,10 @@
 package org.firstinspires.ftc.teamcode.Autonomous.API;
 
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
+import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
-import com.qualcomm.robotcore.hardware.DcMotor;
+
+import org.firstinspires.ftc.teamcode.Robots.RobotAuto;
 
 /**
  * Created by ethan.hampton on 12/1/2016.
@@ -10,32 +12,18 @@ import com.qualcomm.robotcore.hardware.DcMotor;
  * An example program to show what we can do with the autonomous API
  */
 @Autonomous(name = "Example Autonomous", group = "Example")
+@Deprecated
+@Disabled
 public class ExampleAutonomous extends OpMode {
     AutonomousBase auto = new AutonomousBase() {
         @Override
-        public void startMovement(RobotConfig robot, double movementMode) {
-
-        }
-
-        @Override
-        public boolean checkMovement(RobotConfig robot, double movementMode) {
+        public boolean checkMovement(RobotAuto robot, double movementMode) {
             return false;
         }
 
-
         @Override
-        public DcMotor getRightMotor() {
-            return hardwareMap.dcMotor.get("right motor");
-        }
+        public void startMovement(RobotAuto robot, double movementMode) {
 
-        @Override
-        public DcMotor getLeftMotor() {
-            return hardwareMap.dcMotor.get("left motor");
-        }
-
-        @Override
-        public int getEncoderTicksPerRotation() {
-            return 1560;
         }
 
         @Override
@@ -51,7 +39,7 @@ public class ExampleAutonomous extends OpMode {
 
     @Override
     public void init() {
-        auto.init();
+        auto.init(hardwareMap);
     }
 
     @Override
