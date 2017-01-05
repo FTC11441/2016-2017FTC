@@ -21,7 +21,7 @@ public class DevelopmentTeleop extends OpMode {
 
     private static final double FORKLIFT_RELEASE_POSITION = 1L;
     private static final double FORKLIFT_HOLD_POSITION = 0L;
-    private static final double FORKLIFT_HOLD_UNTIL_TIME = 1000 * 110;//1:50 into match is 110 seconds
+    private static final double FORKLIFT_LOCK_UNTIL_TIME = 1000 * 110;//1:50 into match is 110 seconds
 
     private static final double FLIPPER_OUT = 1L;
     private static final double FLIPPER_IN = 0L;
@@ -79,7 +79,7 @@ public class DevelopmentTeleop extends OpMode {
             linearSlideMoving = true;
         }
         if (gamepad2.dpad_right) {//increment up
-            robot.linearSlide.setTargetPosition(robot.linearSlide.getCurrentPosition() + LINEAR_SLIDE_INCREMENT);
+            robot.linearSlide.setTargetPosition(robot.linearSlide.getTargetPosition() + LINEAR_SLIDE_INCREMENT);
             robot.linearSlide.setMode(DcMotor.RunMode.RUN_TO_POSITION);
             robot.linearSlide.setPower(0.75);
             linearSlideMoving = true;
@@ -91,7 +91,7 @@ public class DevelopmentTeleop extends OpMode {
             linearSlideMoving = true;
         }
         if (gamepad2.dpad_left) {//increment down
-            robot.linearSlide.setTargetPosition(robot.linearSlide.getCurrentPosition() - LINEAR_SLIDE_INCREMENT);
+            robot.linearSlide.setTargetPosition(robot.linearSlide.getTargetPosition() - LINEAR_SLIDE_INCREMENT);
             robot.linearSlide.setMode(DcMotor.RunMode.RUN_TO_POSITION);
             robot.linearSlide.setPower(-0.75);
             linearSlideMoving = true;
@@ -100,13 +100,18 @@ public class DevelopmentTeleop extends OpMode {
             robot.linearSlide.setPower(0);
             linearSlideMoving = false;
         }
+        if(Math.abs(gamepad2.left_stick_y) > 0.2){//
+            robot.linearSlide.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+            robot.linearSlide.setPower(gamepad2.left_stick_y);
+            linearSlideMoving = false;
+        }
 
 
         //forklift controls
         if (gamepad1.y && gamepad2.y) {
             robot.forklift.setPosition(FORKLIFT_RELEASE_POSITION);
             /* if 1:50 has passed in teleop then we know we can release the forklift by one person*/
-        } else if ((gamepad1.y || gamepad2.y) && robot.time.milliseconds() > FORKLIFT_HOLD_UNTIL_TIME) {
+        } else if ((gamepad1.y || gamepad2.y) && robot.time.milliseconds() > FORKLIFT_LOCK_UNTIL_TIME) {
             robot.forklift.setPosition(FORKLIFT_RELEASE_POSITION);
         } else {
             robot.forklift.setPosition(FORKLIFT_HOLD_POSITION);
@@ -134,8 +139,6 @@ public class DevelopmentTeleop extends OpMode {
         }
 
         robot.launcher.setPower(0);// TODO: 12/20/2016 add launching controls
-
-        // TODO: 12/22/2016 add linear slide manual override
         // TODO: 12/22/2016 add launcher manual override
     }
 }
