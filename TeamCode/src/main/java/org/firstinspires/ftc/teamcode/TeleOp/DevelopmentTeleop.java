@@ -100,7 +100,7 @@ public class DevelopmentTeleop extends OpMode {
             robot.linearSlide.setPower(0);
             linearSlideMoving = false;
         }
-        if(Math.abs(gamepad2.left_stick_y) > 0.2){//
+        if (Math.abs(gamepad2.left_stick_y) > 0.2) {//
             robot.linearSlide.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
             robot.linearSlide.setPower(gamepad2.left_stick_y);
             linearSlideMoving = false;
@@ -118,25 +118,27 @@ public class DevelopmentTeleop extends OpMode {
         }
 
         //tube controls
-        if(gamepad2.left_trigger > 0.50){
+        if (gamepad2.left_trigger > 0.50) {
             robot.tube.setPower(Constants.DEFAULT_SPEED);
-        }else{
+        } else {
             robot.tube.setPower(0);
         }
 
         //ball collector controls
-        if(gamepad2.right_trigger > 0.50){
+        if (gamepad2.right_trigger > 0.50) {
             robot.collector.setPower(Constants.DEFAULT_SPEED);
-        }else{
+        } else {
             robot.collector.setPower(0);
         }
 
         //flipper controls
-        if(gamepad2.b){
+        if (gamepad2.b) {
             robot.flipper.setPosition(FLIPPER_OUT);
-        }else if(robot.flipper.getPosition() > (FLIPPER_OUT - 0.05)){
+            /* this allows the flipper to be extended fully on a single button press and then retraced */
+        } else if (robot.flipper.getPosition() > (FLIPPER_OUT - 0.05)) {
             robot.flipper.setPosition(FLIPPER_IN);
         }
+
 
         robot.launcher.setPower(0);// TODO: 12/20/2016 add launching controls
         // TODO: 12/22/2016 add launcher manual override

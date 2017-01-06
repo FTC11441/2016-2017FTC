@@ -11,4 +11,5 @@ public interface Group {
     String TESTING = "Testing";
     String RELEASE = "Release";
     String DEV = "Dev";
+    String FEATURE = "Feature";
 }

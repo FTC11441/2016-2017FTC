@@ -139,7 +139,7 @@ public class RobotAuto extends SimpleRobot {
      * @return time in seconds
      */
     public int calculateTime(int rotations, int speed) {
-        int time = rotations * (Constants.MOTOR_RPM / 60) * (speed / 100);
+        int time = rotations * (Constants.MAX_MOTOR_RPM / 60) * (speed / 100);
         time += 2;//add 2 seconds just to be safe
         return time;
     }
