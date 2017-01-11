@@ -4,6 +4,7 @@ import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.HardwareMap;
 
 import org.firstinspires.ftc.teamcode.Robots.RobotAuto;
+import org.firstinspires.ftc.teamcode.Utils.Constants;
 import org.firstinspires.ftc.teamcode.Utils.State;
 
 /**
@@ -14,7 +15,6 @@ import org.firstinspires.ftc.teamcode.Utils.State;
 
 public abstract class AutonomousBase {
     private RobotAuto robot = new RobotAuto();
-    private double TIMEOUT = 10000;
 
     public void init(HardwareMap map) {
         //robot.Init(getRightMotor(), getLeftMotor(), getEncoderTicksPerRotation());
@@ -84,7 +84,7 @@ public abstract class AutonomousBase {
                 double movementCheckMode = robot.steps[robot.currentStep][0];
                 //if mode is encoder movement then check with this method
                 if (movementCheckMode == 0) {
-                    if (robot.time.milliseconds() < robot.startTime + TIMEOUT) {//insure that robot is no waiting for something that won't happen
+                    if (robot.time.milliseconds() < robot.startTime + Constants.TIMEOUT) {//insure that robot is no waiting for something that won't happen
                         if (!robot.rightMotor.isBusy() && !robot.leftMotor.isBusy()) {
                         /*
                         //NOT USING WAIT METHOD RIGHT NOW BECAUSE WE THINK IT IS UNNECESSARY
