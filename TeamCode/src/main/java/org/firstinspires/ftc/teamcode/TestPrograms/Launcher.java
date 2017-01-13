@@ -15,8 +15,6 @@ public class Launcher extends OpMode {
 
     private SimpleRobot simpleRobot = new SimpleRobot();
 
-    private double power;
-
     @Override
     public void init() {
 
@@ -25,7 +23,7 @@ public class Launcher extends OpMode {
 
     @Override
     public void loop() {
-        power = gamepad1.left_stick_y;
+        double power = gamepad1.left_stick_y;
 
         simpleRobot.leftMotor.setPower(power);
         simpleRobot.rightMotor.setPower(power);

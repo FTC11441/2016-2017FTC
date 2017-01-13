@@ -1,7 +1,6 @@
 package org.firstinspires.ftc.teamcode.Utils;
 
-import java.util.HashMap;
-import java.util.Map;
+import android.util.SparseArray;
 
 /**
  * Created by ethan.hampton on 10/18/2016.
@@ -11,10 +10,10 @@ import java.util.Map;
 public enum Motor {
     LEFT(1), RIGHT(2), BOTH(3);
 
-    private int value;
-    private static Map map = new HashMap<>();
+    private final int value;
+    private static final SparseArray<Motor> map = new SparseArray<>();
 
-    private Motor(int value) {
+    Motor(int value) {
         this.value = value;
     }
 

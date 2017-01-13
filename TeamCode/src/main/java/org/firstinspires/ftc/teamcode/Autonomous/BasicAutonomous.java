@@ -15,7 +15,7 @@ import org.firstinspires.ftc.teamcode.Utils.Group;
 public class BasicAutonomous extends OpMode {
     private AutonomousBase auto;
 
-    private double[][] steps = new double[][]{
+    private final double[][] steps = new double[][]{
             {0, 1, 1, 2},/*
             {0, -1, -1, -1},
             {0, -1, 1, -1},
