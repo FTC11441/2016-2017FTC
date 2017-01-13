@@ -14,17 +14,6 @@ import org.firstinspires.ftc.teamcode.Utils.Group;
  */
 @TeleOp(name = "Dev Teleop", group = Group.DEV)
 public class DevelopmentTeleop extends OpMode {
-    private static final int LINEAR_SLIDE_UP = Constants.ENCODER_TICKS_PER_ROTATION * 10;//Start with 10 rotations
-    private static final int LINEAR_SLIDE_INCREMENT = Constants.ENCODER_TICKS_PER_ROTATION;//Increment 1 rotation per press
-
-    private static final double BUMPER_UP_POSITION = 1L;
-
-    private static final double FORKLIFT_RELEASE_POSITION = 1L;
-    private static final double FORKLIFT_HOLD_POSITION = 0L;
-    private static final double FORKLIFT_LOCK_UNTIL_TIME = 1000 * 110;//1:50 into match is 110 seconds
-
-    private static final double FLIPPER_OUT = 1L;
-    private static final double FLIPPER_IN = 0L;
 
     private static boolean linearSlideMoving = false;
     private static boolean drivingInversed = false;
@@ -61,25 +50,25 @@ public class DevelopmentTeleop extends OpMode {
 
         //bumper system
         if (gamepad1.left_bumper) {
-            robot.leftBumper.setPosition(BUMPER_UP_POSITION);
+            robot.leftBumper.setPosition(Constants.BUMPER_UP_POSITION);
         } else {
             robot.leftBumper.setPosition(0);
         }
         if (gamepad1.right_bumper) {
-            robot.rightBumper.setPosition(BUMPER_UP_POSITION);
+            robot.rightBumper.setPosition(Constants.BUMPER_UP_POSITION);
         } else {
             robot.rightBumper.setPosition(0);
         }
 
         //linear slide system system
         if (gamepad2.dpad_up) {//go to top
-            robot.linearSlide.setTargetPosition(LINEAR_SLIDE_UP);
+            robot.linearSlide.setTargetPosition(Constants.LINEAR_SLIDE_UP);
             robot.linearSlide.setMode(DcMotor.RunMode.RUN_TO_POSITION);
             robot.linearSlide.setPower(0.75);
             linearSlideMoving = true;
         }
         if (gamepad2.dpad_right) {//increment up
-            robot.linearSlide.setTargetPosition(robot.linearSlide.getTargetPosition() + LINEAR_SLIDE_INCREMENT);
+            robot.linearSlide.setTargetPosition(robot.linearSlide.getTargetPosition() + Constants.LINEAR_SLIDE_INCREMENT);
             robot.linearSlide.setMode(DcMotor.RunMode.RUN_TO_POSITION);
             robot.linearSlide.setPower(0.75);
             linearSlideMoving = true;
@@ -91,7 +80,7 @@ public class DevelopmentTeleop extends OpMode {
             linearSlideMoving = true;
         }
         if (gamepad2.dpad_left) {//increment down
-            robot.linearSlide.setTargetPosition(robot.linearSlide.getTargetPosition() - LINEAR_SLIDE_INCREMENT);
+            robot.linearSlide.setTargetPosition(robot.linearSlide.getTargetPosition() - Constants.LINEAR_SLIDE_INCREMENT);
             robot.linearSlide.setMode(DcMotor.RunMode.RUN_TO_POSITION);
             robot.linearSlide.setPower(-0.75);
             linearSlideMoving = true;
@@ -109,12 +98,12 @@ public class DevelopmentTeleop extends OpMode {
 
         //forklift controls
         if (gamepad1.y && gamepad2.y) {
-            robot.forklift.setPosition(FORKLIFT_RELEASE_POSITION);
+            robot.forklift.setPosition(Constants.FORKLIFT_RELEASE_POSITION);
             /* if 1:50 has passed in teleop then we know we can release the forklift by one person*/
-        } else if ((gamepad1.y || gamepad2.y) && robot.time.milliseconds() > FORKLIFT_LOCK_UNTIL_TIME) {
-            robot.forklift.setPosition(FORKLIFT_RELEASE_POSITION);
+        } else if ((gamepad1.y || gamepad2.y) && robot.time.milliseconds() > Constants.FORKLIFT_LOCK_UNTIL_TIME) {
+            robot.forklift.setPosition(Constants.FORKLIFT_RELEASE_POSITION);
         } else {
-            robot.forklift.setPosition(FORKLIFT_HOLD_POSITION);
+            robot.forklift.setPosition(Constants.FORKLIFT_HOLD_POSITION);
         }
 
         //tube controls
@@ -133,10 +122,10 @@ public class DevelopmentTeleop extends OpMode {
 
         //flipper controls
         if (gamepad2.b) {
-            robot.flipper.setPosition(FLIPPER_OUT);
+            robot.flipper.setPosition(Constants.FLIPPER_OUT);
             /* this allows the flipper to be extended fully on a single button press and then retraced */
-        } else if (robot.flipper.getPosition() > (FLIPPER_OUT - 0.05)) {
-            robot.flipper.setPosition(FLIPPER_IN);
+        } else if (robot.flipper.getPosition() > (Constants.FLIPPER_OUT - 0.05)) {
+            robot.flipper.setPosition(Constants.FLIPPER_IN);
         }
 
 
