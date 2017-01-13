@@ -14,7 +14,6 @@ import org.firstinspires.ftc.teamcode.Utils.Group;
  */
 @TeleOp(name = "Dev Teleop", group = Group.DEV)
 public class DevelopmentTeleop extends OpMode {
-
     private static boolean linearSlideMoving = false;
     private static boolean drivingInversed = false;
 
