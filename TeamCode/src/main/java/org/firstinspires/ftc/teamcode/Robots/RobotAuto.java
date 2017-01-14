@@ -99,8 +99,8 @@ public class RobotAuto extends SimpleRobot {
 
 
         //sets targets
-        leftTarget = leftRotations * Constants.ENCODER_TICKS_PER_ROTATION;
-        rightTarget = rightRotations * Constants.ENCODER_TICKS_PER_ROTATION;
+        leftTarget = leftRotations * Constants.ENCODER_TICKS_PER_ROTATION_40;
+        rightTarget = rightRotations * Constants.ENCODER_TICKS_PER_ROTATION_40;
 
         resetAllEncoders();
         leftMotor.setTargetPosition((int) leftTarget);
