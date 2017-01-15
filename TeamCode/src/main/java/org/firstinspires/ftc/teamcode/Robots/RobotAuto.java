@@ -6,6 +6,8 @@ import com.qualcomm.robotcore.hardware.HardwareMap;
 import org.firstinspires.ftc.teamcode.Utils.Constants;
 import org.firstinspires.ftc.teamcode.Utils.State;
 
+import static org.firstinspires.ftc.teamcode.Utils.Constants.ENCODER_TICKS_PER_ROTATION_60;
+
 /**
  * Created by ethan.hampton on 10/11/2016.
  * <p>
@@ -41,6 +43,9 @@ public class RobotAuto extends SimpleRobot {
     private double rightTarget = 0;
     public double rightSpeed = 0;
     public double leftSpeed = 0;
+
+
+    private int encoderTicksPerRotation = ENCODER_TICKS_PER_ROTATION_60;
 
 
     /* Initialize standard Hardware interfaces */
@@ -99,8 +104,8 @@ public class RobotAuto extends SimpleRobot {
 
 
         //sets targets
-        leftTarget = leftRotations * Constants.ENCODER_TICKS_PER_ROTATION_40;
-        rightTarget = rightRotations * Constants.ENCODER_TICKS_PER_ROTATION_40;
+        leftTarget = leftRotations * encoderTicksPerRotation;
+        rightTarget = rightRotations * encoderTicksPerRotation;
 
         resetAllEncoders();
         leftMotor.setTargetPosition((int) leftTarget);
@@ -158,5 +163,13 @@ public class RobotAuto extends SimpleRobot {
 
     public void setLeftTarget(double leftTarget) {
         this.leftTarget = leftTarget;
+    }
+
+    public int getEncoderTicksPerRotation() {
+        return encoderTicksPerRotation;
+    }
+
+    public void setEncoderTicksPerRotation(int ENCODER_TICKS_PER_ROTATION) {
+        this.encoderTicksPerRotation = ENCODER_TICKS_PER_ROTATION;
     }
 }

@@ -5,6 +5,7 @@ import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 
 import org.firstinspires.ftc.teamcode.Autonomous.API.AutonomousBase;
 import org.firstinspires.ftc.teamcode.Robots.RobotAuto;
+import org.firstinspires.ftc.teamcode.Utils.Constants;
 import org.firstinspires.ftc.teamcode.Utils.Group;
 
 /**
@@ -45,6 +46,7 @@ public class BasicAutonomous extends OpMode {
             }
         };
         auto.init(hardwareMap);
+        auto.getRobot().setEncoderTicksPerRotation(Constants.ENCODER_TICKS_PER_ROTATION_60);
     }
 
     @Override
