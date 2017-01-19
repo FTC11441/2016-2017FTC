@@ -1,10 +1,12 @@
 package org.firstinspires.ftc.teamcode.TeleOp;
 
-import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
+import com.qualcomm.robotcore.hardware.DcMotor;
+import com.qualcomm.robotcore.hardware.DcMotorSimple;
 
-import org.firstinspires.ftc.teamcode.Robots.Robot;
+import org.firstinspires.ftc.teamcode.Robots.SimpleRobot;
+import org.firstinspires.ftc.teamcode.Utils.Group;
 
 /**
  * Created by ethan.hampton on 10/4/2016.
@@ -12,15 +14,20 @@ import org.firstinspires.ftc.teamcode.Robots.Robot;
  * Very simple Teleop
  */
 
-@TeleOp(name = "Launcher Teleop", group = "Launcher")
-@Deprecated
-@Disabled
+@TeleOp(name = "Teleop W/ Launcher", group = Group.FEATURE)
 public class TeleopWithLauncher extends OpMode {
-    private Robot robot = new Robot();
+    private SimpleRobot robot = new SimpleRobot();
+
+    private DcMotor lifter;
+    private DcMotor collector;
 
     @Override
     public void init() {
         robot.Init(hardwareMap);
+        lifter = hardwareMap.dcMotor.get("lifter");
+        lifter.setDirection(DcMotorSimple.Direction.REVERSE);
+
+        collector = hardwareMap.dcMotor.get("collector");
     }
 
     @Override
@@ -34,8 +41,10 @@ public class TeleopWithLauncher extends OpMode {
         robot.leftMotor.setPower(left);
         robot.rightMotor.setPower(right);
 
-        double power = gamepad1.right_trigger;
-        //robot.rightLauncher.setPower(power);
-        robot.linearSlide.setPower(power);
+        double lpower = gamepad1.right_trigger;
+        lifter.setPower(lpower);
+
+        double cpower = gamepad1.left_trigger;
+        collector.setPower(cpower);
     }
 }
