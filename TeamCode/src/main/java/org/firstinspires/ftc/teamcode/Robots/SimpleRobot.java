@@ -24,8 +24,8 @@ public class SimpleRobot {
     public void Init(HardwareMap ahwMap) {
 
         // Define and Initialize Motors
-        leftMotor = ahwMap.dcMotor.get("left motor");
-        rightMotor = ahwMap.dcMotor.get("right motor");
+        leftMotor = ahwMap.dcMotor.get("leftMotor");
+        rightMotor = ahwMap.dcMotor.get("rightMotor");
         leftMotor.setDirection(DcMotor.Direction.REVERSE);
 
         // Set all motors to zero power
