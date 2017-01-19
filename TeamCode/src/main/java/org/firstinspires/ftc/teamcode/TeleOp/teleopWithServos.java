@@ -12,7 +12,8 @@ import org.firstinspires.ftc.teamcode.Utils.Group;
  * Teleop with servos
  */
 
-@TeleOp(name = "Teleop W/ Servos", group = Group.TESTING)
+@TeleOp(name = "Simple Teleop W/ Servos", group = Group.TESTING)
+
 public class teleopWithServos extends OpMode {
     private Robot robot = new Robot();
 

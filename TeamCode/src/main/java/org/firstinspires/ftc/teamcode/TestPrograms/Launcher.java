@@ -10,7 +10,7 @@ import org.firstinspires.ftc.teamcode.Robots.SimpleRobot;
  * <p>
  * Created to test launching of balls
  */
-@TeleOp(name = "Launcher", group = "Test")
+@TeleOp(name = "Test Launcher using Drive Motors", group = "Test")
 public class Launcher extends OpMode {
 
     private SimpleRobot simpleRobot = new SimpleRobot();

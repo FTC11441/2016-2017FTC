@@ -13,8 +13,8 @@ import com.qualcomm.robotcore.util.ElapsedTime;
 public class SimpleRobot {
 
     /* Public OpMode members. */
-    public DcMotor leftMotor = null;
-    public DcMotor rightMotor = null;
+    public DcMotor leftMotor;
+    public DcMotor rightMotor;
 
     //elapsed time
     public ElapsedTime time = new ElapsedTime();

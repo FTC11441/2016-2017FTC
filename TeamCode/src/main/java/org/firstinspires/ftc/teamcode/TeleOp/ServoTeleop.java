@@ -12,7 +12,7 @@ import org.firstinspires.ftc.teamcode.Utils.Group;
  * Very simple Teleop
  */
 
-@TeleOp(name = "Servo Teleop", group = Group.FEATURE)
+@TeleOp(name = "Servos Only", group = Group.FEATURE)
 public class ServoTeleop extends OpMode {
     private Servo rightServo;
     private Servo leftServo;

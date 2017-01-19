@@ -9,7 +9,7 @@ import org.firstinspires.ftc.teamcode.Robots.SimpleRobot;
  * Created by ethan.hampton on 10/12/2016.
  * test one rotation of encoder
  */
-@TeleOp(name = "Encoder", group = "Test")
+@TeleOp(name = "Encoder for Drive Motors", group = "Test")
 public class Encoder extends OpMode {
     private SimpleRobot simpleRobot = new SimpleRobot();
 
