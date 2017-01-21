@@ -75,7 +75,6 @@ public class PushbotTeleopTank_Iterative extends OpMode{
 
         // Send telemetry message to signify robot waiting;
         telemetry.addData("Say", "Hello Driver");    //
-        updateTelemetry(telemetry);
     }
 
     /*
@@ -114,14 +113,14 @@ public class PushbotTeleopTank_Iterative extends OpMode{
 
         // Move both servos to new position.  Assume servos are mirror image of each other.
         clawOffset = Range.clip(clawOffset, -0.5, 0.5);
-        robot.leftClaw.setPosition(robot.MID_SERVO + clawOffset);
-        robot.rightClaw.setPosition(robot.MID_SERVO - clawOffset);
+        robot.leftClaw.setPosition(HardwarePushbot.MID_SERVO + clawOffset);
+        robot.rightClaw.setPosition(HardwarePushbot.MID_SERVO - clawOffset);
 
         // Use gamepad buttons to move the arm up (Y) and down (A)
         if (gamepad1.y)
-            robot.armMotor.setPower(robot.ARM_UP_POWER);
+            robot.armMotor.setPower(HardwarePushbot.ARM_UP_POWER);
         else if (gamepad1.a)
-            robot.armMotor.setPower(robot.ARM_DOWN_POWER);
+            robot.armMotor.setPower(HardwarePushbot.ARM_DOWN_POWER);
         else
             robot.armMotor.setPower(0.0);
 
@@ -129,7 +128,6 @@ public class PushbotTeleopTank_Iterative extends OpMode{
         telemetry.addData("claw",  "Offset = %.2f", clawOffset);
         telemetry.addData("left",  "%.2f", left);
         telemetry.addData("right", "%.2f", right);
-        updateTelemetry(telemetry);
     }
 
     /*
