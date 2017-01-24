@@ -2,8 +2,10 @@ package org.firstinspires.ftc.teamcode.Robots;
 
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.HardwareMap;
+import com.qualcomm.robotcore.hardware.TouchSensor;
 
 import org.firstinspires.ftc.teamcode.Utils.Constants;
+import org.firstinspires.ftc.teamcode.Utils.MultiplexColorSensor;
 import org.firstinspires.ftc.teamcode.Utils.State;
 
 import static org.firstinspires.ftc.teamcode.Utils.Constants.ENCODER_TICKS_PER_ROTATION_60;
@@ -14,7 +16,7 @@ import static org.firstinspires.ftc.teamcode.Utils.Constants.ENCODER_TICKS_PER_R
  * SimpleRobot setup for autonomous
  */
 
-public class RobotAuto extends SimpleRobot {
+public class RobotAuto extends Robot {
 
     //what time to wait till
     public double waitTime = 0;
@@ -45,12 +47,25 @@ public class RobotAuto extends SimpleRobot {
     public double leftSpeed = 0;
 
 
-    private int encoderTicksPerRotation = ENCODER_TICKS_PER_ROTATION_60;
+    private int[] ports = {0, 3};
+    public MultiplexColorSensor colorSensors;
+    public TouchSensor teamTouch;
+    public TouchSensor wallTouch;
+
+    private int encoderTicksPerRotation = ENCODER_TICKS_PER_ROTATION_60;//default but can be changed by team
 
 
     /* Initialize standard Hardware interfaces */
     public void Init(HardwareMap ahwMap) {
         super.Init(ahwMap);
+
+        int milliSeconds = 48;
+        colorSensors = new MultiplexColorSensor(ahwMap, "mux", "ada",
+                ports, milliSeconds,
+                MultiplexColorSensor.GAIN_16X);
+
+        teamTouch = ahwMap.touchSensor.get(Constants.Robot.teamTouch);
+        wallTouch = ahwMap.touchSensor.get(Constants.Robot.wallTouch);
 
         // Set all motors to run with encoders to use encoders to track position
         leftMotor.setMode(DcMotor.RunMode.RUN_TO_POSITION);

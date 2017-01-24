@@ -4,6 +4,7 @@ import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.HardwareMap;
 import com.qualcomm.robotcore.hardware.Servo;
 
+import org.firstinspires.ftc.teamcode.Utils.Constants;
 import org.firstinspires.ftc.teamcode.Utils.Team;
 
 /**
@@ -32,17 +33,19 @@ public class Robot extends SimpleRobot {
     /* Initialize standard Hardware interfaces */
     public void Init(HardwareMap ahwMap) {
         super.Init(ahwMap);
-        leftBumper = ahwMap.servo.get("left bumper");
-        rightBumper = ahwMap.servo.get("right bumper");
-        leftBumper.setDirection(Servo.Direction.REVERSE);
-        forklift = ahwMap.servo.get("forklift");
-        flipper = ahwMap.servo.get("flipper");
 
-        launcher = ahwMap.dcMotor.get("launcher");
-        collector = ahwMap.dcMotor.get("collector");
-        tube = ahwMap.dcMotor.get("tube");
-        linearSlide = ahwMap.dcMotor.get("linear slide");
+        leftBumper = ahwMap.servo.get(Constants.Robot.leftBumper);
+        rightBumper = ahwMap.servo.get(Constants.Robot.rightBumper);
+        leftBumper.setDirection(Servo.Direction.REVERSE);
+
+        forklift = ahwMap.servo.get(Constants.Robot.forklift);
+        linearSlide = ahwMap.dcMotor.get(Constants.Robot.linearSlide);
         linearSlide.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+
+        flipper = ahwMap.servo.get(Constants.Robot.flipper);
+        launcher = ahwMap.dcMotor.get(Constants.Robot.launcher);
+        collector = ahwMap.dcMotor.get(Constants.Robot.ballCollector);
+        tube = ahwMap.dcMotor.get(Constants.Robot.ballTube);
 
     }
 

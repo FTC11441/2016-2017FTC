@@ -1,24 +1,24 @@
 package org.firstinspires.ftc.teamcode.Autonomous;
 
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
-import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 
 import org.firstinspires.ftc.teamcode.Autonomous.API.AutonomousBase;
 import org.firstinspires.ftc.teamcode.Robots.RobotAuto;
 import org.firstinspires.ftc.teamcode.Utils.Constants;
 import org.firstinspires.ftc.teamcode.Utils.Group;
+import org.firstinspires.ftc.teamcode.Utils.Team;
 
 /**
- * Created by ethan.hampton on 12/17/2016.
- * Simple autonomous program
+ * Created by ethan.hampton on 1/23/2017.
+ * <p>
+ * adds team capabilities to autonomous
  */
 @Autonomous(name = "Basic Auto", group = Group.TESTING)
-@Disabled
-public class BasicAutonomous extends OpMode {
+public class TeamAuto extends OpMode {
     private AutonomousBase auto;
 
-    private final double[][] steps = new double[][]{
+    private final double[][] redSteps = new double[][]{
             {0, 1, 1, 2},/*
             {0, -1, -1, -1},
             {0, -1, 1, -1},
@@ -26,6 +26,10 @@ public class BasicAutonomous extends OpMode {
             {2, 5},//wait
             {0, 1, 1, -1},
             {0, -1, -1, -1},*/
+            {-1}
+    };
+    private final double[][] blueSteps = new double[][]{
+            {0, 1, 1, 2},
             {-1}
     };
 
@@ -44,11 +48,17 @@ public class BasicAutonomous extends OpMode {
 
             @Override
             public double[][] getSteps() {
-                return steps;
+                if (auto.getRobot().getTeam().equals(Team.BLUE)) {
+                    return blueSteps;
+                } else {
+                    return redSteps;
+                }
             }
         };
         auto.init(hardwareMap);
         auto.getRobot().setEncoderTicksPerRotation(Constants.ENCODER_TICKS_PER_ROTATION_60);
+
+        // TODO: 1/23/2017 add team detecting code
     }
 
     @Override

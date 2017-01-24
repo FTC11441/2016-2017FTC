@@ -4,6 +4,7 @@ import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.hardware.Servo;
 
+import org.firstinspires.ftc.teamcode.Utils.Constants;
 import org.firstinspires.ftc.teamcode.Utils.Group;
 
 /**
@@ -19,8 +20,8 @@ public class ServoTeleop extends OpMode {
 
     @Override
     public void init() {
-        leftServo = hardwareMap.servo.get("leftServo");
-        rightServo = hardwareMap.servo.get("rightServo");
+        leftServo = hardwareMap.servo.get(Constants.Robot.leftBumper);
+        rightServo = hardwareMap.servo.get(Constants.Robot.rightBumper);
         rightServo.setDirection(Servo.Direction.REVERSE);
     }
 

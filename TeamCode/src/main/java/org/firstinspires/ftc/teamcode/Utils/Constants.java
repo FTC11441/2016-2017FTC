@@ -28,4 +28,19 @@ public class Constants {
         public static final double FLIPPER_IN = 0L;
     }
 
+    public class Robot{
+        public static final String rightMotor = "rightMotor";
+        public static final String leftMotor = "leftMotor";
+        public static final String ballCollector = "collector";
+        public static final String ballTube = "tube";
+        public static final String leftBumper = "leftBumper";
+        public static final String rightBumper = "rightBumper";
+        public static final String linearSlide = "linearSlide";
+        public static final String launcher = "launcher";
+        public static final String forklift = "forklift";
+        public static final String flipper = "flipper";
+        public static final String wallTouch = "wall";
+        public static final String teamTouch = "team";
+    }
+
 }

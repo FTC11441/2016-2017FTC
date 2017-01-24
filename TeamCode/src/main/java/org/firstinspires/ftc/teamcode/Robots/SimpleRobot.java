@@ -4,6 +4,8 @@ import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.HardwareMap;
 import com.qualcomm.robotcore.util.ElapsedTime;
 
+import org.firstinspires.ftc.teamcode.Utils.Constants;
+
 /**
  * Created by ethan.hampton on 10/4/2016.
  * <p>
@@ -24,8 +26,8 @@ public class SimpleRobot {
     public void Init(HardwareMap ahwMap) {
 
         // Define and Initialize Motors
-        leftMotor = ahwMap.dcMotor.get("leftMotor");
-        rightMotor = ahwMap.dcMotor.get("rightMotor");
+        leftMotor = ahwMap.dcMotor.get(Constants.Robot.leftMotor);
+        rightMotor = ahwMap.dcMotor.get(Constants.Robot.rightMotor);
         leftMotor.setDirection(DcMotor.Direction.REVERSE);
 
         // Set all motors to zero power
