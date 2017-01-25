@@ -10,11 +10,12 @@ import org.firstinspires.ftc.teamcode.Utils.Group;
 
 /**
  * Created by ethan.hampton on 12/17/2016.
- * Teleop for development with all the buttons and motors and servos
+ * Teleop with all the buttons and motors and servos
  */
 @TeleOp(name = "Dev Teleop", group = Group.DEV)
-public class DevelopmentTeleop extends OpMode {
+public class TeleopV1 extends OpMode {
     private static boolean linearSlideMoving = false;
+    private static boolean launcherMoving = false;
     private static boolean drivingInversed = false;
 
     private Robot robot = new Robot();
@@ -48,11 +49,11 @@ public class DevelopmentTeleop extends OpMode {
         }
 
         //Enable and disable encoders for drive motors
-        if(gamepad1.dpad_left){
+        if (gamepad1.dpad_left) {
             robot.rightMotor.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
             robot.leftMotor.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
         }
-        if(gamepad1.dpad_right){
+        if (gamepad1.dpad_right) {
             robot.rightMotor.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
             robot.leftMotor.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
         }
@@ -138,8 +139,22 @@ public class DevelopmentTeleop extends OpMode {
             robot.flipper.setPosition(Constants.Teleop.FLIPPER_IN);
         }
 
-
-        robot.launcher.setPower(0);// TODO: 12/20/2016 add launching controls
-        // TODO: 12/22/2016 add launcher manual override
+        //launcher
+        if (gamepad2.a) {
+            robot.launcher.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+            //the launcher has a gear ratio of 2 to 1
+            robot.launcher.setTargetPosition(robot.launcher.getTargetPosition() + (Constants.ENCODER_TICKS_PER_ROTATION_60 / 2));
+            robot.launcher.setPower(0.5);
+            launcherMoving = true;
+        }
+        if (launcherMoving && !robot.launcher.isBusy()) {//stop checking motors and stop them if we are done moving
+            robot.launcher.setPower(0);
+            launcherMoving = false;
+        }
+        if (Math.abs(gamepad2.right_stick_y) > 0.2) {//control launcher manually
+            robot.launcher.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+            robot.launcher.setPower(gamepad2.right_stick_y);
+            launcherMoving = false;
+        }
     }
 }
