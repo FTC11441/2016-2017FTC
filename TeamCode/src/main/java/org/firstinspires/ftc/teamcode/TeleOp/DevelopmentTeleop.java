@@ -47,6 +47,17 @@ public class DevelopmentTeleop extends OpMode {
             drivingInversed = true;
         }
 
+        //Enable and disable encoders for drive motors
+        if(gamepad1.dpad_left){
+            robot.rightMotor.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+            robot.leftMotor.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+        }
+        if(gamepad1.dpad_right){
+            robot.rightMotor.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+            robot.leftMotor.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+        }
+
+
         //bumper system
         if (gamepad1.left_bumper) {
             robot.leftBumper.setPosition(Constants.Teleop.BUMPER_UP_POSITION);
