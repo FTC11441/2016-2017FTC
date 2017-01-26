@@ -71,6 +71,7 @@ public class TeleopV1 extends OpMode {
             robot.rightBumper.setPosition(0);
         }
 
+
         //linear slide system system
         if (gamepad2.dpad_up) {//go to top
             robot.linearSlide.setTargetPosition(Constants.Teleop.LINEAR_SLIDE_UP);
@@ -106,16 +107,17 @@ public class TeleopV1 extends OpMode {
             linearSlideMoving = false;
         }
 
-
+/*
         //forklift controls
         if (gamepad1.y && gamepad2.y) {
             robot.forklift.setPosition(Constants.Teleop.FORKLIFT_RELEASE_POSITION);
-            /* if 1:50 has passed in teleop then we know we can release the forklift by one person*/
+            // if 1:50 has passed in teleop then we know we can release the forklift by one person
         } else if ((gamepad1.y || gamepad2.y) && robot.time.milliseconds() > Constants.Teleop.FORKLIFT_LOCK_UNTIL_TIME) {
             robot.forklift.setPosition(Constants.Teleop.FORKLIFT_RELEASE_POSITION);
         } else {
             robot.forklift.setPosition(Constants.Teleop.FORKLIFT_HOLD_POSITION);
         }
+    */
 
         //tube controls
         if (gamepad2.left_trigger > 0.50) {
@@ -131,27 +133,39 @@ public class TeleopV1 extends OpMode {
             robot.collector.setPower(0);
         }
 
+
         //flipper controls
         if (gamepad2.b) {
             robot.flipper.setPosition(Constants.Teleop.FLIPPER_OUT);
-            /* this allows the flipper to be extended fully on a single button press and then retraced */
-        } else if (robot.flipper.getPosition() > (Constants.Teleop.FLIPPER_OUT - 0.05)) {
+            //this allows the flipper to be extended fully on a single button press and then retraced
+        } else if (robot.flipper.getPosition() > (Constants.Teleop.FLIPPER_OUT - 0.05))
+
+        {
             robot.flipper.setPosition(Constants.Teleop.FLIPPER_IN);
         }
 
+
+
         //launcher
-        if (gamepad2.a) {
+        if (gamepad2.a && !launcherMoving )
+        {
             robot.launcher.setMode(DcMotor.RunMode.RUN_TO_POSITION);
             //the launcher has a gear ratio of 2 to 1
-            robot.launcher.setTargetPosition(robot.launcher.getTargetPosition() + (Constants.ENCODER_TICKS_PER_ROTATION_60 / 2));
+            robot.launcher.setTargetPosition(robot.launcher.getTargetPosition() + (Constants.ENCODER_TICKS_PER_ROTATION_60 * 4));
             robot.launcher.setPower(0.5);
             launcherMoving = true;
         }
-        if (launcherMoving && !robot.launcher.isBusy()) {//stop checking motors and stop them if we are done moving
+
+        if (launcherMoving && !robot.launcher.isBusy())
+
+        {//stop checking motors and stop them if we are done moving
             robot.launcher.setPower(0);
             launcherMoving = false;
         }
-        if (Math.abs(gamepad2.right_stick_y) > 0.2) {//control launcher manually
+
+        if (Math.abs(gamepad2.right_stick_y) > 0.2)
+
+        {//control launcher manually
             robot.launcher.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
             robot.launcher.setPower(gamepad2.right_stick_y);
             launcherMoving = false;

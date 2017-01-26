@@ -1,6 +1,7 @@
 package org.firstinspires.ftc.teamcode.Robots;
 
 import com.qualcomm.robotcore.hardware.DcMotor;
+import com.qualcomm.robotcore.hardware.DcMotorSimple;
 import com.qualcomm.robotcore.hardware.HardwareMap;
 import com.qualcomm.robotcore.hardware.Servo;
 
@@ -15,15 +16,15 @@ import org.firstinspires.ftc.teamcode.Utils.Team;
 
 public class Robot extends SimpleRobot {
 
-    public Servo leftBumper = null;
-    public Servo rightBumper = null;
-    public Servo forklift = null;
-    public Servo flipper = null;
+    public Servo leftBumper;
+    public Servo rightBumper;
+    // public Servo forklift;
+    public Servo flipper;
 
-    public DcMotor linearSlide = null;
-    public DcMotor launcher = null;
-    public DcMotor collector = null;
-    public DcMotor tube = null;
+    public DcMotor linearSlide;
+    public DcMotor launcher;
+    public DcMotor collector;
+    public DcMotor tube;
 
     /**
      * the team we are on
@@ -38,13 +39,14 @@ public class Robot extends SimpleRobot {
         rightBumper = ahwMap.servo.get(Constants.Robot.rightBumper);
         leftBumper.setDirection(Servo.Direction.REVERSE);
 
-        forklift = ahwMap.servo.get(Constants.Robot.forklift);
+        //forklift = ahwMap.servo.get(Constants.Robot.forklift);
         linearSlide = ahwMap.dcMotor.get(Constants.Robot.linearSlide);
         linearSlide.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
 
         flipper = ahwMap.servo.get(Constants.Robot.flipper);
         launcher = ahwMap.dcMotor.get(Constants.Robot.launcher);
         collector = ahwMap.dcMotor.get(Constants.Robot.ballCollector);
+        collector.setDirection(DcMotorSimple.Direction.REVERSE);
         tube = ahwMap.dcMotor.get(Constants.Robot.ballTube);
 
     }
