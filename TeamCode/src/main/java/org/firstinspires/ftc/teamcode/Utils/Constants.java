@@ -24,8 +24,8 @@ public class Constants {
         public static final double FORKLIFT_HOLD_POSITION = 0;
         public static final double FORKLIFT_LOCK_UNTIL_TIME = 1000 * 110;//1:50 into match is 110 seconds
 
-        public static final double FLIPPER_OUT = 0;
-        public static final double FLIPPER_IN = 1;
+        public static final double FLIPPER_OUT = 1;
+        public static final double FLIPPER_IN = 0;
     }
 
     public class Robot{

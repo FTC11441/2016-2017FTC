@@ -33,8 +33,8 @@ public class TeleopV1 extends OpMode {
         double right = gamepad1.right_stick_y;
         //if we are driving backwards then change the speeds
         if (drivingInversed) {
-            left = -left;
-            right = -right;
+            right = -left;
+            left = -right;
         }
         //sets the robots motor power for both motors
         robot.leftMotor.setPower(left);
