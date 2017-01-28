@@ -2,6 +2,7 @@ package org.firstinspires.ftc.teamcode.Robots;
 
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.HardwareMap;
+import com.qualcomm.robotcore.hardware.OpticalDistanceSensor;
 import com.qualcomm.robotcore.hardware.TouchSensor;
 
 import org.firstinspires.ftc.teamcode.Utils.Constants;
@@ -50,7 +51,7 @@ public class RobotAuto extends Robot {
     private int[] ports = {0, 3};
     public MultiplexColorSensor colorSensors;
     public TouchSensor teamTouch;
-    public TouchSensor wallTouch;
+    public OpticalDistanceSensor wallDistance;
 
     private int encoderTicksPerRotation = ENCODER_TICKS_PER_ROTATION_60;//default but can be changed by team
 
@@ -65,7 +66,7 @@ public class RobotAuto extends Robot {
                 MultiplexColorSensor.GAIN_16X);
 
         teamTouch = ahwMap.touchSensor.get(Constants.Robot.teamTouch);
-        wallTouch = ahwMap.touchSensor.get(Constants.Robot.wallTouch);
+        wallDistance = ahwMap.opticalDistanceSensor.get(Constants.Robot.WALL_DISTANCE);
 
         // Set all motors to run with encoders to use encoders to track position
         leftMotor.setMode(DcMotor.RunMode.RUN_TO_POSITION);

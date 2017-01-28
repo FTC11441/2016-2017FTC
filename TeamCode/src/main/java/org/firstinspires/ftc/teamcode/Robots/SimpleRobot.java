@@ -40,4 +40,10 @@ public class SimpleRobot {
         rightMotor.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
     }
 
+    public void stopMotors() {
+        leftMotor.setPower(0);
+        rightMotor.setPower(0);
+    }
+
+
 }

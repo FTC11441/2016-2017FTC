@@ -40,7 +40,7 @@ import org.firstinspires.ftc.teamcode.Utils.MultiplexColorSensor;
 @TeleOp(name = "MultiplexColorSensorTest", group = Group.TESTING)
 public class MultiplexColorSensorTest extends OpMode {
     private MultiplexColorSensor muxColor;
-    private int[] ports = {0, 3};
+    private int[] ports = {0, 1, 2};
 
     @Override
     public void init() {

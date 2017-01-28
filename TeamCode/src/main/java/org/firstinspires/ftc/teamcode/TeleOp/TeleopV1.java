@@ -33,8 +33,10 @@ public class TeleopV1 extends OpMode {
         double right = gamepad1.right_stick_y;
         //if we are driving backwards then change the speeds
         if (drivingInversed) {
-            right = -left;
-            left = -right;
+            double tempRight = -left;
+            double tempLeft = -right;
+            right = tempRight;
+            left = tempLeft;
         }
         //sets the robots motor power for both motors
         robot.leftMotor.setPower(left);
@@ -63,15 +65,15 @@ public class TeleopV1 extends OpMode {
         if (gamepad1.left_bumper) {
             robot.leftBumper.setPosition(Constants.Teleop.BUMPER_UP_POSITION);
         } else {
-            robot.leftBumper.setPosition(0);
+            robot.leftBumper.setPosition(Constants.Teleop.BUMPER_DOWN_POSITION);
         }
         if (gamepad1.right_bumper) {
             robot.rightBumper.setPosition(Constants.Teleop.BUMPER_UP_POSITION);
         } else {
-            robot.rightBumper.setPosition(0);
+            robot.rightBumper.setPosition(Constants.Teleop.BUMPER_DOWN_POSITION);
         }
 
-
+/*
         //linear slide system system
         if (gamepad2.dpad_up) {//go to top
             robot.linearSlide.setTargetPosition(Constants.Teleop.LINEAR_SLIDE_UP);
@@ -107,7 +109,7 @@ public class TeleopV1 extends OpMode {
             linearSlideMoving = false;
         }
 
-/*
+
         //forklift controls
         if (gamepad1.y && gamepad2.y) {
             robot.forklift.setPosition(Constants.Teleop.FORKLIFT_RELEASE_POSITION);
@@ -151,20 +153,18 @@ public class TeleopV1 extends OpMode {
         {
             robot.launcher.setMode(DcMotor.RunMode.RUN_TO_POSITION);
             //the launcher has a gear ratio of 2 to 1
-            robot.launcher.setTargetPosition(robot.launcher.getTargetPosition() + (Constants.ENCODER_TICKS_PER_ROTATION_60 * 4));
+            robot.launcher.setTargetPosition(robot.launcher.getTargetPosition() + (Constants.Teleop.LAUNCHER_ROTATIONS));
             robot.launcher.setPower(0.5);
             launcherMoving = true;
         }
 
         if (launcherMoving && !robot.launcher.isBusy())
-
         {//stop checking motors and stop them if we are done moving
             robot.launcher.setPower(0);
             launcherMoving = false;
         }
 
         if (Math.abs(gamepad2.right_stick_y) > 0.2)
-
         {//control launcher manually
             robot.launcher.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
             robot.launcher.setPower(gamepad2.right_stick_y);

@@ -18,14 +18,17 @@ public class Constants {
         public static final int LINEAR_SLIDE_INCREMENT = ENCODER_TICKS_PER_ROTATION_60;//Increment 1 rotation per press
         public static final int LINEAR_SLIDE_UP = ENCODER_TICKS_PER_ROTATION_60 * 10;//Start with 10 rotations
 
-        public static final double BUMPER_UP_POSITION = 0.7;
+        public static final int LAUNCHER_ROTATIONS = Constants.ENCODER_TICKS_PER_ROTATION_60 * 2;
+
+        public static final double BUMPER_UP_POSITION = 0;
+        public static final double BUMPER_DOWN_POSITION = 0.7;
 
         public static final double FORKLIFT_RELEASE_POSITION = 1;
         public static final double FORKLIFT_HOLD_POSITION = 0;
         public static final double FORKLIFT_LOCK_UNTIL_TIME = 1000 * 110;//1:50 into match is 110 seconds
 
         public static final double FLIPPER_OUT = 1;
-        public static final double FLIPPER_IN = 0;
+        public static final double FLIPPER_IN = 0.5;
     }
 
     public class Robot{
@@ -39,8 +42,12 @@ public class Constants {
         public static final String launcher = "launcher";
         public static final String forklift = "forklift";
         public static final String flipper = "flipper";
-        public static final String wallTouch = "wall";
+        public static final String WALL_DISTANCE = "wall";
         public static final String teamTouch = "team";
+
+        public static final int LEFT_COLOR = 0;
+        public static final int RIGHT_COLOR = 1;
+        public static final int BEACON_COLOR = 2;
     }
 
 }
