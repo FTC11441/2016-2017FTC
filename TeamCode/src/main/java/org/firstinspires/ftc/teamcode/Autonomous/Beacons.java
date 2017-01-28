@@ -20,7 +20,7 @@ public class Beacons extends OpMode {
     private AutonomousBase auto;
 
     private final double[][] redSteps = new double[][]{
-            {0, -1, -1, -1},//forward
+            {0, -2, -2, -1},//forward
             {0, -5, -10, -1},//slight turn
             {0, -2, -2, 0.5},//move forward again
             {3},//follow line and get close, select beacon color
@@ -33,7 +33,7 @@ public class Beacons extends OpMode {
             {-1}
     };
     private final double[][] blueSteps = new double[][]{
-            {0, -1, -1, -1},
+            //{0, -1, -1, -1},
             {-1}
     };
 
@@ -45,25 +45,29 @@ public class Beacons extends OpMode {
             @Override
             public boolean checkMovement(RobotAuto robot, double movementMode) {
                 if (movementMode == 3) {
-                    if (robot.wallDistance.getLightDetected() > 0.5) {
+                    if (true/*robot.wallDistance.getLightDetected() > 0.5*/) {
                         //both are off line
-                        if (robot.colorSensors.getCRGB(Constants.Robot.LEFT_COLOR)[0] < 50 && robot.colorSensors.getCRGB(Constants.Robot.RIGHT_COLOR)[0] < 50) {
-                            robot.leftMotor.setPower(-0.2);
-                            robot.rightMotor.setPower(-0.2);
+                        if (robot.colorSensors.getCRGB(Constants.Robot.LEFT_COLOR)[0] < 3000 && robot.colorSensors.getCRGB(Constants.Robot.RIGHT_COLOR)[0] < 3000) {
+                            robot.leftMotor.setPower(-0.1);
+                            robot.rightMotor.setPower(-0.1);
 
                             //left is on line
-                        } else if (robot.colorSensors.getCRGB(Constants.Robot.LEFT_COLOR)[0] > 50 && robot.colorSensors.getCRGB(Constants.Robot.RIGHT_COLOR)[0] < 50) {
-                            robot.leftMotor.setPower(-0.2);
+                        } else if (robot.colorSensors.getCRGB(Constants.Robot.LEFT_COLOR)[0] > 3000 && robot.colorSensors.getCRGB(Constants.Robot.RIGHT_COLOR)[0] < 3000) {
+                            robot.leftMotor.setPower(-0.1);
                             robot.rightMotor.setPower(-0.3);
 
                             //right is on line
-                        } else if (robot.colorSensors.getCRGB(Constants.Robot.LEFT_COLOR)[0] > 50 && robot.colorSensors.getCRGB(Constants.Robot.RIGHT_COLOR)[0] < 50) {
+                        } else if (robot.colorSensors.getCRGB(Constants.Robot.LEFT_COLOR)[0] > 3000 && robot.colorSensors.getCRGB(Constants.Robot.RIGHT_COLOR)[0] < 3000) {
                             robot.leftMotor.setPower(-0.3);
-                            robot.rightMotor.setPower(-0.2);
+                            robot.rightMotor.setPower(-0.1);
                         }
+
+                        telemetry.addLine(robot.leftMotor.getCurrentPosition() + ":" + robot.leftMotor.getPower());
+                        telemetry.addLine(robot.rightMotor.getCurrentPosition() + ":" + robot.rightMotor.getPower());
+
                     } else {
                         //if greater than 50% red and less than 50% blue then it must be red
-                        if (robot.colorSensors.getCRGB(Constants.Robot.BEACON_COLOR)[1] > 50 && robot.colorSensors.getCRGB(Constants.Robot.BEACON_COLOR)[3] < 50) {
+                        if (robot.colorSensors.getCRGB(Constants.Robot.BEACON_COLOR)[1] > 1000 && robot.colorSensors.getCRGB(Constants.Robot.BEACON_COLOR)[3] < 1000) {
                             leftBeacon = Team.RED;
                         } else {
                             leftBeacon = Team.BLUE;
@@ -103,15 +107,15 @@ public class Beacons extends OpMode {
                 if (movementMode == 3) {
                     robot.leftMotor.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
                     robot.rightMotor.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
-                    robot.leftMotor.setPower(-0.2);
-                    robot.rightMotor.setPower(-0.2);
+                    robot.leftMotor.setPower(-0.1);
+                    robot.rightMotor.setPower(-0.1);
 
                     robot.colorSensors.startPolling();
-                }else if (movementMode == 5){
+                } else if (movementMode == 5) {
                     robot.launcher.setMode(DcMotor.RunMode.RUN_TO_POSITION);
                     //the launcher has a gear ratio of 2 to 1
                     robot.launcher.setTargetPosition(robot.launcher.getTargetPosition() + (Constants.Teleop.LAUNCHER_ROTATIONS));
-                    robot.launcher.setPower(0.5);
+                    robot.launcher.setPower(0.75);
                 }
             }
 
@@ -132,6 +136,9 @@ public class Beacons extends OpMode {
         } else {
             auto.getRobot().setTeam(Team.RED);
         }
+
+        auto.getRobot().leftMotor.setMaxSpeed(Constants.MAX_MOTOR_TICKS_PER_SECOND);
+        auto.getRobot().rightMotor.setMaxSpeed(Constants.MAX_MOTOR_TICKS_PER_SECOND);
     }
 
     @Override

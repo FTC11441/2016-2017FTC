@@ -20,7 +20,7 @@ public class Encoder extends OpMode {
 
     @Override
     public void loop() {
-        telemetry.addData("Status", simpleRobot.rightMotor.getCurrentPosition() + "  " + simpleRobot.leftMotor.getCurrentPosition());    //
+        telemetry.addData("Status", simpleRobot.leftMotor.getCurrentPosition() + "  " + simpleRobot.rightMotor.getCurrentPosition());    //
         telemetry.update();
 
         // Run wheels in tank mode

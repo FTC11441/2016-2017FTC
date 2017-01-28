@@ -140,32 +140,26 @@ public class TeleopV1 extends OpMode {
         if (gamepad2.b) {
             robot.flipper.setPosition(Constants.Teleop.FLIPPER_OUT);
             //this allows the flipper to be extended fully on a single button press and then retraced
-        } else if (robot.flipper.getPosition() > (Constants.Teleop.FLIPPER_OUT - 0.05))
-
-        {
+        } else {
             robot.flipper.setPosition(Constants.Teleop.FLIPPER_IN);
         }
 
 
-
         //launcher
-        if (gamepad2.a && !launcherMoving )
-        {
+        if (gamepad2.a && !launcherMoving) {
             robot.launcher.setMode(DcMotor.RunMode.RUN_TO_POSITION);
             //the launcher has a gear ratio of 2 to 1
             robot.launcher.setTargetPosition(robot.launcher.getTargetPosition() + (Constants.Teleop.LAUNCHER_ROTATIONS));
-            robot.launcher.setPower(0.5);
+            robot.launcher.setPower(0.75);
             launcherMoving = true;
         }
 
-        if (launcherMoving && !robot.launcher.isBusy())
-        {//stop checking motors and stop them if we are done moving
+        if (launcherMoving && !robot.launcher.isBusy()) {//stop checking motors and stop them if we are done moving
             robot.launcher.setPower(0);
             launcherMoving = false;
         }
 
-        if (Math.abs(gamepad2.right_stick_y) > 0.2)
-        {//control launcher manually
+        if (Math.abs(gamepad2.right_stick_y) > 0.2) {//control launcher manually
             robot.launcher.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
             robot.launcher.setPower(gamepad2.right_stick_y);
             launcherMoving = false;

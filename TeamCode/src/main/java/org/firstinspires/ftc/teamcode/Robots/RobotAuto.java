@@ -48,7 +48,7 @@ public class RobotAuto extends Robot {
     public double leftSpeed = 0;
 
 
-    private int[] ports = {0, 3};
+    private int[] ports = {0,1,2};
     public MultiplexColorSensor colorSensors;
     public TouchSensor teamTouch;
     public OpticalDistanceSensor wallDistance;
@@ -71,6 +71,8 @@ public class RobotAuto extends Robot {
         // Set all motors to run with encoders to use encoders to track position
         leftMotor.setMode(DcMotor.RunMode.RUN_TO_POSITION);
         rightMotor.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+        leftMotor.setDirection(DcMotor.Direction.FORWARD);
+        rightMotor.setDirection(DcMotor.Direction.REVERSE);
     }
 
     /**
