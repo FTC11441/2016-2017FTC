@@ -1,5 +1,6 @@
 package org.firstinspires.ftc.teamcode.TestPrograms;
 
+import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 
@@ -13,7 +14,7 @@ import org.firstinspires.ftc.teamcode.Utils.Group;
  */
 
 @TeleOp(name = "Simple Teleop W/ Servos", group = Group.TESTING)
-
+@Disabled
 public class teleopWithServos extends OpMode {
     private Robot robot = new Robot();
 

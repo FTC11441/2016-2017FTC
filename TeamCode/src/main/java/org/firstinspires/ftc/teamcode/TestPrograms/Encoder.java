@@ -1,5 +1,6 @@
 package org.firstinspires.ftc.teamcode.TestPrograms;
 
+import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 
@@ -10,6 +11,7 @@ import org.firstinspires.ftc.teamcode.Robots.SimpleRobot;
  * test one rotation of encoder
  */
 @TeleOp(name = "Encoder for Drive Motors", group = "Test")
+@Disabled
 public class Encoder extends OpMode {
     private SimpleRobot simpleRobot = new SimpleRobot();
 

@@ -12,7 +12,7 @@ import org.firstinspires.ftc.teamcode.Utils.Group;
  * Created by ethan.hampton on 12/17/2016.
  * Teleop with all the buttons and motors and servos
  */
-@TeleOp(name = "Dev Teleop", group = Group.DEV)
+@TeleOp(name = "Teleop", group = Group.RELEASE)
 public class TeleopV1 extends OpMode {
     private static boolean linearSlideMoving = false;
     private static boolean launcherMoving = false;
@@ -150,7 +150,7 @@ public class TeleopV1 extends OpMode {
             robot.launcher.setMode(DcMotor.RunMode.RUN_TO_POSITION);
             //the launcher has a gear ratio of 2 to 1
             robot.launcher.setTargetPosition(robot.launcher.getTargetPosition() + (Constants.Teleop.LAUNCHER_ROTATIONS));
-            robot.launcher.setPower(0.75);
+            robot.launcher.setPower(0.8);
             launcherMoving = true;
         }
 

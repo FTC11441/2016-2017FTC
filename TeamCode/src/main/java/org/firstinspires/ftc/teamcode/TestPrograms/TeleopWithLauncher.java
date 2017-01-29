@@ -1,5 +1,6 @@
 package org.firstinspires.ftc.teamcode.TestPrograms;
 
+import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.hardware.DcMotor;
@@ -15,6 +16,7 @@ import org.firstinspires.ftc.teamcode.Utils.Group;
  */
 
 @TeleOp(name = "Teleop W/ Launcher", group = Group.FEATURE)
+@Disabled
 public class TeleopWithLauncher extends OpMode {
     private SimpleRobot robot = new SimpleRobot();
 
