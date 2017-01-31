@@ -16,12 +16,11 @@ import org.firstinspires.ftc.teamcode.Utils.Team;
 
 public class Robot extends SimpleRobot {
 
-    public Servo leftBumper;
-    public Servo rightBumper;
+    public Servo bumper;
     // public Servo FORKLIFT;
     public Servo flipper;
 
-    public DcMotor linearSlide;
+    //public DcMotor linearSlide;
     public DcMotor launcher;
     public DcMotor collector;
     public DcMotor tube;
@@ -35,13 +34,11 @@ public class Robot extends SimpleRobot {
     public void Init(HardwareMap ahwMap) {
         super.Init(ahwMap);
 
-        leftBumper = ahwMap.servo.get(Constants.Robot.LEFT_BUMPER);
-        rightBumper = ahwMap.servo.get(Constants.Robot.RIGHT_BUMPER);
-        leftBumper.setDirection(Servo.Direction.REVERSE);
+        bumper = ahwMap.servo.get(Constants.Robot.BUMPER);
 
         //FORKLIFT = ahwMap.servo.get(Constants.Robot.FORKLIFT);
-        linearSlide = ahwMap.dcMotor.get(Constants.Robot.LINEAR_SLIDE);
-        linearSlide.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        //linearSlide = ahwMap.dcMotor.get(Constants.Robot.LINEAR_SLIDE);
+        //linearSlide.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
 
         flipper = ahwMap.servo.get(Constants.Robot.FLIPPER);
         launcher = ahwMap.dcMotor.get(Constants.Robot.LAUNCHER);

@@ -32,16 +32,15 @@ public class Constants {
     }
 
     public class Robot{
-        public static final String RIGHT_MOTOR = "RIGHT_MOTOR";
-        public static final String LEFT_MOTOR = "LEFT_MOTOR";
+        public static final String RIGHT_MOTOR = "rightMotor";
+        public static final String LEFT_MOTOR = "leftMotor";
         public static final String BALL_COLLECTOR = "collector";
         public static final String BALL_TUBE = "tube";
-        public static final String LEFT_BUMPER = "LEFT_BUMPER";
-        public static final String RIGHT_BUMPER = "RIGHT_BUMPER";
-        public static final String LINEAR_SLIDE = "LINEAR_SLIDE";
-        public static final String LAUNCHER = "LAUNCHER";
-        public static final String FORKLIFT = "FORKLIFT";
-        public static final String FLIPPER = "FLIPPER";
+        public static final String BUMPER = "bumper";
+        public static final String LINEAR_SLIDE = "linearSlide";
+        public static final String LAUNCHER = "launcher";
+        public static final String FORKLIFT = "forklift";
+        public static final String FLIPPER = "flipper";
         public static final String WALL_DISTANCE = "wall";
         public static final String TEAM_TOUCH = "team";
 

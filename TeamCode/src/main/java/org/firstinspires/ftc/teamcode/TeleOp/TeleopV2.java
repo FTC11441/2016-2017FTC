@@ -13,7 +13,7 @@ import org.firstinspires.ftc.teamcode.Utils.Group;
  * Teleop with all the buttons and motors and servos
  */
 @TeleOp(name = "Teleop", group = Group.RELEASE)
-public class TeleopV1 extends OpMode {
+public class TeleopV2 extends OpMode {
     private static boolean linearSlideMoving = false;
     private static boolean launcherMoving = false;
     private static boolean drivingInversed = false;
@@ -62,16 +62,12 @@ public class TeleopV1 extends OpMode {
 
 
         //bumper system
-        if (gamepad1.left_bumper) {
-            robot.leftBumper.setPosition(Constants.Teleop.BUMPER_UP_POSITION);
+        if (gamepad1.left_bumper || gamepad1.right_bumper) {
+            robot.bumper.setPosition(Constants.Teleop.BUMPER_UP_POSITION);
         } else {
-            robot.leftBumper.setPosition(Constants.Teleop.BUMPER_DOWN_POSITION);
+            robot.bumper.setPosition(Constants.Teleop.BUMPER_DOWN_POSITION);
         }
-        if (gamepad1.right_bumper) {
-            robot.rightBumper.setPosition(Constants.Teleop.BUMPER_UP_POSITION);
-        } else {
-            robot.rightBumper.setPosition(Constants.Teleop.BUMPER_DOWN_POSITION);
-        }
+
 
 /*
         //linear slide system system

@@ -1,6 +1,7 @@
 package org.firstinspires.ftc.teamcode.Autonomous;
 
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
+import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.hardware.DcMotor;
 
@@ -16,6 +17,8 @@ import org.firstinspires.ftc.teamcode.Utils.Team;
  * adds team capabilities to autonomous
  */
 @Autonomous(name = "Beacons", group = Group.RELEASE)
+@Deprecated
+@Disabled
 public class Beacons extends OpMode {
     private AutonomousBase auto;
 
@@ -75,7 +78,7 @@ public class Beacons extends OpMode {
                         robot.stopMotors();
                         return true;
                     }
-                } else if (movementMode == 4) {
+                } /*else if (movementMode == 4) {
                     if (this.getSteps()[robot.currentStep][1] == 1) {
                         if (robot.getTeam() == leftBeacon) {
                             robot.leftBumper.setPosition(Constants.Teleop.BUMPER_UP_POSITION);
@@ -89,7 +92,7 @@ public class Beacons extends OpMode {
                         robot.rightBumper.setPosition(Constants.Teleop.BUMPER_DOWN_POSITION);
                     }
                     return true;
-                } else if (movementMode == 5) {
+                } */ else if (movementMode == 5) {
                     if (!robot.launcher.isBusy()) {//stop checking motors and stop them if we are done moving
                         robot.launcher.setPower(0);
                         return true;

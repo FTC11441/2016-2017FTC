@@ -14,31 +14,19 @@ import org.firstinspires.ftc.teamcode.Utils.Group;
  * Very simple Teleop
  */
 
-@TeleOp(name = "Servos Only", group = Group.FEATURE)
+@TeleOp(name = "Servo Only", group = Group.FEATURE)
 @Disabled
 public class ServoTeleop extends OpMode {
-    private Servo rightServo;
-    private Servo leftServo;
+    private Servo bumper;
 
     @Override
     public void init() {
-        leftServo = hardwareMap.servo.get(Constants.Robot.LEFT_BUMPER);
-        rightServo = hardwareMap.servo.get(Constants.Robot.RIGHT_BUMPER);
-        rightServo.setDirection(Servo.Direction.REVERSE);
+        bumper = hardwareMap.servo.get(Constants.Robot.BUMPER);
+
     }
 
     @Override
     public void loop() {
-        // Run wheels in tank mode
-        // In this mode the Left stick moves the left wheel forward and backwards and the right moves the right wheel
-        double left = Math.abs(gamepad1.left_stick_y);
-        double right = Math.abs(gamepad1.right_stick_y);
-
-        left = left * 0.7;
-        right = right * 0.7;
-
-        //sets the robots motor power for both motors
-        leftServo.setPosition(left);
-        rightServo.setPosition(right);
+        bumper.setPosition(gamepad1.right_stick_y );
     }
 }
