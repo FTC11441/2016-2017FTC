@@ -22,8 +22,8 @@ public class ServoTeleop extends OpMode {
 
     @Override
     public void init() {
-        leftServo = hardwareMap.servo.get(Constants.Robot.leftBumper);
-        rightServo = hardwareMap.servo.get(Constants.Robot.rightBumper);
+        leftServo = hardwareMap.servo.get(Constants.Robot.LEFT_BUMPER);
+        rightServo = hardwareMap.servo.get(Constants.Robot.RIGHT_BUMPER);
         rightServo.setDirection(Servo.Direction.REVERSE);
     }
 

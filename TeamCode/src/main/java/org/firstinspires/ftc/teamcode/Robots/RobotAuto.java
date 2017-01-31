@@ -65,7 +65,7 @@ public class RobotAuto extends Robot {
                 ports, milliSeconds,
                 MultiplexColorSensor.GAIN_16X);
 
-        teamTouch = ahwMap.touchSensor.get(Constants.Robot.teamTouch);
+        teamTouch = ahwMap.touchSensor.get(Constants.Robot.TEAM_TOUCH);
         wallDistance = ahwMap.opticalDistanceSensor.get(Constants.Robot.WALL_DISTANCE);
 
         // Set all motors to run with encoders to use encoders to track position

@@ -113,7 +113,7 @@ public class Beacons extends OpMode {
                     robot.colorSensors.startPolling();
                 } else if (movementMode == 5) {
                     robot.launcher.setMode(DcMotor.RunMode.RUN_TO_POSITION);
-                    //the launcher has a gear ratio of 2 to 1
+                    //the LAUNCHER has a gear ratio of 2 to 1
                     robot.launcher.setTargetPosition(robot.launcher.getTargetPosition() + (Constants.Teleop.LAUNCHER_ROTATIONS));
                     robot.launcher.setPower(0.75);
                 }

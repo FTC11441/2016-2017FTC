@@ -18,7 +18,7 @@ public class Robot extends SimpleRobot {
 
     public Servo leftBumper;
     public Servo rightBumper;
-    // public Servo forklift;
+    // public Servo FORKLIFT;
     public Servo flipper;
 
     public DcMotor linearSlide;
@@ -35,19 +35,19 @@ public class Robot extends SimpleRobot {
     public void Init(HardwareMap ahwMap) {
         super.Init(ahwMap);
 
-        leftBumper = ahwMap.servo.get(Constants.Robot.leftBumper);
-        rightBumper = ahwMap.servo.get(Constants.Robot.rightBumper);
+        leftBumper = ahwMap.servo.get(Constants.Robot.LEFT_BUMPER);
+        rightBumper = ahwMap.servo.get(Constants.Robot.RIGHT_BUMPER);
         leftBumper.setDirection(Servo.Direction.REVERSE);
 
-        //forklift = ahwMap.servo.get(Constants.Robot.forklift);
-        linearSlide = ahwMap.dcMotor.get(Constants.Robot.linearSlide);
+        //FORKLIFT = ahwMap.servo.get(Constants.Robot.FORKLIFT);
+        linearSlide = ahwMap.dcMotor.get(Constants.Robot.LINEAR_SLIDE);
         linearSlide.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
 
-        flipper = ahwMap.servo.get(Constants.Robot.flipper);
-        launcher = ahwMap.dcMotor.get(Constants.Robot.launcher);
-        collector = ahwMap.dcMotor.get(Constants.Robot.ballCollector);
+        flipper = ahwMap.servo.get(Constants.Robot.FLIPPER);
+        launcher = ahwMap.dcMotor.get(Constants.Robot.LAUNCHER);
+        collector = ahwMap.dcMotor.get(Constants.Robot.BALL_COLLECTOR);
         collector.setDirection(DcMotorSimple.Direction.REVERSE);
-        tube = ahwMap.dcMotor.get(Constants.Robot.ballTube);
+        tube = ahwMap.dcMotor.get(Constants.Robot.BALL_TUBE);
 
     }
 

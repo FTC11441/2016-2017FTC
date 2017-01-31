@@ -51,7 +51,7 @@ public class CapBallBlue extends OpMode {
             public void startMovement(RobotAuto robot, double movementMode) {
                 if (movementMode == 5) {
                     robot.launcher.setMode(DcMotor.RunMode.RUN_TO_POSITION);
-                    //the launcher has a gear ratio of 2 to 1
+                    //the LAUNCHER has a gear ratio of 2 to 1
                     robot.launcher.setTargetPosition(robot.launcher.getTargetPosition() + (Constants.Teleop.LAUNCHER_ROTATIONS));
                     robot.launcher.setPower(0.8);
                 }
