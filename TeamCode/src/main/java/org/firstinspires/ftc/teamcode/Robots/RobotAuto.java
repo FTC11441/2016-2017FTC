@@ -42,13 +42,13 @@ public class RobotAuto extends Robot {
     public State currentState = State.INIT;
 
     //The target positions for both motors
-    private double leftTarget = 0;
-    private double rightTarget = 0;
+    private int leftTarget = 0;
+    private int rightTarget = 0;
     public double rightSpeed = 0;
     public double leftSpeed = 0;
 
 
-    private int[] ports = {0,1,2};
+    private int[] ports = {0, 1, 2};
     public MultiplexColorSensor colorSensors;
     public TouchSensor teamTouch;
     public OpticalDistanceSensor wallDistance;
@@ -122,12 +122,12 @@ public class RobotAuto extends Robot {
 
 
         //sets targets
-        leftTarget = leftRotations * encoderTicksPerRotation;
-        rightTarget = rightRotations * encoderTicksPerRotation;
+        leftTarget = (int) (leftRotations * encoderTicksPerRotation);
+        rightTarget = (int) (rightRotations * encoderTicksPerRotation);
 
         resetAllEncoders();
-        leftMotor.setTargetPosition((int) leftTarget);
-        rightMotor.setTargetPosition((int) rightTarget);
+        leftMotor.setTargetPosition(leftTarget);
+        rightMotor.setTargetPosition(rightTarget);
         startAllEncoders();
 
         //if either motor doesn't need to move then don't move it
@@ -141,6 +141,12 @@ public class RobotAuto extends Robot {
         } else {
             rightMotor.setPower(0);
         }
+    }
+
+    public String debug() {
+        return "Left target:  " + leftTarget + " Right target:  " + rightTarget + " \n"
+                + "Left current: " + leftMotor.getCurrentPosition() + " Right current: " + rightMotor.getCurrentPosition() + " \n"
+                + "Left speed: " + leftSpeed + " Right speed: " + rightSpeed;
     }
 
 
@@ -167,19 +173,19 @@ public class RobotAuto extends Robot {
         return time;
     }
 
-    public double getRightTarget() {
+    public int getRightTarget() {
         return rightTarget;
     }
 
-    public void setRightTarget(double rightTarget) {
+    public void setRightTarget(int rightTarget) {
         this.rightTarget = rightTarget;
     }
 
-    public double getLeftTarget() {
+    public int getLeftTarget() {
         return leftTarget;
     }
 
-    public void setLeftTarget(double leftTarget) {
+    public void setLeftTarget(int leftTarget) {
         this.leftTarget = leftTarget;
     }
 

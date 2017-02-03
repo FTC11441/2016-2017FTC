@@ -60,9 +60,9 @@ public abstract class AutonomousBase {
 
                     robot.rightMotor.setPower(speed);
                     robot.leftMotor.setPower(speed);
-
-                    robot.setLeftTarget(leftMotorTime + robot.startTime);
-                    robot.setRightTarget(rightMotorTime + robot.startTime);
+                        // FIXME: 2/3/2017 Fix this should be not time
+                    robot.setLeftTarget((int) (leftMotorTime + robot.startTime));
+                    robot.setRightTarget((int) (rightMotorTime + robot.startTime));
 
                 } else if (movementMode == 2) {
                     double timeInMilliseconds = robot.steps[robot.currentStep][1] * 1000;

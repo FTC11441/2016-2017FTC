@@ -9,7 +9,7 @@ public class Constants {
     public static final int ENCODER_TICKS_PER_ROTATION_40 = 1120;
     public static final int ENCODER_TICKS_PER_ROTATION_60 = 1680;
     public static final int MAX_MOTOR_RPM = 105;
-    public static final int DEFAULT_SPEED = 50;
+    public static final double DEFAULT_SPEED = 0.75;
     public static final int MAX_MOTOR_TICKS_PER_SECOND = MAX_MOTOR_RPM * ENCODER_TICKS_PER_ROTATION_60;
 
     public static final double TIMEOUT = 10000;//maximum length of an autonomous step
@@ -48,5 +48,6 @@ public class Constants {
         public static final int RIGHT_COLOR = 1;
         public static final int BEACON_COLOR = 2;
     }
+
 
 }

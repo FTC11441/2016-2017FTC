@@ -35,6 +35,7 @@ public class Robot extends SimpleRobot {
         super.Init(ahwMap);
 
         bumper = ahwMap.servo.get(Constants.Robot.BUMPER);
+        bumper.setDirection(Servo.Direction.REVERSE);
 
         //FORKLIFT = ahwMap.servo.get(Constants.Robot.FORKLIFT);
         //linearSlide = ahwMap.dcMotor.get(Constants.Robot.LINEAR_SLIDE);

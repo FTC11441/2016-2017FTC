@@ -1,7 +1,6 @@
 package org.firstinspires.ftc.teamcode.Autonomous;
 
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
-import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.hardware.DcMotor;
 
@@ -16,23 +15,16 @@ import org.firstinspires.ftc.teamcode.Utils.Team;
  * <p>
  * adds team capabilities to autonomous
  */
-@Autonomous(name = "Beacons", group = Group.RELEASE)
-@Deprecated
-@Disabled
+@Autonomous(name = "Beacons", group = Group.DEV)
 public class Beacons extends OpMode {
     private AutonomousBase auto;
 
     private final double[][] redSteps = new double[][]{
-            {0, -2, -2, -1},//forward
-            {0, -5, -10, -1},//slight turn
-            {0, -2, -2, 0.5},//move forward again
-            {3},//follow line and get close, select beacon color
-            {0, 0.3, 0.3, 0.4},//back up
-            {4, 1},//put up correct pusher
-            {2, 0.5},//wait to put put beacon
-            {0, -0.4, -0.4, 0.4},//drive forward and push beacon
-            {0, 1, 1, -1},//back up
-            {5},//launch
+            {0, 1.5, 1.5, -1},//forward
+            {0, 2, 5, -1},//slight turn
+            {0, 1.67, 1.67, -1},//move forward again
+            {0, 3.5, 0.3, -1},//turn to go parallel to the wall
+            {0, 0.3, 0.3, -1},//align with the first beacon
             {-1}
     };
     private final double[][] blueSteps = new double[][]{
@@ -147,5 +139,6 @@ public class Beacons extends OpMode {
     @Override
     public void loop() {
         auto.loop();
+        telemetry.addLine(auto.getRobot().debug());
     }
 }
