@@ -87,6 +87,9 @@ public class RobotAuto extends Robot {
         if (speed == -1) {
             speed = Constants.DEFAULT_SPEED;
         }
+        if (encoderTicksPerRotation == Constants.ENCODER_TICKS_PER_ROTATION_40) {
+            speed = -speed;
+        }
 
         /*
         if the speed is from a scale from 0 to 100 instead of 0 to 1
