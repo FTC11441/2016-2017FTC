@@ -80,7 +80,7 @@ public class RobotAuto extends Robot {
      *
      * @param leftRotations  how many rotations left motor should go, can be negative
      * @param rightRotations how many rotations left motor should go, can be negative
-     * @param speed          -1 if using default speed, assumes speed is always positive
+     * @param speed          -1 if using default speed should start to be {@link Deprecated}, assumes speed is always positive
      */
     public void setDrive(double leftRotations, double rightRotations, double speed) {
         //if speed isn't specified then use default speed

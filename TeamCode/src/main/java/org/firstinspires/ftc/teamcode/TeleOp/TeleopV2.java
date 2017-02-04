@@ -16,7 +16,6 @@ import org.firstinspires.ftc.teamcode.Utils.Group;
 public class TeleopV2 extends OpMode {
     private static boolean linearSlideMoving = false;
     private static boolean launcherMoving = false;
-    private static boolean drivingInversed = false;
 
     private Robot robot = new Robot();
 
@@ -31,24 +30,11 @@ public class TeleopV2 extends OpMode {
         // In this mode the Left stick moves the left wheel forward and backwards and the right moves the right wheel
         double left = gamepad1.left_stick_y;
         double right = gamepad1.right_stick_y;
-        //if we are driving backwards then change the speeds
-        if (drivingInversed) {
-            double tempRight = -left;
-            double tempLeft = -right;
-            right = tempRight;
-            left = tempLeft;
-        }
+
         //sets the robots motor power for both motors
         robot.leftMotor.setPower(left);
         robot.rightMotor.setPower(right);
 
-        //Inverse Driving controller
-        if (gamepad1.dpad_up) {
-            drivingInversed = false;
-        }
-        if (gamepad1.dpad_down) {
-            drivingInversed = true;
-        }
 
         //Enable and disable encoders for drive motors
         if (gamepad1.dpad_left) {
@@ -69,42 +55,41 @@ public class TeleopV2 extends OpMode {
         }
 
 
-/*
         //linear slide system system
         if (gamepad2.dpad_up) {//go to top
-            robot.LINEAR_SLIDE.setTargetPosition(Constants.Teleop.LINEAR_SLIDE_UP);
-            robot.LINEAR_SLIDE.setMode(DcMotor.RunMode.RUN_TO_POSITION);
-            robot.LINEAR_SLIDE.setPower(0.75);
+            robot.linearSlide.setTargetPosition(Constants.Teleop.LINEAR_SLIDE_UP);
+            robot.linearSlide.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+            robot.linearSlide.setPower(0.75);
             linearSlideMoving = true;
         }
         if (gamepad2.dpad_right) {//increment up
-            robot.LINEAR_SLIDE.setTargetPosition(robot.LINEAR_SLIDE.getTargetPosition() + Constants.Teleop.LINEAR_SLIDE_INCREMENT);
-            robot.LINEAR_SLIDE.setMode(DcMotor.RunMode.RUN_TO_POSITION);
-            robot.LINEAR_SLIDE.setPower(0.75);
+            robot.linearSlide.setTargetPosition(robot.linearSlide.getTargetPosition() + Constants.Teleop.LINEAR_SLIDE_INCREMENT);
+            robot.linearSlide.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+            robot.linearSlide.setPower(0.75);
             linearSlideMoving = true;
         }
         if (gamepad2.dpad_down) {//go down to bottom
-            robot.LINEAR_SLIDE.setTargetPosition(0);
-            robot.LINEAR_SLIDE.setMode(DcMotor.RunMode.RUN_TO_POSITION);
-            robot.LINEAR_SLIDE.setPower(-0.75);
+            robot.linearSlide.setTargetPosition(0);
+            robot.linearSlide.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+            robot.linearSlide.setPower(-0.75);
             linearSlideMoving = true;
         }
         if (gamepad2.dpad_left) {//increment down
-            robot.LINEAR_SLIDE.setTargetPosition(robot.LINEAR_SLIDE.getTargetPosition() - Constants.Teleop.LINEAR_SLIDE_INCREMENT);
-            robot.LINEAR_SLIDE.setMode(DcMotor.RunMode.RUN_TO_POSITION);
-            robot.LINEAR_SLIDE.setPower(-0.75);
+            robot.linearSlide.setTargetPosition(robot.linearSlide.getTargetPosition() - Constants.Teleop.LINEAR_SLIDE_INCREMENT);
+            robot.linearSlide.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+            robot.linearSlide.setPower(-0.75);
             linearSlideMoving = true;
         }
-        if (linearSlideMoving && !robot.LINEAR_SLIDE.isBusy()) {//stop checking motors and stop them if we are done moving
-            robot.LINEAR_SLIDE.setPower(0);
+        if (linearSlideMoving && !robot.linearSlide.isBusy()) {//stop checking motors and stop them if we are done moving
+            robot.linearSlide.setPower(0);
             linearSlideMoving = false;
         }
         if (Math.abs(gamepad2.left_stick_y) > 0.2) {//
-            robot.LINEAR_SLIDE.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
-            robot.LINEAR_SLIDE.setPower(gamepad2.left_stick_y);
+            robot.linearSlide.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+            robot.linearSlide.setPower(gamepad2.left_stick_y);
             linearSlideMoving = false;
         }
-
+/*
 
         //FORKLIFT controls
         if (gamepad1.y && gamepad2.y) {
@@ -115,7 +100,7 @@ public class TeleopV2 extends OpMode {
         } else {
             robot.FORKLIFT.setPosition(Constants.Teleop.FORKLIFT_HOLD_POSITION);
         }
-    */
+ */
 
         //tube controls
         if (gamepad2.left_trigger > 0.50) {
@@ -132,19 +117,19 @@ public class TeleopV2 extends OpMode {
         }
 
 
-        //FLIPPER controls
+        //Flipper controls
         if (gamepad2.b) {
             robot.flipper.setPosition(Constants.Teleop.FLIPPER_OUT);
-            //this allows the FLIPPER to be extended fully on a single button press and then retraced
+            //this allows the flipper to be extended fully on a single button press and then retraced
         } else {
             robot.flipper.setPosition(Constants.Teleop.FLIPPER_IN);
         }
 
 
-        //LAUNCHER
+        //Launcher
         if (gamepad2.a && !launcherMoving) {
             robot.launcher.setMode(DcMotor.RunMode.RUN_TO_POSITION);
-            //the LAUNCHER has a gear ratio of 2 to 1
+            //The launcher has a gear ratio of 2 to 1
             robot.launcher.setTargetPosition(robot.launcher.getTargetPosition() + (Constants.Teleop.LAUNCHER_ROTATIONS));
             robot.launcher.setPower(0.8);
             launcherMoving = true;
@@ -155,7 +140,7 @@ public class TeleopV2 extends OpMode {
             launcherMoving = false;
         }
 
-        if (Math.abs(gamepad2.right_stick_y) > 0.2) {//control LAUNCHER manually
+        if (Math.abs(gamepad2.right_stick_y) > 0.2) {//control launcher manually
             robot.launcher.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
             robot.launcher.setPower(gamepad2.right_stick_y);
             launcherMoving = false;

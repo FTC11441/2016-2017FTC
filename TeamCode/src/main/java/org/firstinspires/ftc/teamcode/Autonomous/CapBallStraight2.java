@@ -1,6 +1,7 @@
 package org.firstinspires.ftc.teamcode.Autonomous;
 
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
+import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.hardware.DcMotor;
 
@@ -15,6 +16,8 @@ import org.firstinspires.ftc.teamcode.Utils.Group;
  * adds team capabilities to autonomous
  */
 @Autonomous(name = "Cap Ball Straight Distance", group = Group.RELEASE)
+@Deprecated
+@Disabled
 public class CapBallStraight2 extends OpMode {
     private AutonomousBase auto;
 
@@ -32,7 +35,7 @@ public class CapBallStraight2 extends OpMode {
 
             @Override
             public boolean checkMovement(RobotAuto robot, double movementMode) {
-                 if (movementMode == 5) {
+                if (movementMode == 5) {
                     if (!robot.launcher.isBusy()) {//stop checking motors and stop them if we are done moving
                         robot.launcher.setPower(0);
                         return true;

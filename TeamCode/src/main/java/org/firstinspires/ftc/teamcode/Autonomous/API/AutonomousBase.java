@@ -17,7 +17,6 @@ public abstract class AutonomousBase {
     private RobotAuto robot = new RobotAuto();
 
     public void init(HardwareMap map) {
-        //robot.Init(getRightMotor(), getLeftMotor(), getEncoderTicksPerRotation());
         robot.Init(map);
         robot.steps = getSteps();
     }
@@ -50,7 +49,7 @@ public abstract class AutonomousBase {
                     double rightMotorTime = robot.steps[robot.currentStep][2];
                     double speed = robot.steps[robot.currentStep][3];
                     if (speed == -1) {
-                        speed = 75;//75 is default speed
+                        speed = Constants.DEFAULT_SPEED;//75 is default speed
                     }
                     if (speed > 1) {
                         speed = speed / 100;
@@ -86,13 +85,6 @@ public abstract class AutonomousBase {
                 if (movementCheckMode == 0) {
                     if (robot.time.milliseconds() < robot.startTime + Constants.TIMEOUT) {//insure that robot is no waiting for something that won't happen
                         if (!robot.rightMotor.isBusy() && !robot.leftMotor.isBusy()) {
-                        /*
-                        //NOT USING WAIT METHOD RIGHT NOW BECAUSE WE THINK IT IS UNNECESSARY
-                        //set proper next step
-                        robot.currentState = State.WAIT;
-                        //set time to wait for next step
-                        robot.waitTime = robot.time.milliseconds() + 1000;
-                        */
                             robot.currentState = State.MOVE;
                             //adds one to current step so that we continue with the program
                             robot.currentStep++;
