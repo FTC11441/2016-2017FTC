@@ -20,11 +20,11 @@ public class Beacons extends OpMode {
     private AutonomousBase auto;
 
     private final double[][] redSteps = new double[][]{
-            {0, 1.5, 1.5, -1},//forward
-            {0, 2, 5, -1},//slight turn
-            {0, 1.67, 1.67, -1},//move forward again
-            {0, 3.5, 0.3, -1},//turn to go parallel to the wall
-            {0, 0.3, 0.3, -1},//align with the first beacon
+            {0, 1.5, 1.5, Constants.DEFAULT_SPEED},//forward
+            {0, 2, 5, Constants.TURNING_SPEED},//slight turn
+            {0, 1.67, 1.67, Constants.DEFAULT_SPEED},//move forward again
+            {0, 3.5, 0.3, Constants.TURNING_SPEED},//turn to go parallel to the wall
+            {0, 0.3, 0.3, Constants.DEFAULT_SPEED},//align with the first beacon
             {-1}
     };
     private final double[][] blueSteps = new double[][]{
@@ -124,7 +124,7 @@ public class Beacons extends OpMode {
             }
         };
         auto.init(hardwareMap);
-        auto.getRobot().setEncoderTicksPerRotation(Constants.ENCODER_TICKS_PER_ROTATION_60);
+        auto.getRobot().setEncoderTicksPerRotation(Constants.ENCODER_TICKS_PER_ROTATION_40);
 
         if (auto.getRobot().teamTouch.isPressed()) {
             auto.getRobot().setTeam(Team.BLUE);
