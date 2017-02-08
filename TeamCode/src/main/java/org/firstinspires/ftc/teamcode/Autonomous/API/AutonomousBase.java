@@ -73,7 +73,7 @@ public abstract class AutonomousBase {
                 break;
 
             case WAIT:
-                //currently not using this ENUM
+                //currently not using this ENUM at the moment
                 if (robot.time.milliseconds() >= robot.waitTime) {
                     robot.currentState = State.MOVE;
                 }
@@ -85,13 +85,10 @@ public abstract class AutonomousBase {
                 if (movementCheckMode == 0) {
                     if (robot.time.milliseconds() < robot.startTime + Constants.TIMEOUT) {//insure that robot is no waiting for something that won't happen
                         if (!robot.rightMotor.isBusy() && !robot.leftMotor.isBusy()) {
-                            robot.currentState = State.MOVE;
-                            //adds one to current step so that we continue with the program
-                            robot.currentStep++;
+                            robot.nextStep();
                         }
                     } else {//if we think that robot has timed out
-                        robot.currentStep++;//update to current set
-                        robot.currentState = State.MOVE;//we can skip the wait method and go directly to move method
+                        robot.nextStep();
                     }
                 } else if (movementCheckMode == 1) {
                     boolean leftDone = false;
@@ -108,19 +105,16 @@ public abstract class AutonomousBase {
 
                     //if both motors are done moving then move on to the next step
                     if (leftDone && rightDone) {
-                        robot.currentStep++;//update to current set
-                        robot.currentState = State.MOVE;//we can skip the wait method and go directly to move method
+                       robot.nextStep();
                     }
                 } else if (movementCheckMode == 2) {
                     if (robot.time.milliseconds() >= robot.waitTime) {
-                        robot.currentStep++;//update to current set
-                        robot.currentState = State.MOVE;
+                        robot.nextStep();
                     }
                 } else {
                     //if custom movement mode is done moving then update step and state
                     if (checkMovement(robot, movementCheckMode)) {
-                        robot.currentStep++;//update to current set
-                        robot.currentState = State.MOVE;//we can skip the wait method and go directly to move method
+                        robot.nextStep();
                     }
                 }
                 break;
@@ -134,6 +128,7 @@ public abstract class AutonomousBase {
                 break;
         }
     }
+
 
     public RobotAuto getRobot() {
         return robot;

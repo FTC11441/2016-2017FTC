@@ -49,6 +49,7 @@ public class RobotAuto extends Robot {
 
     private int[] ports = {0, 1, 2};
     public MultiplexColorSensor colorSensors;
+    public int floorReflection = 0;
     public TouchSensor teamTouch;
 
     private int encoderTicksPerRotation = ENCODER_TICKS_PER_ROTATION_60;//default but can be changed by team
@@ -149,6 +150,11 @@ public class RobotAuto extends Robot {
                 + "Left speed: " + leftSpeed + " Right speed: " + rightSpeed;
     }
 
+    public void nextStep(){
+        currentStep++;//update to current set
+        currentState = State.MOVE;//we can skip the wait method and go directly to move method
+    }
+
 
     public void resetAllEncoders() {
         leftMotor.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
@@ -196,4 +202,5 @@ public class RobotAuto extends Robot {
     public void setEncoderTicksPerRotation(int ENCODER_TICKS_PER_ROTATION) {
         this.encoderTicksPerRotation = ENCODER_TICKS_PER_ROTATION;
     }
+
 }

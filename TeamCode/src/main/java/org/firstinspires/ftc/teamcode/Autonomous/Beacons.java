@@ -26,8 +26,16 @@ public class Beacons extends OpMode {
             {0, 3.5, 0.3, Constants.TURNING_SPEED},//turn to go parallel to the wall
             {3},//align with the first beacon
             {0, -0.2, -0.2, Constants.DEFAULT_SPEED},//align with left beacon side
-            {4,0.5},//move pusher forward
+            {4, 0.5},//move pusher forward
             {6},//read left beacon color and store it
+            {7},//push or move then push
+            {2,1},//wait a little
+            {0, 3, 3, Constants.DEFAULT_SPEED},//move forward again to next beacon and repeat
+            {3},//align with the second beacon
+            {0, -0.2, -0.2, Constants.DEFAULT_SPEED},//align with left beacon side
+            {4, 0.5},//move pusher forward
+            {6},//read left beacon color and store it
+            {7},//push or move then push
             {-1}
     };
     private final double[][] blueSteps = new double[][]{
@@ -69,14 +77,20 @@ public class Beacons extends OpMode {
 
                 } else if (movementMode == 4) {
                     //wait for robot to be done moving servo
-                    if(robot.time.milliseconds() > robot.waitTime) {
+                    if (robot.time.milliseconds() > robot.waitTime) {
                         return true;
                     }
-                }  else if (movementMode == 5) {
+                } else if (movementMode == 5) {
                     if (!robot.launcher.isBusy()) {//stop checking motors and stop them if we are done moving
                         robot.launcher.setPower(0);
                         return true;
                     }
+                }else if (movementMode == 7){
+                    if (!robot.rightMotor.isBusy() && !robot.leftMotor.isBusy()) {
+                        robot.nextStep();
+                        robot.bumper.setPosition(Constants.Teleop.BUMPER_UP_POSITION);
+                    }
+
                     //NOTE: beacon detect mode does not need a check state so it just returns true
                 } else {
                     return true;
@@ -93,7 +107,7 @@ public class Beacons extends OpMode {
                     robot.rightMotor.setPower(0.1);
 
                     robot.colorSensors.startPolling();
-                }else if (movementMode == 4){
+                } else if (movementMode == 4) {
                     //move bumper to a position and wait for some time to make sure it gets there
                     robot.bumper.setPosition(this.getSteps()[robot.currentStep][1]);
                     robot.waitTime = robot.time.milliseconds() + 3000;// FIXME: 2/7/2017 Change this
@@ -102,13 +116,22 @@ public class Beacons extends OpMode {
                     //the LAUNCHER has a gear ratio of 2 to 1
                     robot.launcher.setTargetPosition(robot.launcher.getTargetPosition() + (Constants.Teleop.LAUNCHER_ROTATIONS));
                     robot.launcher.setPower(0.75);
-                }else if (movementMode == 6){
+                } else if (movementMode == 6) {
                     int[] left = robot.colorSensors.getCRGB(Constants.Robot.BEACON_COLOR);
                     //if red is greater than blue
                     if (left[1] > left[3]) {
-                        leftBeacon= Team.RED;
-                    }else{
+                        leftBeacon = Team.RED;
+                    } else {
                         leftBeacon = Team.BLUE;
+                    }
+                } else if (movementMode == 7) {
+                    //if the beacon is in the right position then extend the bumper
+                    if (robot.getTeam() == leftBeacon) {
+                        robot.bumper.setPosition(Constants.Teleop.BUMPER_UP_POSITION);
+                        robot.nextStep();
+                        //if not then move forward and then extend the bumper
+                    } else {
+                        robot.setDrive(2, 2, Constants.DEFAULT_SPEED);// TODO: 2/8/2017 Change this to work correctly
                     }
                 }
             }
