@@ -42,7 +42,6 @@ public class Constants {
         public static final String LAUNCHER = "launcher";
         public static final String FORKLIFT = "forklift";
         public static final String FLIPPER = "flipper";
-        public static final String WALL_DISTANCE = "wall";
         public static final String TEAM_TOUCH = "team";
 
         public static final int LEFT_COLOR = 0;

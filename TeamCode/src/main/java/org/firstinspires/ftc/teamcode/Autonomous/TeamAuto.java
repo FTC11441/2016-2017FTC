@@ -14,7 +14,7 @@ import org.firstinspires.ftc.teamcode.Utils.Team;
  * <p>
  * adds team capabilities to autonomous
  */
-@Autonomous(name = "Basic Auto", group = Group.TESTING)
+@Autonomous(name = "Team Auto", group = Group.TESTING)
 public class TeamAuto extends OpMode {
     private AutonomousBase auto;
 

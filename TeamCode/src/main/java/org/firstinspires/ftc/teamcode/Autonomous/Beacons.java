@@ -24,7 +24,10 @@ public class Beacons extends OpMode {
             {0, 2, 5, Constants.TURNING_SPEED},//slight turn
             {0, 1.67, 1.67, Constants.DEFAULT_SPEED},//move forward again
             {0, 3.5, 0.3, Constants.TURNING_SPEED},//turn to go parallel to the wall
-            {0, 0.3, 0.3, Constants.DEFAULT_SPEED},//align with the first beacon
+            {3},//align with the first beacon
+            {0, -0.2, -0.2, Constants.DEFAULT_SPEED},//align with left beacon side
+            {4,0.5},//move pusher forward
+            {6},//read left beacon color and store it
             {-1}
     };
     private final double[][] blueSteps = new double[][]{
@@ -39,61 +42,45 @@ public class Beacons extends OpMode {
 
             @Override
             public boolean checkMovement(RobotAuto robot, double movementMode) {
+                int[] left = robot.colorSensors.getCRGB(Constants.Robot.LEFT_COLOR);
+                int[] right = robot.colorSensors.getCRGB(Constants.Robot.RIGHT_COLOR);
                 if (movementMode == 3) {
-                    if (true/*robot.wallDistance.getLightDetected() > 0.5*/) {
-                        //both are off line
-                        if (robot.colorSensors.getCRGB(Constants.Robot.LEFT_COLOR)[0] < 3000 && robot.colorSensors.getCRGB(Constants.Robot.RIGHT_COLOR)[0] < 3000) {
-                            robot.leftMotor.setPower(-0.1);
-                            robot.rightMotor.setPower(-0.1);
+                    //both are off line
+                    if (left[0] < 3000 && right[0] < 3000) {
+                        robot.leftMotor.setPower(0.1);
+                        robot.rightMotor.setPower(0.1);
 
-                            //left is on line
-                        } else if (robot.colorSensors.getCRGB(Constants.Robot.LEFT_COLOR)[0] > 3000 && robot.colorSensors.getCRGB(Constants.Robot.RIGHT_COLOR)[0] < 3000) {
-                            robot.leftMotor.setPower(-0.1);
-                            robot.rightMotor.setPower(-0.3);
+                        //left is on line
+                    } else if (left[0] > 3000 && right[0] < 3000) {
+                        robot.leftMotor.setPower(0);
+                        robot.rightMotor.setPower(0.3);
 
-                            //right is on line
-                        } else if (robot.colorSensors.getCRGB(Constants.Robot.LEFT_COLOR)[0] > 3000 && robot.colorSensors.getCRGB(Constants.Robot.RIGHT_COLOR)[0] < 3000) {
-                            robot.leftMotor.setPower(-0.3);
-                            robot.rightMotor.setPower(-0.1);
-                        }
+                        //right is on line
+                    } else if (left[0] > 3000 && right[0] < 3000) {
+                        robot.leftMotor.setPower(0.3);
+                        robot.rightMotor.setPower(0);
 
-                        telemetry.addLine(robot.leftMotor.getCurrentPosition() + ":" + robot.leftMotor.getPower());
-                        telemetry.addLine(robot.rightMotor.getCurrentPosition() + ":" + robot.rightMotor.getPower());
-
-                    } else {
-                        //if greater than 50% red and less than 50% blue then it must be red
-                        if (robot.colorSensors.getCRGB(Constants.Robot.BEACON_COLOR)[1] > 1000 && robot.colorSensors.getCRGB(Constants.Robot.BEACON_COLOR)[3] < 1000) {
-                            leftBeacon = Team.RED;
-                        } else {
-                            leftBeacon = Team.BLUE;
-                        }
-                        robot.stopMotors();
+                        //both on line
+                    } else if (left[0] > 3000 && right[0] > 3000) {
+                        robot.leftMotor.setPower(0);
+                        robot.rightMotor.setPower(0);
                         return true;
                     }
-                } /*else if (movementMode == 4) {
-                    if (this.getSteps()[robot.currentStep][1] == 1) {
-                        if (robot.getTeam() == leftBeacon) {
-                            robot.leftBumper.setPosition(Constants.Teleop.BUMPER_UP_POSITION);
-                            robot.rightBumper.setPosition(Constants.Teleop.BUMPER_DOWN_POSITION);
-                        } else {
-                            robot.rightBumper.setPosition(Constants.Teleop.BUMPER_UP_POSITION);
-                            robot.leftBumper.setPosition(Constants.Teleop.BUMPER_DOWN_POSITION);
-                        }
-                    } else {
-                        robot.leftBumper.setPosition(Constants.Teleop.BUMPER_DOWN_POSITION);
-                        robot.rightBumper.setPosition(Constants.Teleop.BUMPER_DOWN_POSITION);
+
+                } else if (movementMode == 4) {
+                    //wait for robot to be done moving servo
+                    if(robot.time.milliseconds() > robot.waitTime) {
+                        return true;
                     }
-                    return true;
-                } */ else if (movementMode == 5) {
+                }  else if (movementMode == 5) {
                     if (!robot.launcher.isBusy()) {//stop checking motors and stop them if we are done moving
                         robot.launcher.setPower(0);
                         return true;
                     }
+                    //NOTE: beacon detect mode does not need a check state so it just returns true
                 } else {
                     return true;
                 }
-
-
                 return false;
             }
 
@@ -102,15 +89,27 @@ public class Beacons extends OpMode {
                 if (movementMode == 3) {
                     robot.leftMotor.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
                     robot.rightMotor.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
-                    robot.leftMotor.setPower(-0.1);
-                    robot.rightMotor.setPower(-0.1);
+                    robot.leftMotor.setPower(0.1);
+                    robot.rightMotor.setPower(0.1);
 
                     robot.colorSensors.startPolling();
+                }else if (movementMode == 4){
+                    //move bumper to a position and wait for some time to make sure it gets there
+                    robot.bumper.setPosition(this.getSteps()[robot.currentStep][1]);
+                    robot.waitTime = robot.time.milliseconds() + 3000;// FIXME: 2/7/2017 Change this
                 } else if (movementMode == 5) {
                     robot.launcher.setMode(DcMotor.RunMode.RUN_TO_POSITION);
                     //the LAUNCHER has a gear ratio of 2 to 1
                     robot.launcher.setTargetPosition(robot.launcher.getTargetPosition() + (Constants.Teleop.LAUNCHER_ROTATIONS));
                     robot.launcher.setPower(0.75);
+                }else if (movementMode == 6){
+                    int[] left = robot.colorSensors.getCRGB(Constants.Robot.BEACON_COLOR);
+                    //if red is greater than blue
+                    if (left[1] > left[3]) {
+                        leftBeacon= Team.RED;
+                    }else{
+                        leftBeacon = Team.BLUE;
+                    }
                 }
             }
 

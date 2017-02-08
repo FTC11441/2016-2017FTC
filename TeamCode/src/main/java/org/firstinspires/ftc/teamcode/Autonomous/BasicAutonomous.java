@@ -1,7 +1,6 @@
 package org.firstinspires.ftc.teamcode.Autonomous;
 
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
-import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 
 import org.firstinspires.ftc.teamcode.Autonomous.API.AutonomousBase;
@@ -14,18 +13,14 @@ import org.firstinspires.ftc.teamcode.Utils.Group;
  * Simple autonomous program
  */
 @Autonomous(name = "Basic Auto", group = Group.TESTING)
-@Disabled
 public class BasicAutonomous extends OpMode {
     private AutonomousBase auto;
 
     private final double[][] steps = new double[][]{
-            {0, 1, 1, 2},/*
-            {0, -1, -1, -1},
-            {0, -1, 1, -1},
-            {0, 1, -1, -1},
-            {2, 5},//wait
-            {0, 1, 1, -1},
-            {0, -1, -1, -1},*/
+            {0, 1, 1, Constants.DEFAULT_SPEED},
+            {0, 1, -1, Constants.TURNING_SPEED},
+            {0, 1, 5, Constants.TURNING_SPEED},
+            {0, -1, -1, Constants.DEFAULT_SPEED},
             {-1}
     };
 
@@ -48,11 +43,12 @@ public class BasicAutonomous extends OpMode {
             }
         };
         auto.init(hardwareMap);
-        auto.getRobot().setEncoderTicksPerRotation(Constants.ENCODER_TICKS_PER_ROTATION_60);
+        auto.getRobot().setEncoderTicksPerRotation(Constants.ENCODER_TICKS_PER_ROTATION_40);
     }
 
     @Override
     public void loop() {
         auto.loop();
+        telemetry.addLine(auto.getRobot().debug());
     }
 }

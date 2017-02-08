@@ -50,10 +50,6 @@ public class MultiplexColorSensorTest extends OpMode {
                 MultiplexColorSensor.GAIN_16X);
     }
 
-    @Override
-    public void init_loop() {
-
-    }
 
     @Override
     public void start() {
@@ -69,6 +65,7 @@ public class MultiplexColorSensorTest extends OpMode {
             telemetry.addData("CRGB", "%5d %5d %5d %5d",
                     crgb[0], crgb[1], crgb[2], crgb[3]);
         }
+
 
         telemetry.update();
     }
