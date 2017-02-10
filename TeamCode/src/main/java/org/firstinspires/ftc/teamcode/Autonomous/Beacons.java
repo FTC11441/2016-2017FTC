@@ -2,9 +2,9 @@ package org.firstinspires.ftc.teamcode.Autonomous;
 
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
-import com.qualcomm.robotcore.hardware.DcMotor;
 
 import org.firstinspires.ftc.teamcode.Autonomous.API.AutonomousBase;
+import org.firstinspires.ftc.teamcode.Autonomous.API.BeaconFinderUtils;
 import org.firstinspires.ftc.teamcode.Robots.RobotAuto;
 import org.firstinspires.ftc.teamcode.Utils.Constants;
 import org.firstinspires.ftc.teamcode.Utils.Group;
@@ -29,7 +29,7 @@ public class Beacons extends OpMode {
             {4, 0.5},//move pusher forward
             {6},//read left beacon color and store it
             {7},//push or move then push
-            {2,1},//wait a little
+            {2, 1},//wait a little
             {0, 3, 3, Constants.DEFAULT_SPEED},//move forward again to next beacon and repeat
             {3},//align with the second beacon
             {0, -0.2, -0.2, Constants.DEFAULT_SPEED},//align with left beacon side
@@ -40,6 +40,10 @@ public class Beacons extends OpMode {
     };
     private final double[][] blueSteps = new double[][]{
             //{0, -1, -1, -1},
+            {0,-redSteps[0][1],-redSteps[0][2],redSteps[0][3]},
+            {0,-redSteps[1][2],-redSteps[1][1],redSteps[1][3]},
+            {0,-redSteps[2][1],-redSteps[2][2],redSteps[2][3]},
+            {0,-redSteps[3][2],-redSteps[3][1],redSteps[3][3]},
             {-1}
     };
 
@@ -50,90 +54,12 @@ public class Beacons extends OpMode {
 
             @Override
             public boolean checkMovement(RobotAuto robot, double movementMode) {
-                int[] left = robot.colorSensors.getCRGB(Constants.Robot.LEFT_COLOR);
-                int[] right = robot.colorSensors.getCRGB(Constants.Robot.RIGHT_COLOR);
-                if (movementMode == 3) {
-                    //both are off line
-                    if (left[0] < 3000 && right[0] < 3000) {
-                        robot.leftMotor.setPower(0.1);
-                        robot.rightMotor.setPower(0.1);
-
-                        //left is on line
-                    } else if (left[0] > 3000 && right[0] < 3000) {
-                        robot.leftMotor.setPower(0);
-                        robot.rightMotor.setPower(0.3);
-
-                        //right is on line
-                    } else if (left[0] > 3000 && right[0] < 3000) {
-                        robot.leftMotor.setPower(0.3);
-                        robot.rightMotor.setPower(0);
-
-                        //both on line
-                    } else if (left[0] > 3000 && right[0] > 3000) {
-                        robot.leftMotor.setPower(0);
-                        robot.rightMotor.setPower(0);
-                        return true;
-                    }
-
-                } else if (movementMode == 4) {
-                    //wait for robot to be done moving servo
-                    if (robot.time.milliseconds() > robot.waitTime) {
-                        return true;
-                    }
-                } else if (movementMode == 5) {
-                    if (!robot.launcher.isBusy()) {//stop checking motors and stop them if we are done moving
-                        robot.launcher.setPower(0);
-                        return true;
-                    }
-                }else if (movementMode == 7){
-                    if (!robot.rightMotor.isBusy() && !robot.leftMotor.isBusy()) {
-                        robot.nextStep();
-                        robot.bumper.setPosition(Constants.Teleop.BUMPER_OUT_POSITION);
-                    }
-
-                    //NOTE: beacon detect mode does not need a check state so it just returns true
-                } else {
-                    return true;
-                }
-                return false;
+                return BeaconFinderUtils.checkMovement(robot, movementMode);
             }
 
             @Override
             public void startMovement(RobotAuto robot, double movementMode) {
-                if (movementMode == 3) {
-                    robot.leftMotor.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
-                    robot.rightMotor.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
-                    robot.leftMotor.setPower(0.1);
-                    robot.rightMotor.setPower(0.1);
-
-                    robot.colorSensors.startPolling();
-                } else if (movementMode == 4) {
-                    //move bumper to a position and wait for some time to make sure it gets there
-                    robot.bumper.setPosition(this.getSteps()[robot.currentStep][1]);
-                    robot.waitTime = robot.time.milliseconds() + 3000;// FIXME: 2/7/2017 Change this
-                } else if (movementMode == 5) {
-                    robot.launcher.setMode(DcMotor.RunMode.RUN_TO_POSITION);
-                    //the LAUNCHER has a gear ratio of 2 to 1
-                    robot.launcher.setTargetPosition(robot.launcher.getTargetPosition() + (Constants.Teleop.LAUNCHER_ROTATIONS));
-                    robot.launcher.setPower(0.75);
-                } else if (movementMode == 6) {
-                    int[] left = robot.colorSensors.getCRGB(Constants.Robot.BEACON_COLOR);
-                    //if red is greater than blue
-                    if (left[1] > left[3]) {
-                        leftBeacon = Team.RED;
-                    } else {
-                        leftBeacon = Team.BLUE;
-                    }
-                } else if (movementMode == 7) {
-                    //if the beacon is in the right position then extend the bumper
-                    if (robot.getTeam() == leftBeacon) {
-                        robot.bumper.setPosition(Constants.Teleop.BUMPER_OUT_POSITION);
-                        robot.nextStep();
-                        //if not then move forward and then extend the bumper
-                    } else {
-                        robot.setDrive(2, 2, Constants.DEFAULT_SPEED);// TODO: 2/8/2017 Change this to work correctly
-                    }
-                }
+                BeaconFinderUtils.startMovement(robot, movementMode, leftBeacon, this.getSteps());
             }
 
             @Override

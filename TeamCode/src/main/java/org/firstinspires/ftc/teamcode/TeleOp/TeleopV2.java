@@ -60,25 +60,25 @@ public class TeleopV2 extends OpMode {
         if (gamepad2.dpad_up) {//go to top
             robot.linearSlide.setTargetPosition(Constants.Teleop.LINEAR_SLIDE_UP);
             robot.linearSlide.setMode(DcMotor.RunMode.RUN_TO_POSITION);
-            robot.linearSlide.setPower(0.75);
+            robot.linearSlide.setPower(Constants.Teleop.LINEAR_SLIDE_SPEED);
             linearSlideMoving = true;
         }
         if (gamepad2.dpad_right) {//increment up
             robot.linearSlide.setTargetPosition(robot.linearSlide.getTargetPosition() + Constants.Teleop.LINEAR_SLIDE_INCREMENT);
             robot.linearSlide.setMode(DcMotor.RunMode.RUN_TO_POSITION);
-            robot.linearSlide.setPower(0.75);
+            robot.linearSlide.setPower(Constants.Teleop.LINEAR_SLIDE_SPEED);
             linearSlideMoving = true;
         }
         if (gamepad2.dpad_down) {//go down to bottom
             robot.linearSlide.setTargetPosition(0);
             robot.linearSlide.setMode(DcMotor.RunMode.RUN_TO_POSITION);
-            robot.linearSlide.setPower(-0.75);
+            robot.linearSlide.setPower(-Constants.Teleop.LINEAR_SLIDE_SPEED);
             linearSlideMoving = true;
         }
         if (gamepad2.dpad_left) {//increment down
             robot.linearSlide.setTargetPosition(robot.linearSlide.getTargetPosition() - Constants.Teleop.LINEAR_SLIDE_INCREMENT);
             robot.linearSlide.setMode(DcMotor.RunMode.RUN_TO_POSITION);
-            robot.linearSlide.setPower(-0.75);
+            robot.linearSlide.setPower(-Constants.Teleop.LINEAR_SLIDE_SPEED);
             linearSlideMoving = true;
         }
         if (linearSlideMoving && !robot.linearSlide.isBusy()) {//stop checking motors and stop them if we are done moving
@@ -90,6 +90,7 @@ public class TeleopV2 extends OpMode {
             robot.linearSlide.setPower(gamepad2.left_stick_y);
             linearSlideMoving = false;
         }
+        telemetry.addLine("Linear slide target: " + robot.linearSlide.getTargetPosition());
 
         //FORKLIFT controls
         if (gamepad1.y && gamepad2.y) {

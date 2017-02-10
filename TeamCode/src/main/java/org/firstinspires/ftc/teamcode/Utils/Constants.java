@@ -2,7 +2,8 @@ package org.firstinspires.ftc.teamcode.Utils;
 
 /**
  * Created by ethan.hampton on 10/11/2016.
- * constants for use
+ * constants for use in all programs, so you can change one variable here and it will automatically be put
+ * into all the other programs
  */
 
 public class Constants {
@@ -16,24 +17,26 @@ public class Constants {
     public static final double TIMEOUT = 10000;//maximum length of an autonomous step
 
     public class Teleop {
-        public static final int LINEAR_SLIDE_INCREMENT = ENCODER_TICKS_PER_ROTATION_60;//Increment 1 rotation per press
-        public static final int LINEAR_SLIDE_UP = ENCODER_TICKS_PER_ROTATION_60 * 10;//Start with 10 rotations
+        public static final int LINEAR_SLIDE_INCREMENT = ENCODER_TICKS_PER_ROTATION_60 / 2;//Increment 1/2 rotation per press
+        public static final int LINEAR_SLIDE_UP = ENCODER_TICKS_PER_ROTATION_60 * 5;//Start with 10 rotations
+        public static final double LINEAR_SLIDE_SPEED = 0.75;
 
-        public static final int LAUNCHER_ROTATIONS = (int)(Constants.ENCODER_TICKS_PER_ROTATION_60 * 2);
+        public static final int LAUNCHER_ROTATIONS = (int) (Constants.ENCODER_TICKS_PER_ROTATION_60 * 2);
         public static final double LAUNCHER_SPEED = 0.8;
 
         public static final double BUMPER_OUT_POSITION = 0;
-        public static final double BUMPER_IN_POSITION = 0.7;
+        public static final double BUMPER_IN_POSITION = 1;
+        public static final double DISTANCE_BETWEEN_BUTTONS = 2;//how many rotations between beacon buttons
 
         public static final double FORKLIFT_RELEASE_POSITION = 1;
         public static final double FORKLIFT_HOLD_POSITION = 0.5;
-        public static final double FORKLIFT_LOCK_UNTIL_TIME = 1000 * 110;//1:50 into match is 110 seconds
+        public static final double FORKLIFT_LOCK_UNTIL_TIME = 1000 * 75;//1:15 into match is 75 seconds
 
         public static final double FLIPPER_OUT = 1;
         public static final double FLIPPER_IN = 0.5;
     }
 
-    public class Robot{
+    public class Robot {
         public static final String RIGHT_MOTOR = "rightMotor";
         public static final String LEFT_MOTOR = "leftMotor";
         public static final String BALL_COLLECTOR = "collector";
