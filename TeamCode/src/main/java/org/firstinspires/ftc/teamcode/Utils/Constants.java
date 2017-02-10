@@ -26,7 +26,7 @@ public class Constants {
         public static final double BUMPER_IN_POSITION = 0.7;
 
         public static final double FORKLIFT_RELEASE_POSITION = 1;
-        public static final double FORKLIFT_HOLD_POSITION = 0;
+        public static final double FORKLIFT_HOLD_POSITION = 0.5;
         public static final double FORKLIFT_LOCK_UNTIL_TIME = 1000 * 110;//1:50 into match is 110 seconds
 
         public static final double FLIPPER_OUT = 1;

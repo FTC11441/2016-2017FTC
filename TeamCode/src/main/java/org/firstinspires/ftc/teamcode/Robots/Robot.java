@@ -17,7 +17,7 @@ import org.firstinspires.ftc.teamcode.Utils.Team;
 public class Robot extends SimpleRobot {
 
     public Servo bumper;
-    // public Servo forklift;
+    public Servo forklift;
     public Servo flipper;
 
     public DcMotor linearSlide;
@@ -37,7 +37,7 @@ public class Robot extends SimpleRobot {
         bumper = ahwMap.servo.get(Constants.Robot.BUMPER);
         bumper.setDirection(Servo.Direction.REVERSE);
 
-        //forklift = ahwMap.servo.get(Constants.Robot.FORKLIFT);
+        forklift = ahwMap.servo.get(Constants.Robot.FORKLIFT);
         linearSlide = ahwMap.dcMotor.get(Constants.Robot.LINEAR_SLIDE);
         linearSlide.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
 

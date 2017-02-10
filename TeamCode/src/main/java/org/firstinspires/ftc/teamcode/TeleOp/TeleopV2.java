@@ -16,6 +16,7 @@ import org.firstinspires.ftc.teamcode.Utils.Group;
 public class TeleopV2 extends OpMode {
     private static boolean linearSlideMoving = false;
     private static boolean launcherMoving = false;
+    private static boolean forkliftLockedUp = false;
 
     private Robot robot = new Robot();
 
@@ -89,18 +90,20 @@ public class TeleopV2 extends OpMode {
             robot.linearSlide.setPower(gamepad2.left_stick_y);
             linearSlideMoving = false;
         }
-/*
 
         //FORKLIFT controls
         if (gamepad1.y && gamepad2.y) {
-            robot.FORKLIFT.setPosition(Constants.Teleop.FORKLIFT_RELEASE_POSITION);
+            robot.forklift.setPosition(Constants.Teleop.FORKLIFT_RELEASE_POSITION);
+            forkliftLockedUp = true;
+
             // if 1:50 has passed in teleop then we know we can release the FORKLIFT by one person
         } else if ((gamepad1.y || gamepad2.y) && robot.time.milliseconds() > Constants.Teleop.FORKLIFT_LOCK_UNTIL_TIME) {
-            robot.FORKLIFT.setPosition(Constants.Teleop.FORKLIFT_RELEASE_POSITION);
-        } else {
-            robot.FORKLIFT.setPosition(Constants.Teleop.FORKLIFT_HOLD_POSITION);
+            robot.forklift.setPosition(Constants.Teleop.FORKLIFT_RELEASE_POSITION);
+            forkliftLockedUp = true;
+        } else if (!forkliftLockedUp) {
+            robot.forklift.setPosition(Constants.Teleop.FORKLIFT_HOLD_POSITION);
         }
- */
+
 
         //tube controls
         if (gamepad2.left_trigger > 0.50) {
