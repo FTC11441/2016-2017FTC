@@ -88,7 +88,7 @@ public class Beacons extends OpMode {
                 }else if (movementMode == 7){
                     if (!robot.rightMotor.isBusy() && !robot.leftMotor.isBusy()) {
                         robot.nextStep();
-                        robot.bumper.setPosition(Constants.Teleop.BUMPER_UP_POSITION);
+                        robot.bumper.setPosition(Constants.Teleop.BUMPER_OUT_POSITION);
                     }
 
                     //NOTE: beacon detect mode does not need a check state so it just returns true
@@ -127,7 +127,7 @@ public class Beacons extends OpMode {
                 } else if (movementMode == 7) {
                     //if the beacon is in the right position then extend the bumper
                     if (robot.getTeam() == leftBeacon) {
-                        robot.bumper.setPosition(Constants.Teleop.BUMPER_UP_POSITION);
+                        robot.bumper.setPosition(Constants.Teleop.BUMPER_OUT_POSITION);
                         robot.nextStep();
                         //if not then move forward and then extend the bumper
                     } else {

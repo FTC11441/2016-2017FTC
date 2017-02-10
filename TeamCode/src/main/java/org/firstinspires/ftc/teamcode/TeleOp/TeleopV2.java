@@ -49,9 +49,9 @@ public class TeleopV2 extends OpMode {
 
         //bumper system
         if (gamepad1.left_bumper || gamepad1.right_bumper) {
-            robot.bumper.setPosition(Constants.Teleop.BUMPER_UP_POSITION);
+            robot.bumper.setPosition(Constants.Teleop.BUMPER_OUT_POSITION);
         } else {
-            robot.bumper.setPosition(Constants.Teleop.BUMPER_DOWN_POSITION);
+            robot.bumper.setPosition(Constants.Teleop.BUMPER_IN_POSITION);
         }
 
 
@@ -84,7 +84,7 @@ public class TeleopV2 extends OpMode {
             robot.linearSlide.setPower(0);
             linearSlideMoving = false;
         }
-        if (Math.abs(gamepad2.left_stick_y) > 0.2) {//
+        if (!linearSlideMoving) {//control linear slide
             robot.linearSlide.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
             robot.linearSlide.setPower(gamepad2.left_stick_y);
             linearSlideMoving = false;
@@ -131,7 +131,7 @@ public class TeleopV2 extends OpMode {
             robot.launcher.setMode(DcMotor.RunMode.RUN_TO_POSITION);
             //The launcher has a gear ratio of 2 to 1
             robot.launcher.setTargetPosition(robot.launcher.getTargetPosition() + (Constants.Teleop.LAUNCHER_ROTATIONS));
-            robot.launcher.setPower(0.8);
+            robot.launcher.setPower(Constants.Teleop.LAUNCHER_SPEED);
             launcherMoving = true;
         }
 
@@ -140,7 +140,7 @@ public class TeleopV2 extends OpMode {
             launcherMoving = false;
         }
 
-        if (Math.abs(gamepad2.right_stick_y) > 0.2) {//control launcher manually
+        if (!launcherMoving) {//control launcher manually
             robot.launcher.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
             robot.launcher.setPower(gamepad2.right_stick_y);
             launcherMoving = false;

@@ -20,9 +20,10 @@ public class Constants {
         public static final int LINEAR_SLIDE_UP = ENCODER_TICKS_PER_ROTATION_60 * 10;//Start with 10 rotations
 
         public static final int LAUNCHER_ROTATIONS = (int)(Constants.ENCODER_TICKS_PER_ROTATION_60 * 2);
+        public static final double LAUNCHER_SPEED = 0.8;
 
-        public static final double BUMPER_UP_POSITION = 0;
-        public static final double BUMPER_DOWN_POSITION = 0.7;
+        public static final double BUMPER_OUT_POSITION = 0;
+        public static final double BUMPER_IN_POSITION = 0.7;
 
         public static final double FORKLIFT_RELEASE_POSITION = 1;
         public static final double FORKLIFT_HOLD_POSITION = 0;

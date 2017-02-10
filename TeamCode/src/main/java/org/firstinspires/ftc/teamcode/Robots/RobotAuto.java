@@ -147,7 +147,7 @@ public class RobotAuto extends Robot {
     public String debug() {
         return "Left target:  " + leftTarget + " Right target:  " + rightTarget + " \n"
                 + "Left current: " + leftMotor.getCurrentPosition() + " Right current: " + rightMotor.getCurrentPosition() + " \n"
-                + "Left speed: " + leftSpeed + " Right speed: " + rightSpeed;
+                + "Left speed: " + leftMotor.getPower() + " Right speed: " + leftMotor.getPower();
     }
 
     public void nextStep(){
