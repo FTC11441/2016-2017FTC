@@ -59,13 +59,14 @@ public abstract class AutonomousBase {
 
                     robot.rightMotor.setPower(speed);
                     robot.leftMotor.setPower(speed);
-                        // FIXME: 2/3/2017 Fix this should be not time
+                    // FIXME: 2/3/2017 Fix this should be not time
                     robot.setLeftTarget((int) (leftMotorTime + robot.startTime));
                     robot.setRightTarget((int) (rightMotorTime + robot.startTime));
 
                 } else if (movementMode == 2) {
                     double timeInMilliseconds = robot.steps[robot.currentStep][1] * 1000;
                     robot.waitTime = robot.startTime + timeInMilliseconds;
+                    robot.stopMotors();
                 } else {
                     //if movementMode is a custom mode then call method to start mode
                     startMovement(robot, movementMode);
@@ -84,7 +85,8 @@ public abstract class AutonomousBase {
                 //if mode is encoder movement then check with this method
                 if (movementCheckMode == 0) {
                     if (robot.time.milliseconds() < robot.startTime + Constants.TIMEOUT) {//insure that robot is no waiting for something that won't happen
-                        if (!robot.rightMotor.isBusy() && !robot.leftMotor.isBusy()) {
+                        if ((!robot.rightMotor.isBusy() && !robot.leftMotor.isBusy()) || (robot.motorDone(robot.leftMotor) && robot.motorDone(robot.rightMotor))) {
+                            robot.stopMotors();
                             robot.nextStep();
                         }
                     } else {//if we think that robot has timed out
@@ -105,7 +107,7 @@ public abstract class AutonomousBase {
 
                     //if both motors are done moving then move on to the next step
                     if (leftDone && rightDone) {
-                       robot.nextStep();
+                        robot.nextStep();
                     }
                 } else if (movementCheckMode == 2) {
                     if (robot.time.milliseconds() >= robot.waitTime) {

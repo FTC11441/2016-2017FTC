@@ -7,6 +7,7 @@ import com.qualcomm.robotcore.hardware.TouchSensor;
 import org.firstinspires.ftc.teamcode.Utils.Constants;
 import org.firstinspires.ftc.teamcode.Utils.MultiplexColorSensor;
 import org.firstinspires.ftc.teamcode.Utils.State;
+import org.firstinspires.ftc.teamcode.Utils.Team;
 
 import static org.firstinspires.ftc.teamcode.Utils.Constants.ENCODER_TICKS_PER_ROTATION_60;
 
@@ -49,11 +50,11 @@ public class RobotAuto extends Robot {
 
     private int[] ports = {0, 1, 2};
     public MultiplexColorSensor colorSensors;
-    public int floorReflection = 0;
+    public int floorReflection = 1200;
     public TouchSensor teamTouch;
 
     private int encoderTicksPerRotation = ENCODER_TICKS_PER_ROTATION_60;//default but can be changed by team
-
+    public Team leftBeacon = Team.UNKNOWN;
 
     /* Initialize standard Hardware interfaces */
     public void Init(HardwareMap ahwMap) {
@@ -63,14 +64,15 @@ public class RobotAuto extends Robot {
         colorSensors = new MultiplexColorSensor(ahwMap, "mux", "ada",
                 ports, milliSeconds,
                 MultiplexColorSensor.GAIN_16X);
+        colorSensors.startPolling();
 
         teamTouch = ahwMap.touchSensor.get(Constants.Robot.TEAM_TOUCH);
 
         // Set all motors to run with encoders to use encoders to track position
         leftMotor.setMode(DcMotor.RunMode.RUN_TO_POSITION);
         rightMotor.setMode(DcMotor.RunMode.RUN_TO_POSITION);
-        leftMotor.setDirection(DcMotor.Direction.REVERSE);
-        rightMotor.setDirection(DcMotor.Direction.FORWARD);
+        leftMotor.setDirection(DcMotor.Direction.FORWARD);
+        rightMotor.setDirection(DcMotor.Direction.REVERSE);
     }
 
     /**
@@ -101,13 +103,6 @@ public class RobotAuto extends Robot {
         leftSpeed = speed;
         rightSpeed = speed;
 
-        //reverse speed as necessary, if we need negative rotations
-        if (leftRotations < 0) {
-            leftSpeed = -leftSpeed;
-        }
-        if (rightRotations < 0) {
-            rightSpeed = -rightSpeed;
-        }
 
         /*
         scale speed so that turns are relatively smooth, doesn't change anything if they are the same
@@ -147,12 +142,21 @@ public class RobotAuto extends Robot {
     public String debug() {
         return "Left target:  " + leftTarget + " Right target:  " + rightTarget + " \n"
                 + "Left current: " + leftMotor.getCurrentPosition() + " Right current: " + rightMotor.getCurrentPosition() + " \n"
-                + "Left speed: " + leftMotor.getPower() + " Right speed: " + leftMotor.getPower();
+                + "Left speed: " + leftMotor.getPower() + " Right speed: " + leftMotor.getPower() + "\n"
+                + "Left Light: " + colorSensors.getCRGB(Constants.Robot.LEFT_COLOR)[0] + "Right Light: " + colorSensors.getCRGB(Constants.Robot.RIGHT_COLOR)[0] + "\n"
+                + "Floor default: " + floorReflection;
     }
 
-    public void nextStep(){
+    public void nextStep() {
         currentStep++;//update to current set
         currentState = State.MOVE;//we can skip the wait method and go directly to move method
+    }
+
+    public boolean motorDone(DcMotor motor) {
+        double current = Math.abs(motor.getCurrentPosition());
+        double target = Math.abs(motor.getTargetPosition());
+
+        return current + 15 >= target || current - 15 >= target;
     }
 
 

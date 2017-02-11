@@ -16,6 +16,9 @@ public class Constants {
 
     public static final double TIMEOUT = 10000;//maximum length of an autonomous step
 
+    //how much the light needs to change to consider it to be a change
+    public static final int LIGHT_CHANGE = 400;
+
     public class Teleop {
         public static final int LINEAR_SLIDE_INCREMENT = ENCODER_TICKS_PER_ROTATION_60 / 2;//Increment 1/2 rotation per press
         public static final int LINEAR_SLIDE_UP = ENCODER_TICKS_PER_ROTATION_60 * 5;//Start with 10 rotations
@@ -26,7 +29,7 @@ public class Constants {
 
         public static final double BUMPER_OUT_POSITION = 0;
         public static final double BUMPER_IN_POSITION = 1;
-        public static final double DISTANCE_BETWEEN_BUTTONS = 2;//how many rotations between beacon buttons
+        public static final double DISTANCE_BETWEEN_BUTTONS = 0.5;//how many rotations between beacon buttonss
 
         public static final double FORKLIFT_RELEASE_POSITION = 1;
         public static final double FORKLIFT_HOLD_POSITION = 0.5;
