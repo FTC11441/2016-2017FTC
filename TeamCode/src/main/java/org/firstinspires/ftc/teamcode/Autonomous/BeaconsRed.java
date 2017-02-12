@@ -15,17 +15,17 @@ import org.firstinspires.ftc.teamcode.Utils.Team;
  * <p>
  * adds team capabilities to autonomous
  */
-@Autonomous(name = "Beacons", group = Group.DEV)
-public class Beacons extends OpMode {
+@Autonomous(name = "Beacons Red", group = Group.DEV)
+public class BeaconsRed extends OpMode {
     private AutonomousBase auto;
 
-    private final double[][] redSteps = new double[][]{
-            {0, 0, 2.7, Constants.TURNING_SPEED},//turn to go parallel to the wall
-            {0, 4.5, 4.5, Constants.DEFAULT_SPEED},//move forward
-            {0, 2.5, 0, Constants.TURNING_SPEED},//turn to go parallel to the wall
+    private final double[][] steps = new double[][]{
+            {0, 0, 2.5, Constants.TURNING_SPEED},//turn to go parallel to the wall
+            {0, 4.7, 4.7, Constants.DEFAULT_SPEED},//move forward
+            {0, 2.1, 0, Constants.TURNING_SPEED},//turn to go parallel to the wall
             {3},//align with the first beacon
-            {0, -0.5, -0.5, Constants.TURNING_SPEED},//align with left beacon side
-            {4, 0.5},//move pusher forward
+            {0, -0.2, -0.2, Constants.TURNING_SPEED},//align with left beacon side
+            {4, 0.6},//move pusher forward
             {6},//read left beacon color and store it
             {7},//push or move then push
             {2, 1},//wait a little
@@ -33,21 +33,15 @@ public class Beacons extends OpMode {
             {0, 0, 0.2, Constants.TURNING_SPEED},//turn to go parallel to the wall
             {0, 4, 4, Constants.DEFAULT_SPEED},//move forward again to next beacon and repeat
             {3},//align with the second beacon
-            {0, -0.5, -0.5, Constants.TURNING_SPEED},//align with left beacon side
+            {0, -0.2, -0.2, Constants.TURNING_SPEED},//align with left beacon side
             {4, 0.5},//move pusher forward
             {6},//read left beacon color and store it
             {7},//push or move then push
+            {2, 1},//wait a little
             {4, Constants.Teleop.BUMPER_IN_POSITION},//reset pusher
             {-1}
     };
-    private final double[][] blueSteps = new double[][]{
-            //{0, -redSteps[0][1], -redSteps[0][2], redSteps[0][3]},
-           // {0, -redSteps[1][2], -redSteps[1][1], redSteps[1][3]},
-            //{0, -redSteps[2][1], -redSteps[2][2], redSteps[2][3]},
-            //{0, -redSteps[3][2], -redSteps[3][1], redSteps[3][3]},
-            //{3},
-            {-1}
-    };
+
 
     @Override
     public void init() {
@@ -65,22 +59,13 @@ public class Beacons extends OpMode {
 
             @Override
             public double[][] getSteps() {
-                if (auto.getRobot().getTeam().equals(Team.BLUE)) {
-                    return blueSteps;
-                } else {
-                    return redSteps;
-                }
+                return steps;
             }
         };
         auto.init(hardwareMap);
         auto.getRobot().setEncoderTicksPerRotation(Constants.Robot.MOTOR_ENCODERS_USED);
 
-        if (auto.getRobot().teamTouch.isPressed()) {
-            auto.getRobot().setTeam(Team.BLUE);
-        } else {
-            auto.getRobot().setTeam(Team.RED);
-        }
-
+        auto.getRobot().setTeam(Team.RED);
 
         auto.getRobot().leftMotor.setMaxSpeed(Constants.MAX_MOTOR_TICKS_PER_SECOND);
         auto.getRobot().rightMotor.setMaxSpeed(Constants.MAX_MOTOR_TICKS_PER_SECOND);

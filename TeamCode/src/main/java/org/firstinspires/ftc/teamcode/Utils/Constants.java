@@ -29,7 +29,7 @@ public class Constants {
 
         public static final double BUMPER_OUT_POSITION = 0;
         public static final double BUMPER_IN_POSITION = 1;
-        public static final double DISTANCE_BETWEEN_BUTTONS = 0.6;//how many rotations between beacon buttonss
+        public static final double DISTANCE_BETWEEN_BUTTONS = 0.5;//how many rotations between beacon buttons
 
         public static final double FORKLIFT_RELEASE_POSITION = 1;
         public static final double FORKLIFT_HOLD_POSITION = 0.5;
