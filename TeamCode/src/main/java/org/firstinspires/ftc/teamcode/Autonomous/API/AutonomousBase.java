@@ -92,6 +92,7 @@ public abstract class AutonomousBase {
                     } else {//if we think that robot has timed out
                         robot.nextStep();
                     }
+
                 } else if (movementCheckMode == 1) {
                     boolean leftDone = false;
                     boolean rightDone = false;
@@ -104,11 +105,11 @@ public abstract class AutonomousBase {
                         robot.rightMotor.setPower(0);
                         rightDone = true;
                     }
-
                     //if both motors are done moving then move on to the next step
                     if (leftDone && rightDone) {
                         robot.nextStep();
                     }
+
                 } else if (movementCheckMode == 2) {
                     if (robot.time.milliseconds() >= robot.waitTime) {
                         robot.nextStep();

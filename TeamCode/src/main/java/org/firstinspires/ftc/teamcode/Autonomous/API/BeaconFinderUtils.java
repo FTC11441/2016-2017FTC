@@ -16,6 +16,7 @@ public class BeaconFinderUtils {
 
     public static void startMovement(RobotAuto robot, double movementMode, double[][] steps) {
         if (movementMode == 3) {
+            //start robot moving slowly to align with line
             robot.leftMotor.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
             robot.rightMotor.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
             robot.leftMotor.setPower(0.1);
@@ -30,7 +31,7 @@ public class BeaconFinderUtils {
             robot.launcher.setMode(DcMotor.RunMode.RUN_TO_POSITION);
             //the LAUNCHER has a gear ratio of 2 to 1
             robot.launcher.setTargetPosition(robot.launcher.getTargetPosition() + (Constants.Teleop.LAUNCHER_ROTATIONS));
-            robot.launcher.setPower(0.75);
+            robot.launcher.setPower(Constants.Teleop.LAUNCHER_SPEED);
         } else if (movementMode == 6) {
             int[] left = robot.colorSensors.getCRGB(Constants.Robot.BEACON_COLOR);
             //if red is greater than blue

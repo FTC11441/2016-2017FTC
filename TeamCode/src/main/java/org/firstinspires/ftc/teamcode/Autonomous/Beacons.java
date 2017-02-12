@@ -20,8 +20,9 @@ public class Beacons extends OpMode {
     private AutonomousBase auto;
 
     private final double[][] redSteps = new double[][]{
-            {0, 5, 5, Constants.DEFAULT_SPEED},//move forward
-            {0, 2.6, 0, Constants.TURNING_SPEED},//turn to go parallel to the wall
+            {0, 0, 2.7, Constants.TURNING_SPEED},//turn to go parallel to the wall
+            {0, 4.5, 4.5, Constants.DEFAULT_SPEED},//move forward
+            {0, 2.5, 0, Constants.TURNING_SPEED},//turn to go parallel to the wall
             {3},//align with the first beacon
             {0, -0.5, -0.5, Constants.TURNING_SPEED},//align with left beacon side
             {4, 0.5},//move pusher forward
@@ -29,12 +30,14 @@ public class Beacons extends OpMode {
             {7},//push or move then push
             {2, 1},//wait a little
             {4, Constants.Teleop.BUMPER_IN_POSITION},//reset pusher
-            {0, 3, 3, Constants.DEFAULT_SPEED},//move forward again to next beacon and repeat
+            {0, 0, 0.2, Constants.TURNING_SPEED},//turn to go parallel to the wall
+            {0, 4, 4, Constants.DEFAULT_SPEED},//move forward again to next beacon and repeat
             {3},//align with the second beacon
             {0, -0.5, -0.5, Constants.TURNING_SPEED},//align with left beacon side
             {4, 0.5},//move pusher forward
             {6},//read left beacon color and store it
             {7},//push or move then push
+            {4, Constants.Teleop.BUMPER_IN_POSITION},//reset pusher
             {-1}
     };
     private final double[][] blueSteps = new double[][]{
@@ -43,7 +46,6 @@ public class Beacons extends OpMode {
             //{0, -redSteps[2][1], -redSteps[2][2], redSteps[2][3]},
             //{0, -redSteps[3][2], -redSteps[3][1], redSteps[3][3]},
             //{3},
-
             {-1}
     };
 
@@ -71,7 +73,7 @@ public class Beacons extends OpMode {
             }
         };
         auto.init(hardwareMap);
-        auto.getRobot().setEncoderTicksPerRotation(Constants.ENCODER_TICKS_PER_ROTATION_40);
+        auto.getRobot().setEncoderTicksPerRotation(Constants.Robot.MOTOR_ENCODERS_USED);
 
         if (auto.getRobot().teamTouch.isPressed()) {
             auto.getRobot().setTeam(Team.BLUE);

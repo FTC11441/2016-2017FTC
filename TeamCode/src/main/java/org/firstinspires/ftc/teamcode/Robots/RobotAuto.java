@@ -9,8 +9,6 @@ import org.firstinspires.ftc.teamcode.Utils.MultiplexColorSensor;
 import org.firstinspires.ftc.teamcode.Utils.State;
 import org.firstinspires.ftc.teamcode.Utils.Team;
 
-import static org.firstinspires.ftc.teamcode.Utils.Constants.ENCODER_TICKS_PER_ROTATION_60;
-
 /**
  * Created by ethan.hampton on 10/11/2016.
  * <p>
@@ -53,7 +51,7 @@ public class RobotAuto extends Robot {
     public int floorReflection = 1200;
     public TouchSensor teamTouch;
 
-    private int encoderTicksPerRotation = ENCODER_TICKS_PER_ROTATION_60;//default but can be changed by team
+    private int encoderTicksPerRotation = Constants.Robot.MOTOR_ENCODERS_USED;
     public Team leftBeacon = Team.UNKNOWN;
 
     /* Initialize standard Hardware interfaces */
@@ -139,6 +137,7 @@ public class RobotAuto extends Robot {
         }
     }
 
+    @Override
     public String debug() {
         return "Left target:  " + leftTarget + " Right target:  " + rightTarget + " \n"
                 + "Left current: " + leftMotor.getCurrentPosition() + " Right current: " + rightMotor.getCurrentPosition() + " \n"

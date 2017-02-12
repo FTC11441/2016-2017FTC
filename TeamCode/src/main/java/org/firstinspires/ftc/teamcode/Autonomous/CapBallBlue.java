@@ -2,9 +2,9 @@ package org.firstinspires.ftc.teamcode.Autonomous;
 
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
-import com.qualcomm.robotcore.hardware.DcMotor;
 
 import org.firstinspires.ftc.teamcode.Autonomous.API.AutonomousBase;
+import org.firstinspires.ftc.teamcode.Autonomous.API.BeaconFinderUtils;
 import org.firstinspires.ftc.teamcode.Robots.RobotAuto;
 import org.firstinspires.ftc.teamcode.Utils.Constants;
 import org.firstinspires.ftc.teamcode.Utils.Group;
@@ -34,27 +34,12 @@ public class CapBallBlue extends OpMode {
 
             @Override
             public boolean checkMovement(RobotAuto robot, double movementMode) {
-                 if (movementMode == 5) {
-                    if (!robot.launcher.isBusy()) {//stop checking motors and stop them if we are done moving
-                        robot.launcher.setPower(0);
-                        return true;
-                    }
-                } else {
-                    return true;
-                }
-
-
-                return false;
+                return BeaconFinderUtils.checkMovement(robot, movementMode);
             }
 
             @Override
             public void startMovement(RobotAuto robot, double movementMode) {
-                if (movementMode == 5) {
-                    robot.launcher.setMode(DcMotor.RunMode.RUN_TO_POSITION);
-                    //the LAUNCHER has a gear ratio of 2 to 1
-                    robot.launcher.setTargetPosition(robot.launcher.getTargetPosition() + (Constants.Teleop.LAUNCHER_ROTATIONS));
-                    robot.launcher.setPower(0.8);
-                }
+                BeaconFinderUtils.startMovement(robot, movementMode, this.getSteps());
             }
 
             @Override
@@ -63,7 +48,7 @@ public class CapBallBlue extends OpMode {
             }
         };
         auto.init(hardwareMap);
-        auto.getRobot().setEncoderTicksPerRotation(Constants.ENCODER_TICKS_PER_ROTATION_60);
+        auto.getRobot().setEncoderTicksPerRotation(Constants.Robot.MOTOR_ENCODERS_USED);
 
 
         auto.getRobot().leftMotor.setMaxSpeed(Constants.MAX_MOTOR_TICKS_PER_SECOND);

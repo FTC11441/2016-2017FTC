@@ -49,6 +49,10 @@ public class Robot extends SimpleRobot {
 
     }
 
+    public String debug() {
+        return  "Left current: " + leftMotor.getCurrentPosition() + " Right current: " + rightMotor.getCurrentPosition() + " \n"
+                + "Left speed: " + leftMotor.getPower() + " Right speed: " + leftMotor.getPower();
+    }
 
     public Team getTeam() {
         return team;
