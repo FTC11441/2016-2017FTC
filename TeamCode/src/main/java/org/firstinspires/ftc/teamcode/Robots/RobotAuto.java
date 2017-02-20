@@ -69,8 +69,7 @@ public class RobotAuto extends Robot {
         // Set all motors to run with encoders to use encoders to track position
         leftMotor.setMode(DcMotor.RunMode.RUN_TO_POSITION);
         rightMotor.setMode(DcMotor.RunMode.RUN_TO_POSITION);
-        leftMotor.setDirection(DcMotor.Direction.FORWARD);
-        rightMotor.setDirection(DcMotor.Direction.REVERSE);
+        leftMotor.setDirection(DcMotor.Direction.REVERSE);
     }
 
     /**
@@ -84,9 +83,6 @@ public class RobotAuto extends Robot {
         //if speed isn't specified then use default speed
         if (speed == -1) {
             speed = Constants.DEFAULT_SPEED;
-        }
-        if (encoderTicksPerRotation == Constants.ENCODER_TICKS_PER_ROTATION_40) {
-            speed = -speed;
         }
 
         /*

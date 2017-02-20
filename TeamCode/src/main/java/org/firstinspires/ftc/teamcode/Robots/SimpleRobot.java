@@ -28,7 +28,7 @@ public class SimpleRobot {
         // Define and Initialize Motors
         leftMotor = ahwMap.dcMotor.get(Constants.Robot.LEFT_MOTOR);
         rightMotor = ahwMap.dcMotor.get(Constants.Robot.RIGHT_MOTOR);
-        leftMotor.setDirection(DcMotor.Direction.REVERSE);
+        rightMotor.setDirection(DcMotor.Direction.REVERSE);
 
         // Set all motors to zero power
         leftMotor.setPower(0);
