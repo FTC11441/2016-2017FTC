@@ -8,9 +8,9 @@ import org.firstinspires.ftc.teamcode.Robots.RobotAuto;
  * moves the beacon
  */
 
-public class BeaconPusher extends Module {
+public class PushBeacon extends Module {
 
-    protected BeaconPusher(double position) {
+    protected PushBeacon(double position) {
         super(new double[]{position});
     }
 

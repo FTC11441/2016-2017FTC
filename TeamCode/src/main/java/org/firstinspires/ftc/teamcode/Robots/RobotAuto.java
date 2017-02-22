@@ -70,7 +70,10 @@ public class RobotAuto extends Robot {
         // Set all motors to run with encoders to use encoders to track position
         leftMotor.setMode(DcMotor.RunMode.RUN_TO_POSITION);
         rightMotor.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+
+        //must reset both else it turns in a circle
         leftMotor.setDirection(DcMotor.Direction.REVERSE);
+        rightMotor.setDirection(DcMotor.Direction.FORWARD);
     }
 
     /**

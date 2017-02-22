@@ -12,9 +12,13 @@ public class Constants {
     public static final int ENCODER_TICKS_PER_ROTATION_60 = 1680;
     public static final int MAX_MOTOR_RPM = 160;
     public static final int MAX_MOTOR_RPM_20 = 250;
-    public static final double DEFAULT_SPEED = 0.75;
-    public static final double TURNING_SPEED = 0.5;
     public static final int MAX_MOTOR_TICKS_PER_SECOND = MAX_MOTOR_RPM_20 * Robot.MOTOR_ENCODERS_USED;
+
+    public static final double DEFAULT_SPEED = 0.5;
+    public static final double TURNING_SPEED = 0.3;
+
+    //4 inch diameter
+    public static final double WHEEL_CIRCUMFERENCE = Math.PI * 4;
 
     public static final double TIMEOUT = 10000;//maximum length of an autonomous step
 
@@ -26,7 +30,7 @@ public class Constants {
         public static final int LINEAR_SLIDE_UP = ENCODER_TICKS_PER_ROTATION_60 * 5;//Start with 10 rotations
         public static final double LINEAR_SLIDE_SPEED = 0.75;
 
-        public static final int LAUNCHER_ROTATIONS = (int) (Constants.ENCODER_TICKS_PER_ROTATION_60 * 1.8);
+        public static final int LAUNCHER_ROTATIONS = (int) (Constants.ENCODER_TICKS_PER_ROTATION_60 * 2.2);
         public static final double LAUNCHER_SPEED = 0.6;
 
         public static final double BUMPER_OUT_POSITION = 0;

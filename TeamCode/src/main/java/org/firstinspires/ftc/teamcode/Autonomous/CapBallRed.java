@@ -19,7 +19,13 @@ public class CapBallRed extends OpMode {
     private AutonomousBase auto;
 
     private final Module[] steps = new Module[]{
-
+/*
+            {0, 3.5, 3.5, -1},//forward
+            {0, -1.1, 1.1, -1},//turn left
+            {0, 0.5, 0.5, -1},//forward
+            {5},//launch
+            {0, 3, 3, -1},//forward
+ */
     };
 
 

@@ -11,9 +11,9 @@ import org.firstinspires.ftc.teamcode.Utils.Team;
  * Presses the beacon
  */
 
-public class PressBeacon extends Module {
+public class PressCorrectBeacon extends Module {
 
-    protected PressBeacon() {
+    protected PressCorrectBeacon() {
         super(null);
     }
 
