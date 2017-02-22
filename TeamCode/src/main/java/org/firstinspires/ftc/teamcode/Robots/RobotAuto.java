@@ -4,6 +4,7 @@ import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.HardwareMap;
 import com.qualcomm.robotcore.hardware.TouchSensor;
 
+import org.firstinspires.ftc.teamcode.Autonomous.API.Module;
 import org.firstinspires.ftc.teamcode.Utils.Constants;
 import org.firstinspires.ftc.teamcode.Utils.MultiplexColorSensor;
 import org.firstinspires.ftc.teamcode.Utils.State;
@@ -22,7 +23,7 @@ public class RobotAuto extends Robot {
     //what time that current step started
     public double startTime = 0;
 
-    //the step we are on, tells us speed, left motor distance, right motor distance and any flags
+    //the step we are on
     public int currentStep = 0;
 
     /*
@@ -35,7 +36,7 @@ public class RobotAuto extends Robot {
     3. right motor distance in rotations
     4. Speed from 1 - 100 (if you want to use default then use -1 and that will auto fill to the current default value, default is 75)
     */
-    public double[][] steps;
+    public Module[] steps;
     //our current state
     public State currentState = State.INIT;
 
