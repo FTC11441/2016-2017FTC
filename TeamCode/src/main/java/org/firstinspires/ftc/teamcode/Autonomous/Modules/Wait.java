@@ -12,17 +12,21 @@ import org.firstinspires.ftc.teamcode.Robots.RobotAuto;
 public class Wait extends Module {
 
 
-    protected Wait(double[] vars) {
-        super(vars);
+    protected Wait(double secondsWait) {
+        super(new double[]{secondsWait});
     }
 
     @Override
     public void checkMovement(RobotAuto robot) {
-
+        if (robot.time.milliseconds() >= robot.waitTime) {
+            robot.nextStep();
+        }
     }
 
     @Override
     public void startMovement(RobotAuto robot) {
-
+        double timeInMilliseconds = vars[0] * 1000;
+        robot.waitTime = robot.startTime + timeInMilliseconds;
+        robot.stopMotors();
     }
 }

@@ -4,7 +4,9 @@ import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 
-import org.firstinspires.ftc.teamcode.Robots.RobotAuto;
+import org.firstinspires.ftc.teamcode.Autonomous.Modules.EncoderMove;
+import org.firstinspires.ftc.teamcode.Autonomous.Modules.Stop;
+import org.firstinspires.ftc.teamcode.Utils.Team;
 
 /**
  * Created by ethan.hampton on 12/1/2016.
@@ -15,31 +17,14 @@ import org.firstinspires.ftc.teamcode.Robots.RobotAuto;
 @Deprecated
 @Disabled
 public class ExampleAutonomous extends OpMode {
-    AutonomousBase auto = new AutonomousBase() {
-        @Override
-        public boolean checkMovement(RobotAuto robot, double movementMode) {
-            return false;
-        }
-
-        @Override
-        public void startMovement(RobotAuto robot, double movementMode) {
-
-        }
-
-        @Override
-        public double[][] getSteps() {
-            return new double[][]{
-                    {0, 1, 1, 75},
-                    {0, -1, 1, 75},
-                    {-1}
-            };
-        }
-    };
-
+    AutonomousBase auto = new AutonomousBase();
 
     @Override
     public void init() {
-        auto.init(hardwareMap);
+        auto.init(hardwareMap, Team.UNKNOWN,new Module[]{
+                new EncoderMove(1,1,0.75),
+                new Stop()
+        });
     }
 
     @Override

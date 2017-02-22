@@ -12,8 +12,9 @@ import org.firstinspires.ftc.teamcode.Utils.Constants;
 
 public class EncoderMove extends Module {
 
-    EncoderMove(double[] vars) {
-        super(vars);
+    public EncoderMove(double left, double right, double speed) {
+        //sets var variables to proper values so program can store them
+        super(new double[]{left,right,speed});
     }
 
     @Override
