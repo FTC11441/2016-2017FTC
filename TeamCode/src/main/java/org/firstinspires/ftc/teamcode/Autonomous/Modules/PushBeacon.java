@@ -10,7 +10,7 @@ import org.firstinspires.ftc.teamcode.Robots.RobotAuto;
 
 public class PushBeacon extends Module {
 
-    protected PushBeacon(double position) {
+    public PushBeacon(double position) {
         super(new double[]{position});
     }
 

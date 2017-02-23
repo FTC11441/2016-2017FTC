@@ -13,7 +13,7 @@ import org.firstinspires.ftc.teamcode.Utils.Team;
 
 public class PressCorrectBeacon extends Module {
 
-    protected PressCorrectBeacon() {
+    public PressCorrectBeacon() {
         super(null);
     }
 

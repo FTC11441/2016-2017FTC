@@ -12,7 +12,7 @@ import org.firstinspires.ftc.teamcode.Utils.Team;
 
 public class CheckBeaconColor extends Module {
 
-    protected CheckBeaconColor(){
+    public CheckBeaconColor(){
         super(null);
     }
     @Override

@@ -12,7 +12,7 @@ import org.firstinspires.ftc.teamcode.Robots.RobotAuto;
 public class Wait extends Module {
 
 
-    protected Wait(double secondsWait) {
+    public Wait(double secondsWait) {
         super(new double[]{secondsWait});
     }
 

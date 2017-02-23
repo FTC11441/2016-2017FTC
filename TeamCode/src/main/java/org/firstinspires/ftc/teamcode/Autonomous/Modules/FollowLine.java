@@ -17,7 +17,7 @@ public class FollowLine extends Module {
     private double forward = 0.1;
     private double turn = 0.3;
 
-    protected FollowLine() {
+    public FollowLine() {
         super(null);
 
     }
@@ -40,7 +40,7 @@ public class FollowLine extends Module {
                 robot.rightMotor.setPower(turn);
 
                 //right is on line
-            } else if (left[0] > value && right[0] < value) {
+            } else if (left[0] < value && right[0] > value) {
                 robot.leftMotor.setPower(turn);
                 robot.rightMotor.setPower(0);
 

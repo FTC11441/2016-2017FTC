@@ -22,9 +22,9 @@ public class CapBallStraight extends OpMode {
     private AutonomousBase auto;
 
     private final Module[] steps = new Module[]{
-            new EncoderMove(3, 3, -1),//forward
+            new EncoderMove(1.7, 1.7, Constants.DEFAULT_SPEED),//forward
             new LaunchParticle(),//launch
-            new EncoderMove(3, 3, -1),//forward
+            new EncoderMove(1.3, 1.3, Constants.DEFAULT_SPEED),//forward
             new Stop()
     };
 

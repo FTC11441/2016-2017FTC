@@ -5,6 +5,9 @@ import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 
 import org.firstinspires.ftc.teamcode.Autonomous.API.AutonomousBase;
 import org.firstinspires.ftc.teamcode.Autonomous.API.Module;
+import org.firstinspires.ftc.teamcode.Autonomous.Modules.EncoderMove;
+import org.firstinspires.ftc.teamcode.Autonomous.Modules.LaunchParticle;
+import org.firstinspires.ftc.teamcode.Autonomous.Modules.Stop;
 import org.firstinspires.ftc.teamcode.Utils.Constants;
 import org.firstinspires.ftc.teamcode.Utils.Group;
 import org.firstinspires.ftc.teamcode.Utils.Team;
@@ -19,6 +22,12 @@ public class CapBallRed extends OpMode {
     private AutonomousBase auto;
 
     private final Module[] steps = new Module[]{
+            new EncoderMove(1.7, 1.7, Constants.DEFAULT_SPEED),//forward
+            new EncoderMove(-1.1, 1.1, Constants.TURNING_SPEED),//turn
+            new EncoderMove(0.5, 0.5, Constants.DEFAULT_SPEED),//forward
+            new LaunchParticle(),//launch
+            new EncoderMove(1.3, 1.3, Constants.DEFAULT_SPEED),//forward
+            new Stop()
 /*
             {0, 3.5, 3.5, -1},//forward
             {0, -1.1, 1.1, -1},//turn left

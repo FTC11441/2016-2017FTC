@@ -7,6 +7,7 @@ import org.firstinspires.ftc.teamcode.Autonomous.API.AutonomousBase;
 import org.firstinspires.ftc.teamcode.Autonomous.API.Module;
 import org.firstinspires.ftc.teamcode.Autonomous.Modules.EncoderMove;
 import org.firstinspires.ftc.teamcode.Autonomous.Modules.Stop;
+import org.firstinspires.ftc.teamcode.Autonomous.Modules.Wait;
 import org.firstinspires.ftc.teamcode.Utils.Constants;
 import org.firstinspires.ftc.teamcode.Utils.Group;
 import org.firstinspires.ftc.teamcode.Utils.Team;
@@ -20,8 +21,9 @@ public class Ramp extends OpMode {
     private AutonomousBase auto;
 
     private final Module[] steps = new Module[]{
-            new EncoderMove(1, 1, Constants.DEFAULT_SPEED),
-            new EncoderMove(0, 4, Constants.TURNING_SPEED),
+            new Wait(10),
+            new EncoderMove(0.5, 0.5, Constants.DEFAULT_SPEED),
+            new EncoderMove(-2, 2, Constants.TURNING_SPEED),
             new EncoderMove(3, 3, Constants.DEFAULT_SPEED),
             new Stop()
     };
