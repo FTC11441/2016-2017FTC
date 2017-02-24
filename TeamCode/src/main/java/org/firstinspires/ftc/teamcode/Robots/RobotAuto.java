@@ -97,7 +97,6 @@ public class RobotAuto extends Robot {
         leftSpeed = speed;
         rightSpeed = speed;
 
-
         /*
         scale speed so that turns are relatively smooth, doesn't change anything if they are the same
         note that we are scaling by 2 so we have a differential effort
