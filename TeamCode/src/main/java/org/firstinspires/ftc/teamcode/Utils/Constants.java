@@ -30,7 +30,7 @@ public class Constants {
         public static final int LINEAR_SLIDE_UP = ENCODER_TICKS_PER_ROTATION_60 * 5;//Start with 10 rotations
         public static final double LINEAR_SLIDE_SPEED = 0.75;
 
-        public static final int LAUNCHER_ROTATIONS = (int) (Constants.ENCODER_TICKS_PER_ROTATION_60 * 2.1);
+        public static final int LAUNCHER_ROTATIONS = (int) (Constants.ENCODER_TICKS_PER_ROTATION_60 * 2);
         public static final double LAUNCHER_SPEED = 0.5;
 
         public static final double BUMPER_OUT_POSITION = 0;

@@ -25,12 +25,15 @@ import org.firstinspires.ftc.teamcode.Utils.Team;
 public class BeaconsRed extends OpMode {
     private AutonomousBase auto;
 
+    private final double startTurn = 1;
     private final Module[] steps = new Module[]{
-            new EncoderMove( -1, 1, Constants.TURNING_SPEED),//turn to go parallel to the wall
-            new EncoderMove( 3, 3, Constants.DEFAULT_SPEED),//move forward
-            new EncoderMove( 1, -1, Constants.TURNING_SPEED),//turn to go parallel to the wall
+            new EncoderMove( 0.2, 0.2, Constants.TURNING_SPEED),//move slightly away from the wall
+            new EncoderMove( -startTurn, startTurn, Constants.TURNING_SPEED),//turn to go parallel to the wall
+            new EncoderMove( 3.7, 3.7, Constants.DEFAULT_SPEED),//move forward
+            new EncoderMove( 2, 0, Constants.TURNING_SPEED),//turn to go parallel to the wall
+
             new FollowLine(),//align with the first beacon
-            new EncoderMove( -0.2, -0.2, Constants.TURNING_SPEED),//align with left beacon side
+            new EncoderMove( -0.3, -0.3, Constants.TURNING_SPEED),//align with left beacon side
             new PushBeacon(0.6),//move pusher forward
             new CheckBeaconColor(),//read left beacon color and store it
             new PressCorrectBeacon(),//push or move then push
@@ -41,12 +44,13 @@ public class BeaconsRed extends OpMode {
             new EncoderMove( 2, 2, Constants.DEFAULT_SPEED),//move forward again to next beacon and repeat
 
             new FollowLine(),//align with the first beacon
-            new EncoderMove( -0.2, -0.2, Constants.TURNING_SPEED),//align with left beacon side
+            new EncoderMove( -0.3, -0.3, Constants.TURNING_SPEED),//align with left beacon side
             new PushBeacon(0.6),//move pusher forward
             new CheckBeaconColor(),//read left beacon color and store it
             new PressCorrectBeacon(),//push or move then push
             new Wait(1),//wait a little
             new PushBeacon( Constants.Teleop.BUMPER_IN_POSITION),//reset pusher
+
             new Stop()
     };
 
@@ -92,7 +96,8 @@ public class BeaconsRed extends OpMode {
         if (!floor) {
             auto.getRobot().colorSensors.startPolling();
             //get average of floor color so that we can accurately detect the floor
-            auto.getRobot().floorReflection = (auto.getRobot().colorSensors.getCRGB(Constants.Robot.LEFT_COLOR)[0] + auto.getRobot().colorSensors.getCRGB(Constants.Robot.RIGHT_COLOR)[0]) / 2;
+            auto.getRobot().leftFloorReflection = auto.getRobot().colorSensors.getCRGB(Constants.Robot.LEFT_COLOR)[0];
+            auto.getRobot().rightFloorReflection = auto.getRobot().colorSensors.getCRGB(Constants.Robot.RIGHT_COLOR)[0];
             floor = true;
 
             auto.getRobot().bumper.setPosition(Constants.Teleop.BUMPER_IN_POSITION);

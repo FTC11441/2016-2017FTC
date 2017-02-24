@@ -59,7 +59,7 @@ public class BeaconFinderUtils {
     }
 
     public static boolean checkMovement(RobotAuto robot, double movementMode) {
-        int light = robot.floorReflection;
+        int light = robot.leftFloorReflection;
         final int add = Constants.LIGHT_CHANGE;
         int value = light + add;
         if (movementMode == 3) {

@@ -2,7 +2,6 @@ package org.firstinspires.ftc.teamcode.Robots;
 
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.HardwareMap;
-import com.qualcomm.robotcore.hardware.TouchSensor;
 
 import org.firstinspires.ftc.teamcode.Autonomous.API.Module;
 import org.firstinspires.ftc.teamcode.Utils.Constants;
@@ -49,12 +48,11 @@ public class RobotAuto extends Robot {
 
     private int[] ports = {0, 1, 2};
     public MultiplexColorSensor colorSensors;
-    public int floorReflection = 1200;
-    public TouchSensor teamTouch;
+    public int leftFloorReflection = 1200;
+    public int rightFloorReflection = 1200;
 
     private int encoderTicksPerRotation = Constants.Robot.MOTOR_ENCODERS_USED;
     public Team leftBeacon = Team.UNKNOWN;
-
     /* Initialize standard Hardware interfaces */
     public void Init(HardwareMap ahwMap) {
         super.Init(ahwMap);
@@ -64,8 +62,6 @@ public class RobotAuto extends Robot {
                 ports, milliSeconds,
                 MultiplexColorSensor.GAIN_16X);
         colorSensors.startPolling();
-
-        teamTouch = ahwMap.touchSensor.get(Constants.Robot.TEAM_TOUCH);
 
         // Set all motors to run with encoders to use encoders to track position
         leftMotor.setMode(DcMotor.RunMode.RUN_TO_POSITION);
@@ -142,8 +138,8 @@ public class RobotAuto extends Robot {
         return "Left target:  " + leftTarget + " Right target:  " + rightTarget + " \n"
                 + "Left current: " + leftMotor.getCurrentPosition() + " Right current: " + rightMotor.getCurrentPosition() + " \n"
                 + "Left speed: " + leftMotor.getPower() + " Right speed: " + leftMotor.getPower() + "\n"
-                + "Left Light: " + colorSensors.getCRGB(Constants.Robot.LEFT_COLOR)[0] + "Right Light: " + colorSensors.getCRGB(Constants.Robot.RIGHT_COLOR)[0] + "\n"
-                + "Floor default: " + floorReflection;
+                + "Left Light: " + colorSensors.getCRGB(Constants.Robot.LEFT_COLOR)[0] + " Right Light: " + colorSensors.getCRGB(Constants.Robot.RIGHT_COLOR)[0] + "\n"
+                + "Left floor default: " + leftFloorReflection+ " Right floor default: " + rightFloorReflection;
     }
 
     public void nextStep() {

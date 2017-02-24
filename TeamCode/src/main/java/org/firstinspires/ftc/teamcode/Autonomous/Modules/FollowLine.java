@@ -24,28 +24,30 @@ public class FollowLine extends Module {
 
     @Override
     public void checkMovement(RobotAuto robot) {
-        int light = robot.floorReflection;
+        int leftLight = robot.leftFloorReflection;
+        int rightLight = robot.rightFloorReflection;
         final int add = Constants.LIGHT_CHANGE;
-        int value = light + add;
+        int leftValue = leftLight + add;
+        int rightValue = rightLight + add;
             int[] left = robot.colorSensors.getCRGB(Constants.Robot.LEFT_COLOR);
             int[] right = robot.colorSensors.getCRGB(Constants.Robot.RIGHT_COLOR);
             //both are off line
-            if (left[0] < value && right[0] < value) {
+            if (left[0] < leftValue && right[0] < rightValue) {
                 robot.leftMotor.setPower(forward);
                 robot.rightMotor.setPower(forward);
 
                 //left is on line
-            } else if (left[0] > value && right[0] < value) {
+            } else if (left[0] > leftValue && right[0] < rightValue) {
                 robot.leftMotor.setPower(0);
                 robot.rightMotor.setPower(turn);
 
                 //right is on line
-            } else if (left[0] < value && right[0] > value) {
+            } else if (left[0] < leftValue && right[0] > rightValue) {
                 robot.leftMotor.setPower(turn);
                 robot.rightMotor.setPower(0);
 
                 //both on line
-            } else if (left[0] > value && right[0] > value) {
+            } else if (left[0] > leftValue && right[0] > rightValue) {
                 robot.leftMotor.setPower(0);
                 robot.rightMotor.setPower(0);
 
