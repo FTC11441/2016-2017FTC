@@ -3,9 +3,8 @@ package org.firstinspires.ftc.teamcode.TestPrograms;
 import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
-import com.qualcomm.robotcore.hardware.Servo;
 
-import org.firstinspires.ftc.teamcode.Utils.Constants;
+import org.firstinspires.ftc.teamcode.Robots.Robot;
 import org.firstinspires.ftc.teamcode.Utils.Group;
 
 /**
@@ -17,16 +16,17 @@ import org.firstinspires.ftc.teamcode.Utils.Group;
 @TeleOp(name = "Servo Only", group = Group.FEATURE)
 @Disabled
 public class ServoTeleop extends OpMode {
-    private Servo bumper;
+    private Robot robot = new Robot();
 
     @Override
     public void init() {
-        bumper = hardwareMap.servo.get(Constants.Robot.BUMPER);
+     robot.Init(hardwareMap);
 
     }
 
     @Override
     public void loop() {
-        bumper.setPosition(gamepad1.right_stick_y );
+        robot.forklift.setPosition(gamepad1.right_stick_y );
+        telemetry.addLine(robot.forklift.getPosition()+"");
     }
 }

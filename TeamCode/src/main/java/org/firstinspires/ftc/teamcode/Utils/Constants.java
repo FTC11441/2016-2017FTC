@@ -38,7 +38,7 @@ public class Constants {
         public static final double DISTANCE_BETWEEN_BUTTONS = 0.4;//how many rotations between beacon buttons
 
         public static final double FORKLIFT_RELEASE_POSITION = 1;
-        public static final double FORKLIFT_HOLD_POSITION = 0.65;
+        public static final double FORKLIFT_HOLD_POSITION = 0.4;
         public static final double FORKLIFT_LOCK_UNTIL_TIME = 1000 * 75;//1:15 into match is 75 seconds
 
         public static final double FLIPPER_OUT = 1;
