@@ -25,7 +25,7 @@ import org.firstinspires.ftc.teamcode.Utils.Team;
 public class BeaconsBlue extends OpMode {
     private AutonomousBase auto;
 
-    private final double startTurn = 1.05;
+    private final double startTurn = 0.9;
     private final Module[] steps = new Module[]{
             new EncoderMove( -0.2, -0.2, Constants.TURNING_SPEED),//move slightly away from the wall
             new EncoderMove( startTurn, -startTurn, Constants.TURNING_SPEED),//turn to go parallel to the wall

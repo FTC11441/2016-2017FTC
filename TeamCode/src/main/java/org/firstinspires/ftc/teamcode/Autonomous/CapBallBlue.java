@@ -23,7 +23,7 @@ public class CapBallBlue extends OpMode {
 
     private final Module[] steps = new Module[]{
             new EncoderMove(1.7, 1.7, Constants.DEFAULT_SPEED),//forward
-            new EncoderMove(1.1, -1.1, Constants.TURNING_SPEED),//turn
+            new EncoderMove(1.05, -1.05, Constants.TURNING_SPEED),//turn
             new EncoderMove(0.5, 0.5, Constants.DEFAULT_SPEED),//forward
             new LaunchParticle(),//launch
             new EncoderMove(1.3, 1.3, Constants.DEFAULT_SPEED),//forward

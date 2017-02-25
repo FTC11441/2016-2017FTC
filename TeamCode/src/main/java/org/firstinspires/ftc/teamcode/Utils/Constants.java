@@ -26,7 +26,7 @@ public class Constants {
     public static final int LIGHT_CHANGE = 400;
 
     public class Teleop {
-        public static final int LINEAR_SLIDE_INCREMENT = ENCODER_TICKS_PER_ROTATION_60 / 2;//Increment 1/2 rotation per press
+        public static final int LINEAR_SLIDE_INCREMENT = ENCODER_TICKS_PER_ROTATION_60 / 4;//Increment 1/2 rotation per press
         public static final int LINEAR_SLIDE_UP = ENCODER_TICKS_PER_ROTATION_60 * 5;//Start with 10 rotations
         public static final double LINEAR_SLIDE_SPEED = 0.75;
 
@@ -38,7 +38,7 @@ public class Constants {
         public static final double DISTANCE_BETWEEN_BUTTONS = 0.4;//how many rotations between beacon buttons
 
         public static final double FORKLIFT_RELEASE_POSITION = 1;
-        public static final double FORKLIFT_HOLD_POSITION = 0.4;
+        public static final double FORKLIFT_HOLD_POSITION = 0.3;
         public static final double FORKLIFT_LOCK_UNTIL_TIME = 1000 * 75;//1:15 into match is 75 seconds
 
         public static final double FLIPPER_OUT = 1;

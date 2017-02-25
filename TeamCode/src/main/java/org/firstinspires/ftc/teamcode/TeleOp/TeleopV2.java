@@ -3,6 +3,7 @@ package org.firstinspires.ftc.teamcode.TeleOp;
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.hardware.DcMotor;
+import com.qualcomm.robotcore.util.Range;
 
 import org.firstinspires.ftc.teamcode.Robots.Robot;
 import org.firstinspires.ftc.teamcode.Utils.Constants;
@@ -33,9 +34,8 @@ public class TeleopV2 extends OpMode {
         double right = gamepad1.right_stick_y;
 
         //sets the robots motor power for both motors
-        robot.leftMotor.setPower(left);
-        robot.rightMotor.setPower(right);
-
+        robot.leftMotor.setPower(Range.scale(left,-1,1,-0.8,0.8));
+        robot.rightMotor.setPower(Range.scale(right,-1,1,-0.8,0.8));
 
         //Enable and disable encoders for drive motors
         if (gamepad1.dpad_left) {
@@ -55,7 +55,7 @@ public class TeleopV2 extends OpMode {
             robot.bumper.setPosition(Constants.Teleop.BUMPER_IN_POSITION);
         }
 
-
+/*
         //linear slide system system
         if (gamepad2.dpad_up) {//go to top
             robot.linearSlide.setTargetPosition(Constants.Teleop.LINEAR_SLIDE_UP);
@@ -63,18 +63,21 @@ public class TeleopV2 extends OpMode {
             robot.linearSlide.setPower(Constants.Teleop.LINEAR_SLIDE_SPEED);
             linearSlideMoving = true;
         }
+        */
         if (gamepad2.dpad_right) {//increment up
             robot.linearSlide.setTargetPosition(robot.linearSlide.getTargetPosition() + Constants.Teleop.LINEAR_SLIDE_INCREMENT);
             robot.linearSlide.setMode(DcMotor.RunMode.RUN_TO_POSITION);
             robot.linearSlide.setPower(Constants.Teleop.LINEAR_SLIDE_SPEED);
             linearSlideMoving = true;
         }
+        /*
         if (gamepad2.dpad_down) {//go down to bottom
             robot.linearSlide.setTargetPosition(0);
             robot.linearSlide.setMode(DcMotor.RunMode.RUN_TO_POSITION);
             robot.linearSlide.setPower(-Constants.Teleop.LINEAR_SLIDE_SPEED);
             linearSlideMoving = true;
         }
+        */
         if (gamepad2.dpad_left) {//increment down
             robot.linearSlide.setTargetPosition(robot.linearSlide.getTargetPosition() - Constants.Teleop.LINEAR_SLIDE_INCREMENT);
             robot.linearSlide.setMode(DcMotor.RunMode.RUN_TO_POSITION);
@@ -108,14 +111,14 @@ public class TeleopV2 extends OpMode {
 
         //tube controls
         if (gamepad2.left_trigger > 0.50) {
-            robot.tube.setPower(Constants.DEFAULT_SPEED);
+            robot.tube.setPower(0.75);
         } else {
             robot.tube.setPower(0);
         }
 
         //ball collector controls
         if (gamepad2.right_trigger > 0.50) {
-            robot.collector.setPower(Constants.DEFAULT_SPEED);
+            robot.collector.setPower(0.75);
         } else {
             robot.collector.setPower(0);
         }
