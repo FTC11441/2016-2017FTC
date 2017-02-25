@@ -39,7 +39,7 @@ public class PressCorrectBeacon extends Module {
             if (robot.getTeam() == Team.BLUE) {
                 move = -move;
             }
-            robot.setDrive(move, move, Constants.DEFAULT_SPEED);// TODO: 2/8/2017 Change this to work correctly
+            robot.setDrive(move, move, Constants.TURNING_SPEED-0.03);
         }
     }
 }

@@ -21,29 +21,29 @@ import org.firstinspires.ftc.teamcode.Utils.Team;
  * <p>
  * adds team capabilities to autonomous
  */
-@Autonomous(name = "Beacons Red", group = Group.DEV)
-public class BeaconsRed extends OpMode {
+@Autonomous(name = "Beacons Blue", group = Group.DEV)
+public class BeaconsBlue extends OpMode {
     private AutonomousBase auto;
 
     private final double startTurn = 1.05;
     private final Module[] steps = new Module[]{
-            new EncoderMove( 0.2, 0.2, Constants.TURNING_SPEED),//move slightly away from the wall
-            new EncoderMove( -startTurn, startTurn, Constants.TURNING_SPEED),//turn to go parallel to the wall
-            new EncoderMove( 3.9, 3.9, Constants.DEFAULT_SPEED),//move forward
-            new EncoderMove( 2, 0, Constants.TURNING_SPEED),//turn to go parallel to the wall
-            new EncoderMove( -0.3, -0.3, Constants.TURNING_SPEED),//back up a little
+            new EncoderMove( -0.2, -0.2, Constants.TURNING_SPEED),//move slightly away from the wall
+            new EncoderMove( startTurn, -startTurn, Constants.TURNING_SPEED),//turn to go parallel to the wall
+            new EncoderMove( -3.9, -3.9, Constants.DEFAULT_SPEED),//move forward
+            new EncoderMove( -2, 0, Constants.TURNING_SPEED),//turn to go parallel to the wall
+            new EncoderMove( 0.3, 0.3, Constants.TURNING_SPEED),//back up a little
 
             new FollowLine(),//align with the first beacon
-            new EncoderMove( -0.3, -0.3, Constants.TURNING_SPEED),//align with left beacon side
+            new EncoderMove( 0.3, 0.3, Constants.TURNING_SPEED),//align with left beacon side
             new CheckBeaconColor(),//read left beacon color and store it
             new PressCorrectBeacon(),//push or move then push
             new Wait(1),//wait a little
             new PushBeacon( Constants.Teleop.BUMPER_IN_POSITION),//reset pusher
 
-            new EncoderMove( 2.2, 1.9, Constants.DEFAULT_SPEED),//move forward again to next beacon and repeat
+            new EncoderMove( -2.2, -1.9, Constants.DEFAULT_SPEED),//move forward again to next beacon and repeat
 
             new FollowLine(),//align with the first beacon
-            new EncoderMove( -0.25, -0.25, Constants.TURNING_SPEED),//align with left beacon side
+            new EncoderMove( 0.25, 0.25, Constants.TURNING_SPEED),//align with left beacon side
             new CheckBeaconColor(),//read left beacon color and store it
             new PressCorrectBeacon(),//push or move then push
             new Wait(1),//wait a little
@@ -79,7 +79,7 @@ public class BeaconsRed extends OpMode {
     @Override
     public void init() {
         auto = new AutonomousBase();
-        auto.init(hardwareMap, Team.RED, steps);
+        auto.init(hardwareMap, Team.BLUE, steps);
 
         auto.getRobot().setEncoderTicksPerRotation(Constants.Robot.MOTOR_ENCODERS_USED);
 

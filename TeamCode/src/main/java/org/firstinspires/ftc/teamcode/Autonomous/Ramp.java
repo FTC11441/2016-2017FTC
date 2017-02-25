@@ -16,7 +16,7 @@ import org.firstinspires.ftc.teamcode.Utils.Team;
  * Created by ethan.hampton on 12/17/2016.
  * Simple autonomous program
  */
-@Autonomous(name = "Ramp", group = Group.TESTING)
+@Autonomous(name = "Ramp - NOT WORKING", group = Group.TESTING)
 public class Ramp extends OpMode {
     private AutonomousBase auto;
 
