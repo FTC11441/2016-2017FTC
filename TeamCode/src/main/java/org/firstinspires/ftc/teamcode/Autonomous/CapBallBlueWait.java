@@ -18,24 +18,33 @@ import org.firstinspires.ftc.teamcode.Utils.Team;
  * <p>
  * adds team capabilities to autonomous
  */
-@Autonomous(name = "Cap Ball Straight", group = Group.RELEASE)
-public class CapBallStraight extends OpMode {
+@Autonomous(name = "Cap Ball Blue WAIT", group = Group.RELEASE)
+public class CapBallBlueWait extends OpMode {
     private AutonomousBase auto;
 
     private final Module[] steps = new Module[]{
-            new Wait(5),
+            new Wait(15),//wait before starting so the other team can go
             new EncoderMove(1.7, 1.7, Constants.DEFAULT_SPEED),//forward
+            new EncoderMove(1.05, -1.05, Constants.TURNING_SPEED),//turn
+            new EncoderMove(0.5, 0.5, Constants.DEFAULT_SPEED),//forward
             new LaunchParticle(),//launch
             new EncoderMove(1.3, 1.3, Constants.DEFAULT_SPEED),//forward
             new Stop()
+/*
+            {0, 3.5, 3.5, -1},//forward
+            {0, 1.1, -1.1, -1},//turn right
+            {0, 0.5, 0.5, -1},//forward
+            {5},//launch
+            {0, 3, 3, -1},//forward
+            {-1}
+ */
     };
 
 
     @Override
     public void init() {
         auto = new AutonomousBase();
-
-        auto.init(hardwareMap, Team.UNKNOWN, steps);
+        auto.init(hardwareMap, Team.BLUE, steps);
 
         auto.getRobot().setEncoderTicksPerRotation(Constants.Robot.MOTOR_ENCODERS_USED);
 

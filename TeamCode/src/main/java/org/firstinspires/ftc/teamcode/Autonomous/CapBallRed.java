@@ -8,6 +8,7 @@ import org.firstinspires.ftc.teamcode.Autonomous.API.Module;
 import org.firstinspires.ftc.teamcode.Autonomous.Modules.EncoderMove;
 import org.firstinspires.ftc.teamcode.Autonomous.Modules.LaunchParticle;
 import org.firstinspires.ftc.teamcode.Autonomous.Modules.Stop;
+import org.firstinspires.ftc.teamcode.Autonomous.Modules.Wait;
 import org.firstinspires.ftc.teamcode.Utils.Constants;
 import org.firstinspires.ftc.teamcode.Utils.Group;
 import org.firstinspires.ftc.teamcode.Utils.Team;
@@ -22,6 +23,7 @@ public class CapBallRed extends OpMode {
     private AutonomousBase auto;
 
     private final Module[] steps = new Module[]{
+            new Wait(5),
             new EncoderMove(1.7, 1.7, Constants.DEFAULT_SPEED),//forward
             new EncoderMove(-1.1, 1.1, Constants.TURNING_SPEED),//turn
             new EncoderMove(0.5, 0.5, Constants.DEFAULT_SPEED),//forward

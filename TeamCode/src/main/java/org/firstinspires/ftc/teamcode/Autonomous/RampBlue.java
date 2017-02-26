@@ -16,15 +16,15 @@ import org.firstinspires.ftc.teamcode.Utils.Team;
  * Created by ethan.hampton on 12/17/2016.
  * Simple autonomous program
  */
-@Autonomous(name = "Ramp - NOT WORKING", group = Group.TESTING)
-public class Ramp extends OpMode {
+@Autonomous(name = "Ramp Blue", group = Group.TESTING)
+public class RampBlue extends OpMode {
     private AutonomousBase auto;
 
     private final Module[] steps = new Module[]{
-            new Wait(10),
+            new Wait(15),
             new EncoderMove(0.5, 0.5, Constants.DEFAULT_SPEED),
-            new EncoderMove(-2, 2, Constants.TURNING_SPEED),
-            new EncoderMove(3, 3, Constants.DEFAULT_SPEED),
+            new EncoderMove(2, -2, Constants.TURNING_SPEED),
+            new EncoderMove(4, 4, Constants.DEFAULT_SPEED),
             new Stop()
     };
 

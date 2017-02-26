@@ -1,6 +1,7 @@
 package org.firstinspires.ftc.teamcode.Autonomous;
 
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
+import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 
 import org.firstinspires.ftc.teamcode.Autonomous.API.AutonomousBase;
@@ -16,6 +17,7 @@ import org.firstinspires.ftc.teamcode.Utils.Team;
  * Simple autonomous program
  */
 @Autonomous(name = "Basic Auto", group = Group.TESTING)
+@Disabled
 public class BasicAutonomous extends OpMode {
     private AutonomousBase auto;
 
